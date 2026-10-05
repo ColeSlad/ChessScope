@@ -1,0 +1,54 @@
+{
+  "name": "chess-helper",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A quiet, standalone macOS chess coach for permitted practice",
+  "author": "Cole Sladowsky",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/main/main.cjs",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "tsc --noEmit && vite build && node scripts/build-electron.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "engine:prepare": "node scripts/prepare-engine.mjs",
+    "engine:verify": "node scripts/verify-engine.mjs",
+    "package:dir": "npm run build && npm run engine:verify && electron-builder --mac --arm64 --dir",
+    "package:mac": "npm run build && npm run engine:verify && electron-builder --mac --arm64",
+    "fixtures:evaluate": "node scripts/evaluate-fixtures.mjs"
+  },
+  "dependencies": {
+    "openai": "7.4.0",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.2",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "electron": "42.5.2",
+    "electron-builder": "26.15.3",
+    "esbuild": "0.27.3",
+    "typescript": "5.9.3",
+    "vite": "7.3.1",
+    "vitest": "4.1.9"
+  },
+  "build": {
+    "appId": "com.colesladowsky.chesshelper",
+    "productName": "Chess Helper",
+    "directories": { "output": "release" },
+    "files": ["dist/**/*", "package.json"],
+    "extraResources": [{ "from": "resources/stockfish", "to": "stockfish" }],
+    "asar": true,
+    "mac": {
+      "target": [{ "target": "dmg", "arch": ["arm64"] }, { "target": "zip", "arch": ["arm64"] }],
+      "category": "public.app-category.education",
+      "hardenedRuntime": true,
+      "entitlements": "resources/entitlements.mac.plist",
+      "entitlementsInherit": "resources/entitlements.mac.plist",
+      "extendInfo": { "LSUIElement": true, "NSScreenCaptureUsageDescription": "Chess Helper captures your selected browser window and uploads only the board crop for recognition." }
+    }
+  }
+}

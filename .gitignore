@@ -1,0 +1,12 @@
+.DS_Store
+node_modules/
+dist/
+release/
+*.log
+.env*
+*.bundle
+chess-helper/resources/stockfish/stockfish
+chess-helper/resources/stockfish/*.nnue
+chess-helper/resources/stockfish/source/
+chess-helper/resources/stockfish/*.tar
+chess-helper/resources/stockfish/*.zip
