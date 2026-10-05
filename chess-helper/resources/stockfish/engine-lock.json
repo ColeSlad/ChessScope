@@ -1,0 +1,10 @@
+{
+  "release": "sf_17.1",
+  "architecture": "macos-m1-apple-silicon",
+  "archiveURL": "https://github.com/official-stockfish/Stockfish/releases/download/sf_17.1/stockfish-macos-m1-apple-silicon.tar",
+  "sourceURL": "https://github.com/official-stockfish/Stockfish/archive/refs/tags/sf_17.1.tar.gz",
+  "archiveSha256": null,
+  "sourceSha256": null,
+  "binarySha256": null,
+  "networks": {}
+}

@@ -10,3 +10,5 @@ chess-helper/resources/stockfish/*.nnue
 chess-helper/resources/stockfish/source/
 chess-helper/resources/stockfish/*.tar
 chess-helper/resources/stockfish/*.zip
+chess-helper/resources/stockfish/*.tar.gz
+chess-helper/resources/stockfish/.prepare-*/

@@ -1,0 +1,5 @@
+{
+  "version": 1,
+  "description": "Only real recorded, user-approved board crops qualify recognition. Add cases using the documented schema; no synthetic screenshots are represented as site fixtures.",
+  "cases": []
+}
