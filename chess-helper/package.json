@@ -22,7 +22,8 @@
     "openai": "7.4.0",
     "react": "19.2.7",
     "react-dom": "19.2.7",
-    "zod": "4.4.3"
+    "zod": "4.4.3",
+    "chess.js": "1.4.0"
   },
   "devDependencies": {
     "@types/node": "24.13.2",
@@ -38,17 +39,43 @@
   "build": {
     "appId": "com.colesladowsky.chesshelper",
     "productName": "Chess Helper",
-    "directories": { "output": "release" },
-    "files": ["dist/**/*", "package.json"],
-    "extraResources": [{ "from": "resources/stockfish", "to": "stockfish" }],
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/stockfish",
+        "to": "stockfish"
+      }
+    ],
     "asar": true,
     "mac": {
-      "target": [{ "target": "dmg", "arch": ["arm64"] }, { "target": "zip", "arch": ["arm64"] }],
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "arm64"
+          ]
+        }
+      ],
       "category": "public.app-category.education",
       "hardenedRuntime": true,
       "entitlements": "resources/entitlements.mac.plist",
       "entitlementsInherit": "resources/entitlements.mac.plist",
-      "extendInfo": { "LSUIElement": true, "NSScreenCaptureUsageDescription": "Chess Helper captures your selected browser window and uploads only the board crop for recognition." }
+      "extendInfo": {
+        "LSUIElement": true,
+        "NSScreenCaptureUsageDescription": "Chess Helper captures your selected browser window and uploads only the board crop for recognition."
+      }
     }
   }
 }
