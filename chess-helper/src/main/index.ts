@@ -1,7 +1,6 @@
 import { app, BrowserWindow, Tray, Menu, nativeImage, screen, globalShortcut, ipcMain, session as electronSession, desktopCapturer, systemPreferences, shell, type IpcMainInvokeEvent } from 'electron';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import fs from 'node:fs';
 import { z } from 'zod';
 import { tokenSchema, selectionSchema, correctionSchema, settingsSchema, frameSchema, type Snapshot, type Token, type CaptureCommand } from '../shared/contracts';
 import { Stockfish } from './engine';
@@ -128,7 +127,7 @@ app.whenReady().then(async () => {
   const saveGeometry = () => { clearTimeout(geometryTimer); geometryTimer = setTimeout(() => { if (!coach.isDestroyed()) store.saveGeometry(coach.getBounds()); }, 250); };
   coach.on('move', saveGeometry); coach.on('resize', () => { saveGeometry(); coach.webContents.send('chess:visibility', coach.isVisible()); });
   screen.on('display-metrics-changed', () => coach.setBounds(clampWindow(coach.getBounds(), screen.getAllDisplays().map(d => d.workArea))));
-  electronSession.defaultSession.setPermissionRequestHandler((contents, permission, callback, details) => { const own = [...windows.values()].some(window => window.webContents === contents) && localURL(details.requestingUrl); callback(own && permission === 'media' && details.mediaTypes.every(type => type === 'video')); });
+  electronSession.defaultSession.setPermissionRequestHandler((contents, permission, callback, details) => { const own = [...windows.values()].some(window => window.webContents === contents) && localURL(details.requestingUrl); callback(own && permission === 'display-capture'); });
   electronSession.defaultSession.setPermissionCheckHandler((contents, permission, origin) => !!contents && [...windows.values()].some(window => window.webContents === contents) && (localURL(origin) || (devURL && origin === devURL) || origin === 'file://') && permission === 'display-capture');
   electronSession.defaultSession.setDisplayMediaRequestHandler(async (request, callback) => {
     try {

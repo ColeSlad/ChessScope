@@ -32,8 +32,8 @@ export class Stockfish {
     if (this.ready) return this.ready;
     this.stopping = false;
     this.ready = (async () => {
-      this.child = spawn(this.executable, [], { cwd: this.cwd, stdio: 'pipe' });
-      const failed = () => { const error = new Error('Stockfish stopped. Restart the engine.'); this.ready = null; this.child = null; for (const fail of [...this.failureListeners]) fail(error); if (!this.stopping) this.onFailure(); };
+      const child = spawn(this.executable, [], { cwd: this.cwd, stdio: 'pipe' }); this.child = child;
+      const failed = () => { if (this.child !== child) return; const error = new Error('Stockfish stopped. Restart the engine.'); this.ready = null; this.child = null; for (const fail of [...this.failureListeners]) fail(error); if (!this.stopping) this.onFailure(); };
       this.child.on('error', failed); this.child.on('exit', failed);
       createInterface({ input: this.child.stdout }).on('line', line => { for (const listener of [...this.listeners]) listener(line); });
       // Drain stderr; do not log game positions or engine diagnostics containing data.
@@ -56,6 +56,7 @@ export class Stockfish {
     const listener = (line: string) => { if (signal.aborted) return; const parsed = parseInfo(line, position.fen); if (parsed && parsed.rank >= 1 && parsed.rank <= 3) candidates.set(parsed.rank, parsed.candidate); };
     this.listeners.add(listener);
     const bestmove = this.waitFor(line => line.startsWith('bestmove '), 8000);
+    void bestmove.catch(() => {}); let drained = false;
     const abort = () => { try { this.write('stop'); } catch { /* failure waiter owns recovery */ } };
     signal.addEventListener('abort', abort, { once: true });
     try {
@@ -63,7 +64,7 @@ export class Stockfish {
       this.write(`position fen ${position.initialFen}${position.moves.length ? ` moves ${position.moves.join(' ')}` : ''}`);
       this.write('go movetime 1000');
       const line = await bestmove;
-      const ready = this.waitFor(value => value === 'readyok'); this.write('isready'); await ready;
+      const ready = this.waitFor(value => value === 'readyok'); this.write('isready'); await ready; drained = true;
       signal.throwIfAborted();
       const recommendation = line.split(' ')[1];
       const first = candidates.get(1);
@@ -72,7 +73,7 @@ export class Stockfish {
       const results = [...candidates.entries()].sort(([a],[b]) => a - b).map(([,candidate]) => candidate).filter(candidate => candidate.depth === finalDepth);
       if (new Set(results.map(c => c.id)).size !== results.length) throw new Error('Stockfish returned duplicate candidates');
       return { ...token, candidates: results, elapsedMs: performance.now() - started, terminal: null };
-    } catch (error) { if (!signal.aborted) this.shutdown(); throw error; }
+    } catch (error) { if (!drained || !signal.aborted) this.shutdown(); throw error; }
     finally { signal.removeEventListener('abort', abort); this.listeners.delete(listener); }
   }
   shutdown() {

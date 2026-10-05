@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { Chess } from 'chess.js';
 import type { Snapshot, Token, CaptureSelection, CapturedFrame, Correction, Settings, CaptureCommand, ConfirmedPosition, EngineAnalysis, BoardObservation, MoveExplanation } from '../shared/contracts';
-import { sameToken, importPosition, matchObservation, placementKey, placementsOf } from '../core/position';
+import { sameToken, importPosition, matchObservation } from '../core/position';
 import { StableFrames } from '../core/stability';
 import { LatestTask } from '../core/latest-task';
 import { cloudFailure } from './cloud';
@@ -86,8 +86,10 @@ export class Session {
   sourceChanged() { this.sendCapture('stop'); this.invalidate(true); this.current.selection = null; this.current.position = null; this.current.observation = null; this.current.running = false; this.manualSampling = false; this.stable.reset(); this.lastFrame = -1; this.setStatus('Paused', 'Mark the board rectangle in the selected browser window.'); }
   correct(correction: Correction) {
     this.assertCurrent(correction); const next = importPosition(correction, this.current.status.revision + 1);
+    // Explicit human correction is authoritative; uncertain or misread squares may be repaired.
+    // A moved/hidden crop still needs to be selected and recognized again.
     const observation = this.current.observation;
-    if (this.current.selection && (!observation || !observation.boardVisible || !observation.cropAligned || observation.uncertainSquares.length || observation.orientation !== correction.orientation || placementKey(observation.placements) !== placementKey(placementsOf(next.fen)))) throw new Error('The entered position must match a certain, visible recognized board. Re-select or rescan the board first.');
+    if (this.current.selection && (!observation || !observation.boardVisible || !observation.cropAligned)) throw new Error('Select and read the visible board before confirming the position.');
     this.invalidate(); this.current.position = next;
     if (this.current.selection) this.current.selection.orientation = correction.orientation;
     this.current.running = false; this.manualSampling = false; this.sendCapture('stop'); this.analyze();

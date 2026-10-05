@@ -13,6 +13,10 @@ export function validateExplanations(value: unknown, analysis: EngineAnalysis): 
     if (!entry || entry.reply !== (candidate.variation[1]?.uci ?? null)) throw new Error('Explanation changed the engine-expected reply');
     const allowed = new Set(candidate.variation.map(move => move.uci));
     for (const reference of `${entry.explanation} ${entry.benefit} ${entry.drawback}`.match(/\b[a-h][1-8][a-h][1-8][qrbn]?\b/g) ?? []) if (!allowed.has(reference)) throw new Error('Explanation cited an unsupported move');
+    const prose = `${entry.explanation} ${entry.benefit} ${entry.drawback}`;
+    const allowedSan = new Set(candidate.variation.map(move => move.san.replace(/[+#]$/, '')));
+    const references = prose.match(/\b(?:O-O(?:-O)?|[KQRBN][a-h]?[1-8]?x?[a-h][1-8](?:=[QRBN])?|[a-h]x[a-h][1-8](?:=[QRBN])?|[a-h][18]=[QRBN])[+#]?/g) ?? [];
+    if (references.some(reference => !allowedSan.has(reference.replace(/[+#]$/, '')))) throw new Error('Explanation cited unsupported notation');
     return { sessionId: analysis.sessionId, revision: analysis.revision, ...entry };
   });
 }
