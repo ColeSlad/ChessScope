@@ -2,7 +2,12 @@ import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import { spawn } from "node:child_process";
-const directory = path.resolve("resources/stockfish");
+const option = process.argv.indexOf("--directory");
+if (option >= 0 && !process.argv[option + 1])
+  throw new Error("--directory requires a bundled Stockfish resource path");
+const directory = path.resolve(
+  option >= 0 ? process.argv[option + 1] : "resources/stockfish",
+);
 const lock = JSON.parse(
   fs.readFileSync(path.join(directory, "engine-lock.json"), "utf8"),
 );

@@ -16,7 +16,10 @@
     "engine:verify": "node scripts/verify-engine.mjs",
     "package:dir": "npm run build && npm run engine:verify && electron-builder --mac --arm64 --dir",
     "package:mac": "npm run build && npm run engine:verify && electron-builder --mac --arm64",
-    "fixtures:evaluate": "node scripts/evaluate-fixtures.mjs"
+    "fixtures:evaluate": "node scripts/evaluate-fixtures.mjs",
+    "icon:build": "swift scripts/make-icon.swift",
+    "package:verify": "node scripts/verify-package.mjs",
+    "test:native-storage": "node scripts/check-native-storage.mjs"
   },
   "dependencies": {
     "openai": "7.4.0",
@@ -79,7 +82,13 @@
       "extendInfo": {
         "LSUIElement": true,
         "NSScreenCaptureUsageDescription": "Chess Helper captures your selected browser window and uploads only the board crop for recognition."
-      }
-    }
+      },
+      "icon": "resources/app-icon.icns",
+      "binaries": [
+        "Contents/Resources/stockfish/stockfish"
+      ]
+    },
+    "executableName": "ChessHelper",
+    "artifactName": "Chess-Helper-${version}-${arch}.${ext}"
   }
 }
