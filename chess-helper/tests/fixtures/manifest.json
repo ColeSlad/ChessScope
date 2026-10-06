@@ -1,5 +1,1144 @@
 {
   "version": 2,
-  "description": "Only real recorded, user-approved board crops qualify recognition. Add cases using the documented schema; no synthetic screenshots are represented as site fixtures.",
-  "cases": []
+  "description": "Real Chrome recordings of public Chess.com analysis/position-editor and Lichess analysis boards, retained for the user-requested fixture qualification. All pixels are captured from the live sites; FEN positions are legal test inputs. Crops omit surrounding account/browser content. Browser screenshots are CSS-normalized on a Retina display; live packaged capture is still separately required.",
+  "cases": [
+    {
+      "id": "lichess-start-white",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "retina"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": null,
+      "expectedFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectsCorrection": false,
+      "image": "lichess-start-white.jpg",
+      "sha256": "20363a1a0637d96a1ea09a95322cd572f2a5d2c4a8e6ea48e63746b216cfe459",
+      "recording": {
+        "recordedAt": "2026-10-06T15:30:27.808Z",
+        "url": "https://lichess.org/analysis/rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR_w_KQkq_-_0_1?color=white",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 640,
+        "scaleFactor": 2,
+        "notes": "Initial public analysis board; default brown/cburnett pieces. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-start-white",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "retina"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": null,
+      "expectedFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectsCorrection": false,
+      "image": "chesscom-start-white.jpg",
+      "sha256": "5e609721655f56877deb4f503e34daa08bbb3cc2917104d6d205d5710588a45c",
+      "recording": {
+        "recordedAt": "2026-10-06T15:30:27.917Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Initial public analysis board; default green/neo pieces. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-normal-move",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "move",
+        "highlight"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+      "expectsCorrection": false,
+      "image": "lichess-normal-move.jpg",
+      "sha256": "1ede0c052296c726dc7989e18892aa11a1252790e82c78eb3dd0a3dfcc9eb70f",
+      "recording": {
+        "recordedAt": "2026-10-06T15:32:46.245Z",
+        "url": "https://lichess.org/analysis/rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR_w_KQkq_-_0_1?color=white",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 640,
+        "scaleFactor": 2,
+        "notes": "Played e2-e4 through the public analysis board; last-move highlights remain visible. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-normal-move",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "move",
+        "highlight"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+      "expectsCorrection": false,
+      "image": "chesscom-normal-move.jpg",
+      "sha256": "55f49f2e1654bad6dead68620d74832903dce0c1dc744f2a072c7957d4d7ea69",
+      "recording": {
+        "recordedAt": "2026-10-06T15:32:47.034Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Played e2-e4 through the public analysis board; last-move highlights remain visible. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-start-black",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "black-bottom"
+      ],
+      "orientation": "black-bottom",
+      "beforeFen": null,
+      "expectedFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectsCorrection": false,
+      "image": "lichess-start-black.jpg",
+      "sha256": "4254cb56804bf73d061c8e0923a1be2f5a3988bd171873313af533f83f493dad",
+      "recording": {
+        "recordedAt": "2026-10-06T15:33:07.254Z",
+        "url": "https://lichess.org/analysis/rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR_w_KQkq_-_0_1?color=black",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 640,
+        "scaleFactor": 2,
+        "notes": "Initial position loaded with public analysis orientation set to Black at bottom. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-move-black",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "black-bottom"
+      ],
+      "orientation": "black-bottom",
+      "beforeFen": null,
+      "expectedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+      "expectsCorrection": false,
+      "image": "chesscom-move-black.jpg",
+      "sha256": "9589ee2bd3ba8e06b359ec000de72b54958c40f10ba9d7bb700b6388ebd7fa2d",
+      "recording": {
+        "recordedAt": "2026-10-06T15:34:03.122Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Public position editor; Black at bottom after the Flip Board control. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-capture-white",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "move",
+        "capture"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "4k3/8/8/3p4/4P3/8/8/4K3 w - - 0 1",
+      "expectedFen": "4k3/8/8/3P4/8/8/8/4K3 b - - 0 1",
+      "expectsCorrection": false,
+      "image": "lichess-capture-white.jpg",
+      "sha256": "b218c254dd90ec921bedc58f641b26c0da5df9aaf5db893ce9dba3b13d9496b3",
+      "recording": {
+        "recordedAt": "2026-10-06T15:35:28.103Z",
+        "url": "https://lichess.org/analysis/4k3/8/8/3P4/8/8/8/4K3_b_-_-_0_1?color=white",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 640,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public analysis. capture; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-capture-black",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "black-bottom",
+        "move",
+        "capture"
+      ],
+      "orientation": "black-bottom",
+      "beforeFen": "4k3/8/8/3p4/4P3/8/8/4K3 w - - 0 1",
+      "expectedFen": "4k3/8/8/3P4/8/8/8/4K3 b - - 0 1",
+      "expectsCorrection": false,
+      "image": "chesscom-capture-black.jpg",
+      "sha256": "5a240a9c447dbc88f7aae347d0b024cf4f9c7f485b9ea8f7b4d3cefafecf07bf",
+      "recording": {
+        "recordedAt": "2026-10-06T15:35:37.510Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public position editor. capture; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-castling-white",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "move",
+        "castling"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1",
+      "expectedFen": "r3k2r/8/8/8/8/8/8/R4RK1 b kq - 1 1",
+      "expectsCorrection": false,
+      "image": "lichess-castling-white.jpg",
+      "sha256": "dd60e39212082a8693839fed080be47f9682ad1c7d06ce15ffb10699a9175adc",
+      "recording": {
+        "recordedAt": "2026-10-06T15:35:38.008Z",
+        "url": "https://lichess.org/analysis/r3k2r/8/8/8/8/8/8/R4RK1_b_kq_-_1_1?color=white",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 640,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public analysis. castling; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-castling-black",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "black-bottom",
+        "move",
+        "castling"
+      ],
+      "orientation": "black-bottom",
+      "beforeFen": "r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1",
+      "expectedFen": "r3k2r/8/8/8/8/8/8/R4RK1 b kq - 1 1",
+      "expectsCorrection": false,
+      "image": "chesscom-castling-black.jpg",
+      "sha256": "75ff5a341841a861d360b2be8aff6ab9ea06b5fa7e0fdea930fa982050cd8afd",
+      "recording": {
+        "recordedAt": "2026-10-06T15:35:38.208Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public position editor. castling; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-en-passant-white",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "move",
+        "capture",
+        "en-passant"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 2",
+      "expectedFen": "4k3/8/3P4/8/8/8/8/4K3 b - - 0 2",
+      "expectsCorrection": false,
+      "image": "lichess-en-passant-white.jpg",
+      "sha256": "96472fd4c467d53916d5ec7a7e200670b6c902193ef96e37600ca48579dd9a01",
+      "recording": {
+        "recordedAt": "2026-10-06T15:35:38.735Z",
+        "url": "https://lichess.org/analysis/4k3/8/3P4/8/8/8/8/4K3_b_-_-_0_2?color=white",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 640,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public analysis. en-passant; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-en-passant-black",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "black-bottom",
+        "move",
+        "capture",
+        "en-passant"
+      ],
+      "orientation": "black-bottom",
+      "beforeFen": "4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 2",
+      "expectedFen": "4k3/8/3P4/8/8/8/8/4K3 b - - 0 2",
+      "expectsCorrection": false,
+      "image": "chesscom-en-passant-black.jpg",
+      "sha256": "63cdb6540d70a7a037684bf03fc5b49513691ea76c85bfd08a407ac32277baac",
+      "recording": {
+        "recordedAt": "2026-10-06T15:35:38.948Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public position editor. en-passant; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-promotion-white",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "move",
+        "promotion"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "4k3/P7/8/8/8/8/8/4K3 w - - 0 1",
+      "expectedFen": "Q3k3/8/8/8/8/8/8/4K3 b - - 0 1",
+      "expectsCorrection": false,
+      "image": "lichess-promotion-white.jpg",
+      "sha256": "5b9158e400d84addbc5956f0648fe54d74c569b53c4e3ce443e5164fa28b04f7",
+      "recording": {
+        "recordedAt": "2026-10-06T15:35:49.521Z",
+        "url": "https://lichess.org/analysis/Q3k3/8/8/8/8/8/8/4K3_b_-_-_0_1?color=white",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 640,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public analysis. promotion; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-promotion-black",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "black-bottom",
+        "move",
+        "promotion"
+      ],
+      "orientation": "black-bottom",
+      "beforeFen": "4k3/P7/8/8/8/8/8/4K3 w - - 0 1",
+      "expectedFen": "Q3k3/8/8/8/8/8/8/4K3 b - - 0 1",
+      "expectsCorrection": false,
+      "image": "chesscom-promotion-black.jpg",
+      "sha256": "3d31990ebda1f44ffff2fcc6383c2b542a59eeda396df7e2f5e1267920dafa9b",
+      "recording": {
+        "recordedAt": "2026-10-06T15:35:49.775Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public position editor. promotion; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-checkmate-white",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "move",
+        "checkmate"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "rnbqkbnr/pppp1ppp/8/4p3/6P1/5P2/PPPPP2P/RNBQKBNR b KQkq - 0 2",
+      "expectedFen": "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
+      "expectsCorrection": false,
+      "image": "lichess-checkmate-white.jpg",
+      "sha256": "9f67189796da4a3c25550ec7cf387c696e152242aaca5480f3c8c109508210b6",
+      "recording": {
+        "recordedAt": "2026-10-06T15:35:50.288Z",
+        "url": "https://lichess.org/analysis/rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR_w_KQkq_-_1_3?color=white",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 640,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public analysis. checkmate; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-checkmate-black",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "black-bottom",
+        "move",
+        "checkmate"
+      ],
+      "orientation": "black-bottom",
+      "beforeFen": "rnbqkbnr/pppp1ppp/8/4p3/6P1/5P2/PPPPP2P/RNBQKBNR b KQkq - 0 2",
+      "expectedFen": "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
+      "expectsCorrection": false,
+      "image": "chesscom-checkmate-black.jpg",
+      "sha256": "b12a4ce0be8685fbed3b3fc7b760bdb54b825755336cfece0ce40d1b19d74ae2",
+      "recording": {
+        "recordedAt": "2026-10-06T15:35:50.543Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public position editor. checkmate; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-stalemate-white",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "move",
+        "stalemate"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "7k/5K2/8/6Q1/8/8/8/8 w - - 0 1",
+      "expectedFen": "7k/5K2/6Q1/8/8/8/8/8 b - - 1 1",
+      "expectsCorrection": false,
+      "image": "lichess-stalemate-white.jpg",
+      "sha256": "21b54cb2c5783ab4dd17b374b9eafb295e76fb29253d78d7efdf65a71ced7f65",
+      "recording": {
+        "recordedAt": "2026-10-06T15:35:51.109Z",
+        "url": "https://lichess.org/analysis/7k/5K2/6Q1/8/8/8/8/8_b_-_-_1_1?color=white",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 640,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public analysis. stalemate; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-stalemate-black",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "black-bottom",
+        "move",
+        "stalemate"
+      ],
+      "orientation": "black-bottom",
+      "beforeFen": "7k/5K2/8/6Q1/8/8/8/8 w - - 0 1",
+      "expectedFen": "7k/5K2/6Q1/8/8/8/8/8 b - - 1 1",
+      "expectsCorrection": false,
+      "image": "chesscom-stalemate-black.jpg",
+      "sha256": "66a7061a0ddaa15c40b88270456cfbb63481052ac4809847fa98ef4b145f2de7",
+      "recording": {
+        "recordedAt": "2026-10-06T15:35:51.333Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public position editor. stalemate; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-midgame-white",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "move",
+        "midgame"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "r1bqk2r/pppp1ppp/2n5/8/2BPn3/2P2N2/P4PPP/R1BQ1RK1 b kq - 0 9",
+      "expectedFen": "r1bqk2r/ppp2ppp/2n5/3p4/2BPn3/2P2N2/P4PPP/R1BQ1RK1 w kq - 0 10",
+      "expectsCorrection": false,
+      "image": "lichess-midgame-white.jpg",
+      "sha256": "2968c15ad13343f8d811760ea09491aa5ea8900dd63efbe1444f98da81d0e6b4",
+      "recording": {
+        "recordedAt": "2026-10-06T15:36:07.854Z",
+        "url": "https://lichess.org/analysis/r1bqk2r/ppp2ppp/2n5/3p4/2BPn3/2P2N2/P4PPP/R1BQ1RK1_w_kq_-_0_10?color=white",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 640,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public analysis. midgame; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-midgame-black",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "black-bottom",
+        "move",
+        "midgame"
+      ],
+      "orientation": "black-bottom",
+      "beforeFen": "r1bqk2r/pppp1ppp/2n5/8/2BPn3/2P2N2/P4PPP/R1BQ1RK1 b kq - 0 9",
+      "expectedFen": "r1bqk2r/ppp2ppp/2n5/3p4/2BPn3/2P2N2/P4PPP/R1BQ1RK1 w kq - 0 10",
+      "expectsCorrection": false,
+      "image": "chesscom-midgame-black.jpg",
+      "sha256": "63b1b7aed380795fdc8feb9ccc3ed89deffbc3ca8fab6d7b02889640d28dc12d",
+      "recording": {
+        "recordedAt": "2026-10-06T15:36:08.067Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public position editor. midgame; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-missed-moves-white",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "missed-moves"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectedFen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+      "expectsCorrection": true,
+      "image": "lichess-missed-moves-white.jpg",
+      "sha256": "8e8899eef3575fd7992de8e108286ed12c89b3678e55499ef8708ca7960f9d39",
+      "recording": {
+        "recordedAt": "2026-10-06T15:36:08.581Z",
+        "url": "https://lichess.org/analysis/rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR_w_KQkq_-_0_2?color=white",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 640,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public analysis. missed-moves; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-missed-moves-black",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "black-bottom",
+        "missed-moves"
+      ],
+      "orientation": "black-bottom",
+      "beforeFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectedFen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+      "expectsCorrection": true,
+      "image": "chesscom-missed-moves-black.jpg",
+      "sha256": "2d7bab57e0886df8d56d63f64494bfb13fdf8601a2cef7470956da9cd2888f91",
+      "recording": {
+        "recordedAt": "2026-10-06T15:36:08.808Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public position editor. missed-moves; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-ambiguous-crop",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "ambiguous"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectedFen": null,
+      "expectsCorrection": true,
+      "image": "lichess-ambiguous-crop.jpg",
+      "sha256": "e0475f76d63f828b0b153c9e4ea68bad80a1078a54b58eb4e095510056093f8b",
+      "recording": {
+        "recordedAt": "2026-10-06T15:36:08.856Z",
+        "url": "https://lichess.org/analysis/rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR_w_KQkq_-_0_2?color=white",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 560,
+        "scaleFactor": 2,
+        "notes": "Actual misselected board crop omits the top rank; no image pixels were synthesized or covered after recording. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-ambiguous-crop",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "black-bottom",
+        "ambiguous"
+      ],
+      "orientation": "black-bottom",
+      "beforeFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectedFen": null,
+      "expectsCorrection": true,
+      "image": "chesscom-ambiguous-crop.jpg",
+      "sha256": "380a9f3438193dcd8393c8c1a4839b90309fbb265ca528d1204ca2490b6f3be5",
+      "recording": {
+        "recordedAt": "2026-10-06T15:36:08.934Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 581,
+        "scaleFactor": 2,
+        "notes": "Actual misselected board crop omits the top rank; no image pixels were synthesized or covered after recording. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-normal-move-black",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "black-bottom",
+        "move"
+      ],
+      "orientation": "black-bottom",
+      "beforeFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+      "expectsCorrection": false,
+      "image": "lichess-normal-move-black.jpg",
+      "sha256": "3ed07c251838010b1c492c321606acc4d9551eb25c3e9af04f64311965deccf3",
+      "recording": {
+        "recordedAt": "2026-10-06T15:36:28.917Z",
+        "url": "https://lichess.org/analysis/rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR_b_KQkq_-_0_1?color=black",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 640,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public analysis. normal-move; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-normal-move-white",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "move"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+      "expectsCorrection": false,
+      "image": "chesscom-normal-move-white.jpg",
+      "sha256": "bccbf2bea6f6100ae873dd375e9137e737ce52b83823272b7a4c0912109dd1f9",
+      "recording": {
+        "recordedAt": "2026-10-06T15:36:29.124Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public position editor. normal-move; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-capture-black",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "black-bottom",
+        "move",
+        "capture"
+      ],
+      "orientation": "black-bottom",
+      "beforeFen": "4k3/8/8/3p4/4P3/8/8/4K3 w - - 0 1",
+      "expectedFen": "4k3/8/8/3P4/8/8/8/4K3 b - - 0 1",
+      "expectsCorrection": false,
+      "image": "lichess-capture-black.jpg",
+      "sha256": "69e400917830a073c1fac4814bf46a717f60f737e24dba499679ceafaf017f1b",
+      "recording": {
+        "recordedAt": "2026-10-06T15:36:29.664Z",
+        "url": "https://lichess.org/analysis/4k3/8/8/3P4/8/8/8/4K3_b_-_-_0_1?color=black",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 640,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public analysis. capture; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-capture-white",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "move",
+        "capture"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "4k3/8/8/3p4/4P3/8/8/4K3 w - - 0 1",
+      "expectedFen": "4k3/8/8/3P4/8/8/8/4K3 b - - 0 1",
+      "expectsCorrection": false,
+      "image": "chesscom-capture-white.jpg",
+      "sha256": "8c936375706dd3e17ea6ecc12df52fc7fc795a260d2590abf5368facee0cf8ff",
+      "recording": {
+        "recordedAt": "2026-10-06T15:36:29.907Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public position editor. capture; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-castling-black",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "black-bottom",
+        "move",
+        "castling"
+      ],
+      "orientation": "black-bottom",
+      "beforeFen": "r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1",
+      "expectedFen": "r3k2r/8/8/8/8/8/8/R4RK1 b kq - 1 1",
+      "expectsCorrection": false,
+      "image": "lichess-castling-black.jpg",
+      "sha256": "455a3fe532d128f7e138213205761eedaef32b7dcc8fc9dc2f9878c8adfcaee8",
+      "recording": {
+        "recordedAt": "2026-10-06T15:36:30.420Z",
+        "url": "https://lichess.org/analysis/r3k2r/8/8/8/8/8/8/R4RK1_b_kq_-_1_1?color=black",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 640,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public analysis. castling; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-castling-white",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "move",
+        "castling"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1",
+      "expectedFen": "r3k2r/8/8/8/8/8/8/R4RK1 b kq - 1 1",
+      "expectsCorrection": false,
+      "image": "chesscom-castling-white.jpg",
+      "sha256": "51f7087b80bc358b396a006079d79f6529046b614073aa1d42e92c51b3fa9ee0",
+      "recording": {
+        "recordedAt": "2026-10-06T15:36:30.650Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public position editor. castling; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-en-passant-black",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "black-bottom",
+        "move",
+        "capture",
+        "en-passant"
+      ],
+      "orientation": "black-bottom",
+      "beforeFen": "4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 2",
+      "expectedFen": "4k3/8/3P4/8/8/8/8/4K3 b - - 0 2",
+      "expectsCorrection": false,
+      "image": "lichess-en-passant-black.jpg",
+      "sha256": "cc86433569e6a8e0ce0fe1d6c8f7d443d37c79ee73bb158b566964deba5ce0c9",
+      "recording": {
+        "recordedAt": "2026-10-06T15:36:43.084Z",
+        "url": "https://lichess.org/analysis/4k3/8/3P4/8/8/8/8/4K3_b_-_-_0_2?color=black",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 640,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public analysis. en-passant; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-en-passant-white",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "move",
+        "capture",
+        "en-passant"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 2",
+      "expectedFen": "4k3/8/3P4/8/8/8/8/4K3 b - - 0 2",
+      "expectsCorrection": false,
+      "image": "chesscom-en-passant-white.jpg",
+      "sha256": "e795976c1e895889b49ef460a80a9d03a71dfb89a45a9f26c89fa389013a18e1",
+      "recording": {
+        "recordedAt": "2026-10-06T15:36:43.294Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public position editor. en-passant; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-promotion-black",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "black-bottom",
+        "move",
+        "promotion"
+      ],
+      "orientation": "black-bottom",
+      "beforeFen": "4k3/P7/8/8/8/8/8/4K3 w - - 0 1",
+      "expectedFen": "Q3k3/8/8/8/8/8/8/4K3 b - - 0 1",
+      "expectsCorrection": false,
+      "image": "lichess-promotion-black.jpg",
+      "sha256": "545c33f945b09616914e06eb07f690c4c1e9a9e77585feca1fb9094a7ceafdf7",
+      "recording": {
+        "recordedAt": "2026-10-06T15:36:43.847Z",
+        "url": "https://lichess.org/analysis/Q3k3/8/8/8/8/8/8/4K3_b_-_-_0_1?color=black",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 640,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public analysis. promotion; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-promotion-white",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "move",
+        "promotion"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "4k3/P7/8/8/8/8/8/4K3 w - - 0 1",
+      "expectedFen": "Q3k3/8/8/8/8/8/8/4K3 b - - 0 1",
+      "expectsCorrection": false,
+      "image": "chesscom-promotion-white.jpg",
+      "sha256": "87a306d725d956c9b67ffec9a6f2faaa2c69b524176c32c398b881daee6a8a67",
+      "recording": {
+        "recordedAt": "2026-10-06T15:36:44.089Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public position editor. promotion; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-checkmate-black",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "black-bottom",
+        "move",
+        "checkmate"
+      ],
+      "orientation": "black-bottom",
+      "beforeFen": "rnbqkbnr/pppp1ppp/8/4p3/6P1/5P2/PPPPP2P/RNBQKBNR b KQkq - 0 2",
+      "expectedFen": "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
+      "expectsCorrection": false,
+      "image": "lichess-checkmate-black.jpg",
+      "sha256": "afde690a2befa5f8e3f8021bcb60e9985e779dfdc24d5402c98f56a242d7b11c",
+      "recording": {
+        "recordedAt": "2026-10-06T15:36:44.596Z",
+        "url": "https://lichess.org/analysis/rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR_w_KQkq_-_1_3?color=black",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 640,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public analysis. checkmate; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-checkmate-white",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "move",
+        "checkmate"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "rnbqkbnr/pppp1ppp/8/4p3/6P1/5P2/PPPPP2P/RNBQKBNR b KQkq - 0 2",
+      "expectedFen": "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
+      "expectsCorrection": false,
+      "image": "chesscom-checkmate-white.jpg",
+      "sha256": "f5bd6cd65669a0d94440a180799c7854cee84f55e962eccde58dd80df3be2af6",
+      "recording": {
+        "recordedAt": "2026-10-06T15:36:44.840Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public position editor. checkmate; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-stalemate-black",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "black-bottom",
+        "move",
+        "stalemate"
+      ],
+      "orientation": "black-bottom",
+      "beforeFen": "7k/5K2/8/6Q1/8/8/8/8 w - - 0 1",
+      "expectedFen": "7k/5K2/6Q1/8/8/8/8/8 b - - 1 1",
+      "expectsCorrection": false,
+      "image": "lichess-stalemate-black.jpg",
+      "sha256": "8313575144b30b5f99d9362455ea128cd793213dad777b23e898e1ebd1dbb37b",
+      "recording": {
+        "recordedAt": "2026-10-06T15:37:02.000Z",
+        "url": "https://lichess.org/analysis/7k/5K2/6Q1/8/8/8/8/8_b_-_-_1_1?color=black",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 640,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public analysis. stalemate; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-stalemate-white",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "move",
+        "stalemate"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "7k/5K2/8/6Q1/8/8/8/8 w - - 0 1",
+      "expectedFen": "7k/5K2/6Q1/8/8/8/8/8 b - - 1 1",
+      "expectsCorrection": false,
+      "image": "chesscom-stalemate-white.jpg",
+      "sha256": "3825d8fcfc50dfa85ab1690c773ae5ec4befd64cecd6af27b18a3f40c30fba56",
+      "recording": {
+        "recordedAt": "2026-10-06T15:37:02.213Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public position editor. stalemate; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-midgame-black",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "black-bottom",
+        "move",
+        "midgame"
+      ],
+      "orientation": "black-bottom",
+      "beforeFen": "r1bqk2r/pppp1ppp/2n5/8/2BPn3/2P2N2/P4PPP/R1BQ1RK1 b kq - 0 9",
+      "expectedFen": "r1bqk2r/ppp2ppp/2n5/3p4/2BPn3/2P2N2/P4PPP/R1BQ1RK1 w kq - 0 10",
+      "expectsCorrection": false,
+      "image": "lichess-midgame-black.jpg",
+      "sha256": "afa73c85e5175aac902dc2286a9a0e91d1188381e4633fa27b44bef926c38d12",
+      "recording": {
+        "recordedAt": "2026-10-06T15:37:02.716Z",
+        "url": "https://lichess.org/analysis/r1bqk2r/ppp2ppp/2n5/3p4/2BPn3/2P2N2/P4PPP/R1BQ1RK1_w_kq_-_0_10?color=black",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 640,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public analysis. midgame; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-midgame-white",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "move",
+        "midgame"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "r1bqk2r/pppp1ppp/2n5/8/2BPn3/2P2N2/P4PPP/R1BQ1RK1 b kq - 0 9",
+      "expectedFen": "r1bqk2r/ppp2ppp/2n5/3p4/2BPn3/2P2N2/P4PPP/R1BQ1RK1 w kq - 0 10",
+      "expectsCorrection": false,
+      "image": "chesscom-midgame-white.jpg",
+      "sha256": "6cb88374a2019f297ae0071414b1d8578eeeca49d008cd50e725c6b72f47fdf6",
+      "recording": {
+        "recordedAt": "2026-10-06T15:37:02.984Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public position editor. midgame; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-missed-moves-black",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "black-bottom",
+        "missed-moves"
+      ],
+      "orientation": "black-bottom",
+      "beforeFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectedFen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+      "expectsCorrection": true,
+      "image": "lichess-missed-moves-black.jpg",
+      "sha256": "4867ace9de2aa4dd105718275ce64a0901eef788c040661890c13e75404d1610",
+      "recording": {
+        "recordedAt": "2026-10-06T15:37:03.475Z",
+        "url": "https://lichess.org/analysis/rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR_w_KQkq_-_0_2?color=black",
+        "theme": "default-2d",
+        "pixelWidth": 640,
+        "pixelHeight": 640,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public analysis. missed-moves; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=640x640; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-missed-moves-white",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "missed-moves"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectedFen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+      "expectsCorrection": true,
+      "image": "chesscom-missed-moves-white.jpg",
+      "sha256": "cc5ee19049affd12016f62927a8dfb8a578c25d521e7975aa6544308bd58f8c4",
+      "recording": {
+        "recordedAt": "2026-10-06T15:37:03.685Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Loaded complete ground-truth FEN in public position editor. missed-moves; prior FEN is confirmed state for legal-transition validation, not a claim of live app capture. Real Chrome board crop; devicePixelRatio=2; CSS board=664x664; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "chesscom-resized-white",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "resize"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": null,
+      "expectedFen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+      "expectsCorrection": false,
+      "image": "chesscom-resized-white.jpg",
+      "sha256": "695109fe54c8c2d9d25d3e26574b0e3ee303fc90375fa61aaa91409e89acb41e",
+      "recording": {
+        "recordedAt": "2026-10-06T15:37:03.985Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 592,
+        "pixelHeight": 592,
+        "scaleFactor": 1,
+        "notes": "Public position editor after resizing Chrome viewport from 1728x833 to 1200x760; board geometry changed. Real Chrome board crop; devicePixelRatio=1; CSS board=592x592; browser screenshot is normalized to CSS pixels."
+      }
+    },
+    {
+      "id": "lichess-animation",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "animation",
+        "ambiguous"
+      ],
+      "image": "lichess-animation.jpg",
+      "sha256": "e0e430cce57e78629e25b325c0230253c52fa27773dbaf8751b7498ba38d7d5e",
+      "orientation": "white-bottom",
+      "beforeFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectedFen": null,
+      "expectsCorrection": true,
+      "recording": {
+        "recordedAt": "2026-10-06T15:43:30.766Z",
+        "url": "https://lichess.org/analysis/rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR_w_KQkq_-_0_1?color=white#1",
+        "theme": "default-2d",
+        "pixelWidth": 480,
+        "pixelHeight": 480,
+        "scaleFactor": 2,
+        "notes": "Captured after piece.anim appeared during actual e2-e4, before waiting for the click to settle. Pawn is between its starting and destination ranks; full chess state is deliberately unspecified and correction is required. Real Chrome screenshot; CSS-normalized pixels on devicePixelRatio=2 display; no synthetic pixels."
+      }
+    },
+    {
+      "id": "chesscom-animation",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "animation",
+        "ambiguous"
+      ],
+      "image": "chesscom-animation.jpg",
+      "sha256": "344e401839d4f6865a3450b3c4f926e74bca41c7f4ccbe98f0193dccd390cb2d",
+      "orientation": "white-bottom",
+      "beforeFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectedFen": null,
+      "expectsCorrection": true,
+      "recording": {
+        "recordedAt": "2026-10-06T15:44:33.745Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 664,
+        "pixelHeight": 664,
+        "scaleFactor": 2,
+        "notes": "Captured after the pawn destination square class changed during actual e2-e4, before waiting for the click to settle. Pawn is crossing a rank boundary; full chess state is deliberately unspecified and correction is required. Real Chrome screenshot; CSS-normalized pixels on devicePixelRatio=2 display; no synthetic pixels."
+      }
+    },
+    {
+      "id": "lichess-resized-black",
+      "site": "lichess",
+      "tags": [
+        "default-2d",
+        "black-bottom",
+        "resize"
+      ],
+      "image": "lichess-resized-black.jpg",
+      "sha256": "8a4106bb45a8b8f40c74add4312c322a42e5ec8cf5cce35821de5425bd85b84e",
+      "orientation": "black-bottom",
+      "beforeFen": null,
+      "expectedFen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+      "expectsCorrection": false,
+      "recording": {
+        "recordedAt": "2026-10-06T15:39:33.755725Z",
+        "url": "https://lichess.org/analysis/rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR_w_KQkq_-_0_2?color=black",
+        "theme": "default-2d",
+        "pixelWidth": 480,
+        "pixelHeight": 480,
+        "scaleFactor": 2,
+        "notes": "Used the visible cg-resize handle to shrink the actual board from 640 to 480 CSS pixels. Browser viewport override alone had not resized this board. Real Chrome crop; CSS-normalized pixels on devicePixelRatio=2 display."
+      }
+    }
+  ]
 }

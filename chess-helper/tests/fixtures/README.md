@@ -1,6 +1,8 @@
 # Recorded fixture corpus
 
-No recordings were supplied with the handoff. The version 2 manifest is empty until real crops are recorded. Synthetic legal-move and evaluator tests are separate and do not qualify cloud vision accuracy.
+The version 2 manifest contains 46 real Chrome recordings taken on October 6, 2026 from public Chess.com analysis/position-editor and Lichess analysis boards. Both sites use their default 2D pieces and board themes. Legal moves, captures, castling, en passant, promotion, checkmate, stalemate, midgame, and missed moves cover both orientations. Last-move highlights, actual board resizing, incomplete crops, and transient frames from real pawn animations are included. Synthetic legal-move and evaluator tests remain separate.
+
+All crops were visually reviewed against their ground-truth positions. `npm run fixtures:evaluate -- --preflight` passes with 46 recordings and no missing coverage. The browser's JPEG screenshot API normalizes pixels to CSS dimensions on this devicePixelRatio=2 Retina display; the recording notes preserve that distinction. This corpus does not establish native display-capture resolution or latency. Packaged app capture must still be measured and reviewed before the release gate can open.
 
 Add explicitly recorded board crops, with permission to retain them, to this directory. Do not record private surrounding browser content. Each entry requires:
 
