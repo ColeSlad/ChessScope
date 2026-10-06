@@ -16,6 +16,7 @@ import { placementsOf, placementFen, displayScore } from "../core/position";
 import { Board, GLYPHS } from "./Board";
 import { BoardCapture } from "./capture";
 import { installMouseHitTesting } from "./mouse";
+import { captureFailureCode, captureFailureMessage } from "../core/capture-errors";
 import "./styles.css";
 declare global {
   interface Window {
@@ -830,11 +831,16 @@ function SelectionView({ state }: { state: Snapshot }) {
     epoch = useRef(0),
     drag = useRef<{ x: number; y: number } | null>(null);
   const { error, busy, run } = useAction();
-  useEffect(() => {
-    void run(async () => {
-      setPermission(await api!.screenPermission());
+  const refreshSources = async () => {
+    setPermission(await api!.screenPermission());
+    try {
       setSources(await api!.sources(tokenOf(state)));
-    });
+    } finally {
+      setPermission(await api!.screenPermission());
+    }
+  };
+  useEffect(() => {
+    void run(refreshSources);
     return () => {
       ++epoch.current;
       stream.current?.getTracks().forEach((track) => track.stop());
@@ -846,18 +852,31 @@ function SelectionView({ state }: { state: Snapshot }) {
     stream.current = null;
     setCrop(null);
     setSourceId(id);
-    await api!.selectSource({ ...tokenOf(state), sourceId: id });
-    const next = await navigator.mediaDevices.getDisplayMedia({
-      audio: false,
-      video: { frameRate: 2 },
-    });
-    if (request !== epoch.current) {
-      next.getTracks().forEach((t) => t.stop());
-      return;
+    try {
+      await api!.selectSource({ ...tokenOf(state), sourceId: id });
+      const next = await navigator.mediaDevices.getDisplayMedia({
+        audio: false,
+        video: { frameRate: 2 },
+      });
+      if (request !== epoch.current) {
+        next.getTracks().forEach((t) => t.stop());
+        return;
+      }
+      stream.current = next;
+      video.current!.srcObject = next;
+      await video.current!.play();
+    } catch (error) {
+      if (request !== epoch.current) return;
+      stream.current?.getTracks().forEach((track) => track.stop());
+      stream.current = null;
+      if (video.current) video.current.srcObject = null;
+      setSourceId("");
+      setCrop(null);
+      const currentPermission = await api!.screenPermission().catch(() => "unknown");
+      if (request !== epoch.current) return;
+      setPermission(currentPermission);
+      throw new Error(captureFailureMessage(currentPermission, captureFailureCode(error)));
     }
-    stream.current = next;
-    video.current!.srcObject = next;
-    await video.current!.play();
   };
   const point = (event: React.PointerEvent) => {
     const rect = preview.current!.getBoundingClientRect();
@@ -898,10 +917,9 @@ function SelectionView({ state }: { state: Snapshot }) {
         Only the board crop is sent to cloud AI. No audio is captured.
         Screenshots stay in memory.
       </p>
-      {permission === "denied" && (
+      {(permission === "denied" || permission === "restricted") && (
         <p className="error">
-          Screen Recording permission is denied. Enable Chess Helper and restart
-          the app.
+          {captureFailureMessage(permission, "permission-denied")}
         </p>
       )}
       <div className="sources">
@@ -917,7 +935,7 @@ function SelectionView({ state }: { state: Snapshot }) {
           </button>
         ))}
       </div>
-      {sources.length === 0 && (
+      {sources.length === 0 && permission !== "denied" && permission !== "restricted" && (
         <p>
           No browser windows available. Open a board, check Screen Recording
           permission, and refresh.
@@ -926,9 +944,7 @@ function SelectionView({ state }: { state: Snapshot }) {
       <div className="fields-row">
         <button
           disabled={busy}
-          onClick={() =>
-            void run(async () => setSources(await api!.sources(tokenOf(state))))
-          }
+          onClick={() => void run(refreshSources)}
         >
           Refresh Windows
         </button>

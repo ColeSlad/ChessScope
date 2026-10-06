@@ -22,6 +22,7 @@ import {
   correctionSchema,
   settingsSchema,
   frameSchema,
+  captureFailureSchema,
   type Snapshot,
   type Token,
   type CaptureCommand,
@@ -32,6 +33,7 @@ import { Store } from "./store";
 import { Session } from "./session";
 import { clampWindow, MouseEpoch } from "../core/desktop";
 import { allowCapturePermission, denyDisplayCapture } from "./capture-permission";
+import { captureFailureMessage } from "../core/capture-errors";
 
 app.setName("Chess Helper");
 app.setPath(
@@ -254,10 +256,9 @@ function invoke<T extends z.ZodType>(
   });
 }
 async function browserSources() {
-  if (systemPreferences.getMediaAccessStatus("screen") === "denied")
-    throw new Error(
-      "Screen Recording permission is denied. Enable Chess Helper in System Settings → Privacy & Security → Screen Recording, then restart.",
-    );
+  const permission = systemPreferences.getMediaAccessStatus("screen");
+  if (permission === "denied" || permission === "restricted")
+    throw new Error(captureFailureMessage(permission, "permission-denied"));
   const sources = await desktopCapturer.getSources({
     types: ["window"],
     thumbnailSize: { width: 360, height: 220 },
@@ -324,13 +325,13 @@ function registerIPC() {
   );
   invoke(
     "capture-error",
-    tokenSchema.extend({ message: z.string().max(500) }).strict(),
+    captureFailureSchema,
     ["coach"],
     (value) => {
       if (controller.isCurrent(value))
         controller.fail(
           "capture",
-          "Capture stopped. Check Screen Recording permission and reselect the browser window.",
+          captureFailureMessage(systemPreferences.getMediaAccessStatus("screen"), value.code),
           "Select Board",
         );
     },

@@ -1,4 +1,5 @@
-import type { CaptureCommand, ChessHelperAPI } from "../shared/contracts";
+import type { CaptureCommand, CaptureFailureCode, ChessHelperAPI } from "../shared/contracts";
+import { captureFailureCode } from "../core/capture-errors";
 
 export function boardSignature(canvas: HTMLCanvasElement): number[] {
   const thumb = document.createElement("canvas");
@@ -63,25 +64,25 @@ export class BoardCapture {
       this.video.srcObject = stream;
       stream
         .getVideoTracks()[0]
-        ?.addEventListener("ended", () => this.fail(epoch));
+        ?.addEventListener("ended", () => this.fail(epoch, "source-ended"));
       await this.video.play();
       if (epoch !== this.epoch) return;
       this.starting = false;
       this.samples = 0;
       this.tick(epoch);
-    } catch {
-      if (epoch === this.epoch) this.fail(epoch);
+    } catch (error) {
+      if (epoch === this.epoch) this.fail(epoch, captureFailureCode(error));
     }
   }
-  private fail(epoch: number) {
+  private fail(epoch: number, code: CaptureFailureCode) {
     const command = this.command;
     if (epoch !== this.epoch || !command) return;
     this.stop();
     void this.api.captureError({
       sessionId: command.sessionId,
       revision: command.revision,
-      message: "Capture ended or permission was denied.",
-    });
+      code,
+    }).catch(() => {}); // A newer session may already have replaced this capture.
   }
   private tick(epoch: number) {
     if (epoch !== this.epoch || !this.command?.selection || !this.stream)
@@ -94,7 +95,7 @@ export class BoardCapture {
         height = this.video.videoHeight;
       if (!width || !height || this.video.readyState < 2) return;
       if (this.stream!.getVideoTracks()[0].muted) {
-        this.fail(epoch);
+        this.fail(epoch, "source-ended");
         return;
       }
       const crop = selection.crop;
@@ -133,10 +134,10 @@ export class BoardCapture {
         ++this.samples > 120 &&
         command.action === "sample"
       )
-        this.fail(epoch);
+        this.fail(epoch, "timeout");
     };
     void send()
-      .catch(() => this.fail(epoch))
+      .catch(() => this.fail(epoch, "frame-failed"))
       .finally(() => {
         if (epoch === this.epoch)
           this.timer = setTimeout(

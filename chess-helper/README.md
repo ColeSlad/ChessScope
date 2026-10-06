@@ -33,6 +33,8 @@ The main process owns Stockfish and OpenAI; the sandboxed renderer has only a ty
 
 ## Build
 
+If macOS denies capture, use the source picker's **Screen Recording Settings** button. In System Settings → Privacy & Security → Screen & System Audio Recording (called Screen Recording on older macOS versions), enable **Chess Helper**, then quit and reopen it. Development runs may appear as **Electron**. Refresh Windows and reselect the browser after restarting. Manual position entry is available without screen capture.
+
 ```sh
 npm run package:dir   # development .app
 npm run package:mac   # Apple Silicon .dmg + .zip
@@ -49,6 +51,7 @@ The coaching, settings, and selection windows apply Electron content protection.
 npm test                 # rules, revisions, queues, UCI, and installed-engine integration
 npm run typecheck
 npm run test:native-storage # macOS encryption and persistence across process launches
+npm run test:capture-permission # real Electron permission dispatch; captures no pixels
 npm run test:cloud          # explicit live API checks using the key saved in this app
 ```
 
