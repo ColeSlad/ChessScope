@@ -50,6 +50,10 @@
       {
         "from": "resources/stockfish",
         "to": "stockfish"
+      },
+      {
+        "from": "resources/trayTemplate.png",
+        "to": "trayTemplate.png"
       }
     ],
     "asar": true,

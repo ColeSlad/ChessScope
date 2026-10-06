@@ -6,7 +6,7 @@ An independent Electron / React / TypeScript / Vite macOS menu-bar app for chess
 
 ```sh
 cd chess-helper
-npm ci
+npm install
 npm run engine:prepare -- --pin
 npm test
 npm run build
@@ -14,6 +14,8 @@ npm run dev
 ```
 
 The first engine preparation downloads the pinned official Stockfish 17.1 Apple Silicon release, corresponding source distribution, GPL license, and required NNUE files. Review and commit the generated SHA-256 lock before distributing. Later preparations verify it. The source distribution and license are included alongside the binary in packaged app resources. No other project, credentials, or identity is used.
+
+Commit the generated package-lock.json after the initial network-enabled installation; subsequent clean builds use `npm ci`. The current offline checkout does not yet have a complete dependency lock.
 
 Set your own OpenAI API key in Settings. It is encrypted using Electron `safeStorage` in `~/Library/Application Support/com.colesladowsky.chesshelper/preferences.json`. It is never returned to the renderer. All session positions, capture frames, and results remain in memory. No screenshot logging or telemetry is enabled.
 
