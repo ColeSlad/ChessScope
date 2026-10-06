@@ -24,7 +24,10 @@ app.whenReady().then(async () => {
   const started = performance.now();
   let result;
   try {
-    const response = await new OpenAI({ apiKey, maxRetries: 0, timeout: 15000 }).responses.create({
+    const response = await new OpenAI({
+      apiKey, baseURL: "https://api.openai.com/v1", logLevel: "off",
+      maxRetries: 0, timeout: 15000,
+    }).responses.create({
       model: recognition.model, reasoning: { effort: recognition.effort }, store: false,
       max_output_tokens: 128, input: "Reply OK.",
     });

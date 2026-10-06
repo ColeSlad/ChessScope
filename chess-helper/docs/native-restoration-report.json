@@ -1,47 +1,70 @@
 {
-  "verifiedAt": "2026-10-06T22:11:26.635349+00:00",
-  "productionApplication": "release/mac-arm64/ChessHelper.app",
-  "qualificationAppQuitThroughNativeMenu": true,
-  "productionLaunchVerifiedByNativeRendererURL": true,
-  "productionPausedOnLaunch": true,
-  "productionSettingsVerified": {
-    "recognition": {
+  "lastSuccessfulRestoration": {
+    "verifiedAt": "2026-10-06T22:11:26.635349+00:00",
+    "productionApplication": "release/mac-arm64/ChessHelper.app",
+    "qualificationAppQuitThroughNativeMenu": true,
+    "productionLaunchVerifiedByNativeRendererURL": true,
+    "productionPausedOnLaunch": true,
+    "productionSettingsVerified": {
+      "recognition": {
+        "model": "gpt-6.1-sol",
+        "effort": "low"
+      },
+      "explanations": {
+        "model": "gpt-6.1-sol",
+        "effort": "medium"
+      },
+      "automaticTracking": false,
+      "automaticTrackingControlDisabled": true,
+      "shortcuts": {
+        "showHide": "Command+Shift+B",
+        "startPause": "Command+Shift+P",
+        "rescan": "Command+Shift+R"
+      },
+      "keyStatus": "Saved securely; no key value read or copied"
+    },
+    "packagedFilesMatchBuild": true,
+    "packagedContentProtection": true,
+    "sourceReleaseGate": false,
+    "packagedSha256": {
+      "dist/main/main.cjs": "1ab1ebb7f18f6dda08bdcb3fc2c2f4d0b846083eb90107656702df8faa3711d6",
+      "dist/preload/preload.cjs": "cc34e8cbad47fda7cfc63549851bf9f929c93cca22e326d6deaf719f34a148ca",
+      "dist/renderer/index.html": "b4aa7e8351ddff7b0c4c0d045ba8bfb2319493e9d67ac93bdd4cb5a6f078e5a3"
+    },
+    "limitations": [
+      "Sol/Low returned HTTP 429 on the verified public Chess.com starting-board scan. Resolve the saved key\u2019s API limit before more native cloud scans.",
+      "All 23 native Chess.com cases and remaining lifecycle checks remain unqualified. Automatic tracking stays disabled."
+    ],
+    "previousVerificationAt": "2026-10-06T18:57:24.678177+00:00",
+    "qualificationTarget": {
       "model": "gpt-6.1-sol",
-      "effort": "low"
+      "effort": "low",
+      "soleTarget": true
     },
-    "explanations": {
-      "model": "gpt-6.1-sol",
-      "effort": "medium"
+    "productionSettingsLeftOpen": true,
+    "nativeControlRecovered": true,
+    "publicAnalysisTabHandoffConfirmed": true,
+    "packagedVerificationNote": "Production package/build are unchanged since the successful byte/protection verification in step 51."
+  },
+  "currentStatus": {
+    "recordedAt": "2026-10-06T22:27:02.490205+00:00",
+    "state": "restoration-pending",
+    "temporaryQualificationAppRunning": true,
+    "protectedProductionAppRunning": false,
+    "evidence": "Scoped read-only process inspection finds only ChessHelperQualification at the approved temporary package path. Native reads, screenshot and path rebinding time out.",
+    "userAction": "Quit Chess Helper Qualification from its menu; then reopen and verify protected production through Computer Use.",
+    "solPreferencesLastVerified": {
+      "recognition": {
+        "model": "gpt-6.1-sol",
+        "effort": "low"
+      },
+      "explanations": {
+        "model": "gpt-6.1-sol",
+        "effort": "medium"
+      }
     },
-    "automaticTracking": false,
-    "automaticTrackingControlDisabled": true,
-    "shortcuts": {
-      "showHide": "Command+Shift+B",
-      "startPause": "Command+Shift+P",
-      "rescan": "Command+Shift+R"
-    },
-    "keyStatus": "Saved securely; no key value read or copied"
-  },
-  "packagedFilesMatchBuild": true,
-  "packagedContentProtection": true,
-  "sourceReleaseGate": false,
-  "packagedSha256": {
-    "dist/main/main.cjs": "1ab1ebb7f18f6dda08bdcb3fc2c2f4d0b846083eb90107656702df8faa3711d6",
-    "dist/preload/preload.cjs": "cc34e8cbad47fda7cfc63549851bf9f929c93cca22e326d6deaf719f34a148ca",
-    "dist/renderer/index.html": "b4aa7e8351ddff7b0c4c0d045ba8bfb2319493e9d67ac93bdd4cb5a6f078e5a3"
-  },
-  "limitations": [
-    "Sol/Low returned HTTP 429 on the verified public Chess.com starting-board scan. Resolve the saved key\u2019s API limit before more native cloud scans.",
-    "All 23 native Chess.com cases and remaining lifecycle checks remain unqualified. Automatic tracking stays disabled."
-  ],
-  "previousVerificationAt": "2026-10-06T18:57:24.678177+00:00",
-  "qualificationTarget": {
-    "model": "gpt-6.1-sol",
-    "effort": "low",
-    "soleTarget": true
-  },
-  "productionSettingsLeftOpen": true,
-  "nativeControlRecovered": true,
-  "publicAnalysisTabHandoffConfirmed": true,
-  "packagedVerificationNote": "Production package/build are unchanged since the successful byte/protection verification in step 51."
+    "automaticTrackingReleaseGate": false,
+    "apiBlocker": "credit_balance_exhausted",
+    "apiDiagnosticReport": "sol-access-report.json"
+  }
 }
