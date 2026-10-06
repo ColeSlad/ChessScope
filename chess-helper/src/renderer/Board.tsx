@@ -6,7 +6,7 @@ export function Board({ placements, orientation, arrow, uncertain = [], onSquare
   const ranks = orientation === 'white-bottom' ? [8,7,6,5,4,3,2,1] : [1,2,3,4,5,6,7,8];
   const point = (square: string) => [files.indexOf(square[0]) + .5, ranks.indexOf(Number(square[1])) + .5];
   const from = arrow ? point(arrow.slice(0,2)) : null, to = arrow ? point(arrow.slice(2,4)) : null;
-  return <div className="mini-board" role={onSquare ? 'group' : 'img'} aria-label="Position preview">
+  return <div className="mini-board" role={onSquare ? 'group' : 'img'} aria-label={onSquare ? 'Position editor' : `Position preview, ${orientation.replace('-', ' ')}. ${placements.map(p => `${p.square}: ${p.piece === p.piece.toUpperCase() ? 'White' : 'Black'} ${NAMES[p.piece.toLowerCase()]}`).join('; ')}`} >
     {ranks.flatMap((rank, row) => Array.from(files).map((file,col) => {
       const square = `${file}${rank}`, piece = placements.find(p => p.square === square)?.piece;
       const label = `${square}: ${piece ? `${piece === piece.toUpperCase() ? 'White' : 'Black'} ${NAMES[piece.toLowerCase()]}` : 'empty'}${uncertain.includes(square) ? ', uncertain' : ''}`;

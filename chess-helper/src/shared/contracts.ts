@@ -11,7 +11,7 @@ export type Orientation = z.infer<typeof orientationSchema>;
 export const placementSchema = z.object({ square: squareSchema, piece: pieceSchema }).strict();
 export type Placement = z.infer<typeof placementSchema>;
 export const cropSchema = z.object({ x: z.number().min(0).max(1), y: z.number().min(0).max(1), width: z.number().positive().max(1), height: z.number().positive().max(1) }).strict().refine(r => r.x + r.width <= 1.001 && r.y + r.height <= 1.001, 'Crop exceeds the source');
-export const selectionSchema = tokenSchema.extend({ sourceId: z.string().regex(/^window:\d+:\d+$/), crop: cropSchema, orientation: orientationSchema, coachedSide: sideSchema, sourceWidth: z.number().int().positive(), sourceHeight: z.number().int().positive() }).strict();
+export const selectionSchema = tokenSchema.extend({ sourceId: z.string().regex(/^window:\d+:\d+$/), crop: cropSchema, orientation: orientationSchema, coachedSide: sideSchema, sourceWidth: z.number().int().positive(), sourceHeight: z.number().int().positive() }).strict().refine(value => Math.abs(value.crop.width * value.sourceWidth - value.crop.height * value.sourceHeight) / Math.max(value.crop.width * value.sourceWidth, value.crop.height * value.sourceHeight) < .05, 'The selected board crop must be square in source pixels.');
 export type CaptureSelection = z.infer<typeof selectionSchema>;
 export const visionSchema = z.object({ placements: z.array(placementSchema).max(32), orientation: orientationSchema, uncertainSquares: z.array(squareSchema).max(64), boardVisible: z.boolean(), cropAligned: z.boolean() }).strict();
 export type VisionResult = z.infer<typeof visionSchema>;

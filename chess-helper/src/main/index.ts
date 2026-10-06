@@ -125,7 +125,7 @@ app.whenReady().then(async () => {
   coach.webContents.on('render-process-gone', () => controller.pause());
   let geometryTimer: ReturnType<typeof setTimeout>;
   const saveGeometry = () => { clearTimeout(geometryTimer); geometryTimer = setTimeout(() => { if (!coach.isDestroyed()) store.saveGeometry(coach.getBounds()); }, 250); };
-  coach.on('move', saveGeometry); coach.on('resize', () => { saveGeometry(); coach.webContents.send('chess:visibility', coach.isVisible()); });
+  coach.on('move', saveGeometry); coach.on('resize', () => { if (coach.isVisible()) mouse.show(); saveGeometry(); coach.webContents.send('chess:visibility', coach.isVisible()); });
   screen.on('display-metrics-changed', () => coach.setBounds(clampWindow(coach.getBounds(), screen.getAllDisplays().map(d => d.workArea))));
   electronSession.defaultSession.setPermissionRequestHandler((contents, permission, callback, details) => { const own = [...windows.values()].some(window => window.webContents === contents) && localURL(details.requestingUrl); callback(own && permission === 'display-capture'); });
   electronSession.defaultSession.setPermissionCheckHandler((contents, permission, origin) => !!contents && [...windows.values()].some(window => window.webContents === contents) && (localURL(origin) || (devURL && origin === devURL) || origin === 'file://') && permission === 'display-capture');
