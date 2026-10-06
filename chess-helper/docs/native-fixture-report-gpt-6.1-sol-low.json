@@ -1,0 +1,401 @@
+{
+  "generatedAt": "2026-10-06T17:46:40.128524+00:00",
+  "recognition": {
+    "model": "gpt-6.1-sol",
+    "effort": "low"
+  },
+  "manifestSha256": "07292a26ee789f1670b586f65abbe29638a865843100dfa118783e949cb801f5",
+  "implementationSha256": "614957cda7227260ef90eaf3caaed67cbd277c6a26cedff359c00fd423c0e2e2",
+  "nativeCaptureMeasured": true,
+  "qualified": false,
+  "complete": false,
+  "device": {
+    "platform": "Apple Silicon macOS",
+    "scaleFactor": 2,
+    "sourceWidth": 3456,
+    "sourceHeight": 2020
+  },
+  "build": {
+    "kind": "isolated packaged qualification app",
+    "sourceCommit": "d3625da",
+    "script": "scripts/package-qualification.mjs",
+    "productionContentProtection": true,
+    "qualificationContentProtection": false,
+    "coreCodeUnchanged": true
+  },
+  "method": "Public live Lichess analysis boards, default 2D theme, verified exact 8x8 crop. Prior full FEN confirmed through the native correction editor. Public positions changed through analysis UI/navigation; capture, stability, recognition, validation and Stockfish run in the packaged app. No full-window screenshot reaches cloud recognition.",
+  "timingScope": "Manual capture command to first Ready, correction or error snapshot; includes native stream startup/stability, recognition and applicable 1000ms engine search. Excludes human initial confirmation, explanations, UI paint and Computer Use polling.",
+  "measurements": [
+    {
+      "caseId": "lichess-start-white",
+      "phase": "initial-confirmation",
+      "site": "lichess",
+      "orientation": "white-bottom",
+      "beforeFen": null,
+      "expectedFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "reviewedResult": "correct-initial-placement-requires-confirmation",
+      "placementReviewed": true,
+      "at": "2026-10-06T17:37:17.490Z",
+      "endpoint": "Needs correction",
+      "elapsedMs": 7237.290249999845,
+      "recognition": {
+        "model": "gpt-6.1-sol",
+        "effort": "low"
+      },
+      "fen": null,
+      "engineMs": null,
+      "sourceWidth": 3456,
+      "sourceHeight": 2020,
+      "crop": {
+        "x": 0.30260047281323876,
+        "y": 0.24038234041546397,
+        "width": 0.36935972234636244,
+        "height": 0.631934257638133
+      },
+      "errorCode": null
+    },
+    {
+      "caseId": "lichess-start-white",
+      "phase": "confirmed-unchanged-rescan",
+      "site": "lichess",
+      "orientation": "white-bottom",
+      "beforeFen": null,
+      "expectedFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "reviewedResult": "correct-full-fen",
+      "placementReviewed": true,
+      "at": "2026-10-06T17:38:12.808Z",
+      "endpoint": "Ready",
+      "elapsedMs": 5803.123625000007,
+      "recognition": {
+        "model": "gpt-6.1-sol",
+        "effort": "low"
+      },
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "engineMs": 1007.2373329999391,
+      "sourceWidth": 3456,
+      "sourceHeight": 2020,
+      "crop": {
+        "x": 0.30260047281323876,
+        "y": 0.24038234041546397,
+        "width": 0.36935972234636244,
+        "height": 0.631934257638133
+      },
+      "errorCode": null
+    },
+    {
+      "caseId": "lichess-normal-move",
+      "phase": "legal-transition",
+      "site": "lichess",
+      "orientation": "white-bottom",
+      "beforeFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+      "reviewedResult": "correct-full-fen",
+      "placementReviewed": true,
+      "at": "2026-10-06T17:38:50.084Z",
+      "endpoint": "Ready",
+      "elapsedMs": 6805.655583000043,
+      "recognition": {
+        "model": "gpt-6.1-sol",
+        "effort": "low"
+      },
+      "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+      "engineMs": 1006.8846670000348,
+      "sourceWidth": 3456,
+      "sourceHeight": 2020,
+      "crop": {
+        "x": 0.30260047281323876,
+        "y": 0.24038234041546397,
+        "width": 0.36935972234636244,
+        "height": 0.631934257638133
+      },
+      "errorCode": null
+    },
+    {
+      "caseId": "lichess-capture-white",
+      "phase": "legal-transition",
+      "site": "lichess",
+      "orientation": "white-bottom",
+      "beforeFen": "4k3/8/8/3p4/4P3/8/8/4K3 w - - 0 1",
+      "expectedFen": "4k3/8/8/3P4/8/8/8/4K3 b - - 0 1",
+      "reviewedResult": "correct-full-fen",
+      "placementReviewed": true,
+      "at": "2026-10-06T17:40:23.123Z",
+      "endpoint": "Ready",
+      "elapsedMs": 5602.949833000079,
+      "recognition": {
+        "model": "gpt-6.1-sol",
+        "effort": "low"
+      },
+      "fen": "4k3/8/8/3P4/8/8/8/4K3 b - - 0 1",
+      "engineMs": 1005.5302920001559,
+      "sourceWidth": 3456,
+      "sourceHeight": 2020,
+      "crop": {
+        "x": 0.30260047281323876,
+        "y": 0.24038234041546397,
+        "width": 0.36935972234636244,
+        "height": 0.631934257638133
+      },
+      "errorCode": null
+    },
+    {
+      "caseId": "lichess-castling-white",
+      "phase": "legal-transition",
+      "site": "lichess",
+      "orientation": "white-bottom",
+      "beforeFen": "r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1",
+      "expectedFen": "r3k2r/8/8/8/8/8/8/R4RK1 b kq - 1 1",
+      "reviewedResult": "correct-full-fen",
+      "placementReviewed": true,
+      "at": "2026-10-06T17:41:31.194Z",
+      "endpoint": "Ready",
+      "elapsedMs": 5459.223083999939,
+      "recognition": {
+        "model": "gpt-6.1-sol",
+        "effort": "low"
+      },
+      "fen": "r3k2r/8/8/8/8/8/8/R4RK1 b kq - 1 1",
+      "engineMs": 1003.4992080000229,
+      "sourceWidth": 3456,
+      "sourceHeight": 2020,
+      "crop": {
+        "x": 0.30260047281323876,
+        "y": 0.24038234041546397,
+        "width": 0.36935972234636244,
+        "height": 0.631934257638133
+      },
+      "errorCode": null
+    },
+    {
+      "caseId": "lichess-en-passant-white",
+      "phase": "legal-transition",
+      "site": "lichess",
+      "orientation": "white-bottom",
+      "beforeFen": "4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 2",
+      "expectedFen": "4k3/8/3P4/8/8/8/8/4K3 b - - 0 2",
+      "reviewedResult": "correct-full-fen",
+      "placementReviewed": true,
+      "at": "2026-10-06T17:42:28.890Z",
+      "endpoint": "Ready",
+      "elapsedMs": 6390.880957999965,
+      "recognition": {
+        "model": "gpt-6.1-sol",
+        "effort": "low"
+      },
+      "fen": "4k3/8/3P4/8/8/8/8/4K3 b - - 0 2",
+      "engineMs": 1003.8634589998983,
+      "sourceWidth": 3456,
+      "sourceHeight": 2020,
+      "crop": {
+        "x": 0.30260047281323876,
+        "y": 0.24038234041546397,
+        "width": 0.36935972234636244,
+        "height": 0.631934257638133
+      },
+      "errorCode": null
+    },
+    {
+      "caseId": "lichess-promotion-white",
+      "phase": "legal-transition",
+      "site": "lichess",
+      "orientation": "white-bottom",
+      "beforeFen": "4k3/P7/8/8/8/8/8/4K3 w - - 0 1",
+      "expectedFen": "Q3k3/8/8/8/8/8/8/4K3 b - - 0 1",
+      "reviewedResult": "correct-full-fen",
+      "placementReviewed": true,
+      "at": "2026-10-06T17:43:14.600Z",
+      "endpoint": "Ready",
+      "elapsedMs": 6309.034207999939,
+      "recognition": {
+        "model": "gpt-6.1-sol",
+        "effort": "low"
+      },
+      "fen": "Q3k3/8/8/8/8/8/8/4K3 b - - 0 1",
+      "engineMs": 1001.8287919999566,
+      "sourceWidth": 3456,
+      "sourceHeight": 2020,
+      "crop": {
+        "x": 0.30260047281323876,
+        "y": 0.24038234041546397,
+        "width": 0.36935972234636244,
+        "height": 0.631934257638133
+      },
+      "errorCode": null
+    },
+    {
+      "caseId": "lichess-checkmate-white",
+      "phase": "legal-transition",
+      "site": "lichess",
+      "orientation": "white-bottom",
+      "beforeFen": "rnbqkbnr/pppp1ppp/8/4p3/6P1/5P2/PPPPP2P/RNBQKBNR b KQkq - 0 2",
+      "expectedFen": "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
+      "reviewedResult": "correct-full-fen",
+      "placementReviewed": true,
+      "at": "2026-10-06T17:44:16.822Z",
+      "endpoint": "Ready",
+      "elapsedMs": 5842.553541999776,
+      "recognition": {
+        "model": "gpt-6.1-sol",
+        "effort": "low"
+      },
+      "fen": "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
+      "engineMs": 0,
+      "sourceWidth": 3456,
+      "sourceHeight": 2020,
+      "crop": {
+        "x": 0.30260047281323876,
+        "y": 0.24038234041546397,
+        "width": 0.36935972234636244,
+        "height": 0.631934257638133
+      },
+      "errorCode": null
+    },
+    {
+      "caseId": "lichess-stalemate-white",
+      "phase": "legal-transition",
+      "site": "lichess",
+      "orientation": "white-bottom",
+      "beforeFen": "7k/5K2/8/6Q1/8/8/8/8 w - - 0 1",
+      "expectedFen": "7k/5K2/6Q1/8/8/8/8/8 b - - 1 1",
+      "reviewedResult": "correct-full-fen",
+      "placementReviewed": true,
+      "at": "2026-10-06T17:44:55.079Z",
+      "endpoint": "Ready",
+      "elapsedMs": 5317.00704200007,
+      "recognition": {
+        "model": "gpt-6.1-sol",
+        "effort": "low"
+      },
+      "fen": "7k/5K2/6Q1/8/8/8/8/8 b - - 1 1",
+      "engineMs": 0,
+      "sourceWidth": 3456,
+      "sourceHeight": 2020,
+      "crop": {
+        "x": 0.30260047281323876,
+        "y": 0.24038234041546397,
+        "width": 0.36935972234636244,
+        "height": 0.631934257638133
+      },
+      "errorCode": null
+    },
+    {
+      "caseId": "lichess-midgame-white",
+      "phase": "legal-transition",
+      "site": "lichess",
+      "orientation": "white-bottom",
+      "beforeFen": "r1bqk2r/pppp1ppp/2n5/8/2BPn3/2P2N2/P4PPP/R1BQ1RK1 b kq - 0 9",
+      "expectedFen": "r1bqk2r/ppp2ppp/2n5/3p4/2BPn3/2P2N2/P4PPP/R1BQ1RK1 w kq - 0 10",
+      "reviewedResult": "correct-full-fen",
+      "placementReviewed": true,
+      "at": "2026-10-06T17:45:26.322Z",
+      "endpoint": "Ready",
+      "elapsedMs": 6133.509959000163,
+      "recognition": {
+        "model": "gpt-6.1-sol",
+        "effort": "low"
+      },
+      "fen": "r1bqk2r/ppp2ppp/2n5/3p4/2BPn3/2P2N2/P4PPP/R1BQ1RK1 w kq - 0 10",
+      "engineMs": 1002.5326660000719,
+      "sourceWidth": 3456,
+      "sourceHeight": 2020,
+      "crop": {
+        "x": 0.30260047281323876,
+        "y": 0.24038234041546397,
+        "width": 0.36935972234636244,
+        "height": 0.631934257638133
+      },
+      "errorCode": null
+    },
+    {
+      "caseId": "lichess-missed-moves-white",
+      "phase": "missed-moves-rejection",
+      "site": "lichess",
+      "orientation": "white-bottom",
+      "beforeFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectedFen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+      "reviewedResult": "correction",
+      "placementReviewed": true,
+      "at": "2026-10-06T17:46:05.966Z",
+      "endpoint": "Needs correction",
+      "elapsedMs": 4607.075583000202,
+      "recognition": {
+        "model": "gpt-6.1-sol",
+        "effort": "low"
+      },
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "engineMs": null,
+      "sourceWidth": 3456,
+      "sourceHeight": 2020,
+      "crop": {
+        "x": 0.30260047281323876,
+        "y": 0.24038234041546397,
+        "width": 0.36935972234636244,
+        "height": 0.631934257638133
+      },
+      "errorCode": null
+    }
+  ],
+  "latencyMs": {
+    "median": 5842.553541999776,
+    "p95": 7237.290249999845,
+    "min": 4607.075583000202,
+    "max": 7237.290249999845
+  },
+  "coveredCaseIds": [
+    "lichess-capture-white",
+    "lichess-castling-white",
+    "lichess-checkmate-white",
+    "lichess-en-passant-white",
+    "lichess-midgame-white",
+    "lichess-missed-moves-white",
+    "lichess-normal-move",
+    "lichess-promotion-white",
+    "lichess-stalemate-white",
+    "lichess-start-white"
+  ],
+  "remainingCaseIds": [
+    "chesscom-start-white",
+    "chesscom-normal-move",
+    "lichess-start-black",
+    "chesscom-move-black",
+    "chesscom-capture-black",
+    "chesscom-castling-black",
+    "chesscom-en-passant-black",
+    "chesscom-promotion-black",
+    "chesscom-checkmate-black",
+    "chesscom-stalemate-black",
+    "chesscom-midgame-black",
+    "chesscom-missed-moves-black",
+    "lichess-ambiguous-crop",
+    "chesscom-ambiguous-crop",
+    "lichess-normal-move-black",
+    "chesscom-normal-move-white",
+    "lichess-capture-black",
+    "chesscom-capture-white",
+    "lichess-castling-black",
+    "chesscom-castling-white",
+    "lichess-en-passant-black",
+    "chesscom-en-passant-white",
+    "lichess-promotion-black",
+    "chesscom-promotion-white",
+    "lichess-checkmate-black",
+    "chesscom-checkmate-white",
+    "lichess-stalemate-black",
+    "chesscom-stalemate-white",
+    "lichess-midgame-black",
+    "chesscom-midgame-white",
+    "lichess-missed-moves-black",
+    "chesscom-missed-moves-white",
+    "chesscom-resized-white",
+    "lichess-animation",
+    "chesscom-animation",
+    "lichess-resized-black"
+  ],
+  "lifecyclePassed": false,
+  "limitations": [
+    "Partial native corpus: Lichess white orientation only.",
+    "Both-site/both-orientation, resize, incomplete crop, animation and capture lifecycle acceptance remain pending.",
+    "Astra/Low native capture is unmeasured. Automatic tracking remains disabled."
+  ],
+  "proof": "images/native-lichess-e4-ready.jpg"
+}
