@@ -234,6 +234,18 @@ export class Session {
     );
     this.engineWork.submit(structuredClone(position));
   }
+  private canTrackAutomatically() {
+    return !!this.current.position && !!this.current.selection &&
+      this.captureUsable && this.current.settings.automaticTracking &&
+      this.current.trackingQualified;
+  }
+  private beginCaptureAfterConfirmation() {
+    this.current.running = this.canTrackAutomatically();
+    this.manualSampling = false;
+    this.stable.reset();
+    this.lastFrame = -1;
+    this.sendCapture(this.current.running ? "start" : "stop");
+  }
   requestExplanation() {
     const { position, analysis } = this.current;
     if (!position || !analysis || !analysis.candidates.length) return;
@@ -294,9 +306,7 @@ export class Session {
     this.current.observation = null;
     if (this.current.selection)
       this.current.selection.orientation = correction.orientation;
-    this.current.running = false;
-    this.manualSampling = false;
-    this.sendCapture("stop");
+    this.beginCaptureAfterConfirmation();
     this.analyze();
   }
   start() {
@@ -309,11 +319,7 @@ export class Session {
     this.invalidate();
     this.stable.reset();
     this.lastFrame = -1;
-    if (
-      !this.current.selection ||
-      !this.current.settings.automaticTracking ||
-      !this.current.trackingQualified
-    ) {
+    if (!this.canTrackAutomatically()) {
       this.current.running = false;
       this.manualSampling = false;
       this.sendCapture("stop");
@@ -347,11 +353,7 @@ export class Session {
       moves: [...position.moves, uciOf(move)],
     };
     this.current.observation = null;
-    this.current.running = false;
-    this.manualSampling = false;
-    this.stable.reset();
-    this.lastFrame = -1;
-    this.sendCapture("stop");
+    this.beginCaptureAfterConfirmation();
     this.analyze();
   }
   pause() {
@@ -377,12 +379,12 @@ export class Session {
     this.invalidate();
     this.stable.reset();
     this.lastFrame = -1;
-    this.manualSampling = true;
+    this.manualSampling = !this.current.running;
     this.setStatus(
       "Reading board",
       "Waiting for two stable samples before recognition.",
     );
-    this.sendCapture("sample");
+    this.sendCapture(this.current.running ? "start" : "sample");
   }
   frame(frame: CapturedFrame) {
     if (
