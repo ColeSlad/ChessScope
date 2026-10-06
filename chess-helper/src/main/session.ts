@@ -59,6 +59,7 @@ export class Session {
   private engineWork: LatestTask<ConfirmedPosition>;
   private lastFrame = -1;
   private manualSampling = false;
+  private captureUsable = false;
   constructor(private deps: SessionDependencies) {
     this.current = {
       status: {
@@ -91,6 +92,7 @@ export class Session {
         );
         if (signal.aborted || !this.isCurrent(observation)) return;
         this.current.observation = observation;
+        this.captureUsable = observation.boardVisible && observation.cropAligned;
         if (!this.current.position) {
           this.needsCorrection(
             "Confirm the recognized board and initialize its complete chess state.",
@@ -252,6 +254,7 @@ export class Session {
     this.sendCapture("stop");
     this.invalidate(true);
     this.current.selection = { ...selection, ...this.token() };
+    this.captureUsable = true; // The user just confirmed the crop in a live preview.
     this.current.position = null;
     this.current.observation = null;
     this.current.running = false;
@@ -268,6 +271,7 @@ export class Session {
     this.sendCapture("stop");
     this.invalidate(true);
     this.current.selection = null;
+    this.captureUsable = false;
     this.current.position = null;
     this.current.observation = null;
     this.current.running = false;
@@ -282,19 +286,12 @@ export class Session {
   correct(correction: Correction) {
     this.assertCurrent(correction);
     const next = importPosition(correction, this.current.status.revision + 1);
-    // Explicit human correction is authoritative; uncertain or misread squares may be repaired.
-    // A moved/hidden crop still needs to be selected and recognized again.
-    const observation = this.current.observation;
-    if (
-      this.current.selection &&
-      observation &&
-      (!observation.boardVisible || !observation.cropAligned)
-    )
-      throw new Error(
-        "Select and read the visible board before confirming the position.",
-      );
+    // Explicit human chess-state confirmation can always initialize manual
+    // analysis. An unusable crop is detached so it cannot resume tracking.
+    if (!this.captureUsable) this.current.selection = null;
     this.invalidate();
     this.current.position = next;
+    this.current.observation = null;
     if (this.current.selection)
       this.current.selection.orientation = correction.orientation;
     this.current.running = false;
@@ -401,6 +398,7 @@ export class Session {
       frame.sourceWidth !== selection.sourceWidth ||
       frame.sourceHeight !== selection.sourceHeight
     ) {
+      this.captureUsable = false;
       this.needsCorrection(
         "The browser window resized. Select Board again to confirm the crop.",
       );
@@ -433,6 +431,7 @@ export class Session {
     message: string,
     action: string,
   ) {
+    if (code === "capture") this.captureUsable = false;
     this.invalidate();
     this.current.running = false;
     this.manualSampling = false;

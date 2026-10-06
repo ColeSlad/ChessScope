@@ -603,6 +603,10 @@ function CorrectionView({ state }: { state: Snapshot }) {
           rights, en passant, or earlier history.
         </p>
       </header>
+      {state.selection && state.observation &&
+        (!state.observation.boardVisible || !state.observation.cropAligned) && (
+        <p className="muted">This scan could not confirm the board crop. You can confirm an entered position for manual analysis now; select the board again to reconnect screen capture.</p>
+      )}
       <div className="mode-buttons">
         {(["editor", "fen", "pgn", "start"] as const).map((value) => (
           <button

@@ -161,7 +161,7 @@ describe("revision-safe sessions", () => {
     expect(deps.capture).not.toHaveBeenCalledWith(expect.objectContaining({ action: "sample" }));
     expect(deps.cloud.recognize).not.toHaveBeenCalled();
   });
-  it("still requires a new crop after vision explicitly reports hidden or misaligned capture", async () => {
+  it("allows manual confirmation after a rejected crop and detaches it from screen tracking", async () => {
     const { session, deps } = make();
     deps.cloud.recognize = vi.fn(async (frame) => ({
       ...frame, placements: [], orientation: "white-bottom", uncertainSquares: [], boardVisible: false, cropAligned: false,
@@ -170,8 +170,23 @@ describe("revision-safe sessions", () => {
     session.frame(frame(session, 1));
     session.frame(frame(session, 2));
     await flush();
-    expect(() => setup(session)).toThrow("Select and read the visible board");
-    expect(deps.engine.analyze).not.toHaveBeenCalled();
+    setup(session);
+    await flush();
+    expect(session.snapshot().selection).toBeNull();
+    expect(session.snapshot().position?.fen).toBe(DEFAULT_POSITION);
+    expect(session.snapshot().status.state).toBe("Ready");
+    expect(deps.engine.analyze).toHaveBeenCalledTimes(1);
+  });
+  it("detaches resized and permission-revoked capture when manually confirming a position", () => {
+    for (const failure of ["resize", "permission"] as const) {
+      const { session } = make();
+      select(session);
+      if (failure === "resize") session.frame({ ...frame(session, 1), sourceWidth: 1200 });
+      else session.fail("capture", "Permission revoked", "Select Board");
+      setup(session);
+      expect(session.snapshot().selection).toBeNull();
+      expect(session.snapshot().position?.fen).toBe(DEFAULT_POSITION);
+    }
   });
   it("publishes an actionable status and current revision when rescanning without a position", () => {
     const { session, deps } = make();
