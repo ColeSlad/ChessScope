@@ -13,6 +13,16 @@ import {
 } from "../shared/contracts";
 import { sameToken } from "../core/position";
 
+export function validateVision(value: unknown) {
+  const observation = visionSchema.parse(value);
+  if (
+    new Set(observation.placements.map((piece) => piece.square)).size !==
+    observation.placements.length
+  )
+    throw new Error("Recognition contains duplicate occupied squares");
+  return observation;
+}
+
 export const explanationSchema = z
   .object({
     candidates: z
@@ -126,7 +136,7 @@ export class CloudAI {
       sessionId: frame.sessionId,
       revision: frame.revision,
       frameId: frame.frameId,
-      ...visionSchema.parse(result.output_parsed),
+      ...validateVision(result.output_parsed),
     };
   }
   async explain(
