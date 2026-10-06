@@ -1,108 +1,23 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { createHash } from "node:crypto";
+import os from "node:os";
+import { spawn } from "node:child_process";
+import { createRequire } from "node:module";
 import { build } from "esbuild";
-const manifestPath = path.resolve("tests/fixtures/manifest.json");
-const manifest = JSON.parse(await fs.readFile(manifestPath, "utf8"));
-if (!manifest.cases.length)
-  throw new Error(
-    "No recorded Chess.com / Lichess fixtures. Recognition accuracy, correction frequency, and end-to-end latency remain unmeasured. Automatic tracking cannot be qualified.",
-  );
-if (!process.env.OPENAI_API_KEY)
-  throw new Error(
-    "Set OPENAI_API_KEY only for this explicit fixture evaluation. The app stores its own key in safeStorage.",
-  );
-await build({
-  entryPoints: ["scripts/fixture-runner.ts"],
-  outfile: "dist/fixture-runner.mjs",
-  bundle: true,
-  platform: "node",
-  format: "esm",
-  external: ["openai", "chess.js", "zod"],
-});
-const { evaluate } = await import("../dist/fixture-runner.mjs");
-const results = [];
-for (const item of manifest.cases) {
-  const file = path.resolve(path.dirname(manifestPath), item.image);
-  if (!file.startsWith(path.dirname(manifestPath) + path.sep))
-    throw new Error("Fixture path escapes fixture directory");
-  const bytes = await fs.readFile(file);
-  if (createHash("sha256").update(bytes).digest("hex") !== item.sha256)
-    throw new Error("Fixture checksum mismatch");
-  results.push(await evaluate(item, bytes));
+const directory = await fs.mkdtemp(path.join(os.tmpdir(), "chess-helper-fixtures-"));
+try {
+  const script = path.join(directory, "fixture-check.cjs");
+  await build({
+    entryPoints: ["scripts/fixture-check.ts"], outfile: script,
+    bundle: true, platform: "node", format: "cjs", external: ["electron"],
+  });
+  const electron = createRequire(import.meta.url)("electron");
+  const code = await new Promise((resolve, reject) => {
+    const child = spawn(electron, [script, process.cwd(), directory, process.argv.includes("--preflight") ? "preflight" : "evaluate"], { stdio: "inherit" });
+    child.on("error", reject);
+    child.on("exit", resolve);
+  });
+  process.exitCode = code ?? 1;
+} finally {
+  await fs.rm(directory, { recursive: true, force: true });
 }
-const required = [
-  "white-bottom",
-  "black-bottom",
-  "retina",
-  "resize",
-  "highlight",
-  "animation",
-  "move",
-  "capture",
-  "castling",
-  "en-passant",
-  "promotion",
-  "checkmate",
-  "stalemate",
-  "midgame",
-  "missed-moves",
-  "ambiguous",
-];
-const coverage = ["chess.com", "lichess"].every((site) =>
-  required.every((tag) =>
-    manifest.cases.some(
-      (item) => item.site === site && item.tags.includes(tag),
-    ),
-  ),
-);
-const wrong = results.filter((r) => r.outcome === "incorrect").length,
-  correct = results.filter((r) => r.outcome === "correct").length,
-  corrections = results.filter((r) => r.outcome === "correction").length;
-const latencies = results
-  .filter((r) => r.latencyMs !== null)
-  .map((r) => r.latencyMs)
-  .sort((a, b) => a - b);
-const report = {
-  generatedAt: new Date().toISOString(),
-  recognition: {
-    model: process.env.RECOGNITION_MODEL ?? "gpt-6.1-sol",
-    effort: process.env.RECOGNITION_EFFORT ?? "low",
-  },
-  total: results.length,
-  accuracy: correct / results.length,
-  correctionFrequency: corrections / results.length,
-  knownIncorrect: wrong,
-  coverageComplete: coverage,
-  qualified:
-    coverage && wrong === 0 && results.every((r) => r.outcome !== "error"),
-  latency: {
-    medianMs: latencies[Math.floor(latencies.length * 0.5)] ?? null,
-    p95Ms:
-      latencies[
-        Math.min(latencies.length - 1, Math.floor(latencies.length * 0.95))
-      ] ?? null,
-    includes:
-      "recorded capture input, cloud recognition, legal validation, 1000 ms engine analysis where applicable; recorded input does not measure real-time capture delay",
-  },
-  results,
-};
-await fs.writeFile(
-  "docs/fixture-report.json",
-  JSON.stringify(report, null, 2) + "\n",
-);
-console.log(
-  JSON.stringify(
-    {
-      total: report.total,
-      accuracy: report.accuracy,
-      correctionFrequency: report.correctionFrequency,
-      knownIncorrect: wrong,
-      qualified: report.qualified,
-      latency: report.latency,
-    },
-    null,
-    2,
-  ),
-);
-if (!report.qualified) process.exitCode = 1;
