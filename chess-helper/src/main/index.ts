@@ -478,7 +478,10 @@ app
     windows.set("coach", coach);
     protect(coach);
     coach.setAlwaysOnTop(true, "floating");
-    coach.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
+    coach.setVisibleOnAllWorkspaces(true, {
+      visibleOnFullScreen: true,
+      skipTransformProcessType: true,
+    });
     coach.on("close", (event) => {
       if (!quitting) {
         event.preventDefault();
