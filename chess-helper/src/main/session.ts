@@ -124,13 +124,16 @@ export class Session {
         const analysis = await deps.engine.analyze(position, signal);
         if (signal.aborted || !this.isCurrent(analysis)) return;
         this.current.analysis = analysis;
+        const manual = !this.current.selection || !this.current.running;
+        const recommendation =
+          new Chess(position.fen).turn() === position.coachedSide
+            ? "Engine recommendation ready."
+            : "Opponent’s turn — these are expected opponent continuations.";
         this.setStatus(
           "Ready",
           analysis.terminal
             ? `${analysis.terminal === "checkmate" ? "Checkmate" : "Stalemate"}. No legal moves.`
-            : new Chess(position.fen).turn() === position.coachedSide
-              ? "Engine recommendation ready."
-              : "Opponent’s turn — these are expected opponent continuations.",
+            : `${recommendation}${manual ? " Update or rescan after each move." : ""}`,
         );
         if (analysis.candidates.length) this.requestExplanation();
       } catch {
