@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-10-06T00:59:20.834Z",
+  "purpose": "Live Responses/structured-output compatibility using a synthetic board and a confirmed engine position. This does not qualify recorded-site recognition or live capture latency.",
+  "checks": [
+    {
+      "model": "gpt-6.1-sol",
+      "kind": "recognition",
+      "effort": "low",
+      "result": "passed",
+      "latencyMs": 7433.911667,
+      "syntheticPlacementMatches": true
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "kind": "explanations",
+      "effort": "medium",
+      "result": "passed",
+      "latencyMs": 10594.567958
+    },
+    {
+      "model": "gpt-6-astra",
+      "kind": "recognition",
+      "effort": "low",
+      "result": "passed",
+      "latencyMs": 6011.516416999999,
+      "syntheticPlacementMatches": true
+    },
+    {
+      "model": "gpt-6-astra",
+      "kind": "explanations",
+      "effort": "medium",
+      "result": "passed",
+      "latencyMs": 8320.013000000003
+    }
+  ]
+}

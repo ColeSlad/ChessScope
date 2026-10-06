@@ -19,7 +19,8 @@
     "fixtures:evaluate": "node scripts/evaluate-fixtures.mjs",
     "icon:build": "swift scripts/make-icon.swift",
     "package:verify": "node scripts/verify-package.mjs",
-    "test:native-storage": "node scripts/check-native-storage.mjs"
+    "test:native-storage": "node scripts/check-native-storage.mjs",
+    "test:cloud": "node scripts/check-cloud.mjs"
   },
   "dependencies": {
     "openai": "7.4.0",
