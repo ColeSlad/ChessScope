@@ -1,7 +1,7 @@
 import { it, expect } from "vitest";
 import { DEFAULT_POSITION } from "chess.js";
 import { validateExplanations, validateVision, decodeCompactVision } from "../src/main/cloud";
-import { legalCandidate } from "../src/core/position";
+import { legalCandidate, importPosition, matchObservation } from "../src/core/position";
 import type { EngineAnalysis } from "../src/shared/contracts";
 const analysis: EngineAnalysis = {
   sessionId: "s",
@@ -28,7 +28,7 @@ const valid = {
 };
 const startingRanks = ["rnbqkbnr", "pppppppp", "........", "........", "........", "........", "PPPPPPPP", "RNBQKBNR"];
 it.each(["white-bottom", "black-bottom"])("decodes compact ranks in algebraic coordinates for %s", (orientation) => {
-  const result = decodeCompactVision({ ranks: startingRanks, orientation, uncertainSquares: [], boardVisible: true, cropAligned: true });
+  const result = decodeCompactVision({ ranks: startingRanks, orientation, uncertainSquares: [], boardVisible: true, cropAligned: true, piecesAligned: true });
   expect(result.placements).toHaveLength(32);
   expect(result.placements).toContainEqual({ square: "a8", piece: "r" });
   expect(result.placements).toContainEqual({ square: "h1", piece: "R" });
@@ -37,7 +37,7 @@ it.each(["white-bottom", "black-bottom"])("decodes compact ranks in algebraic co
 it("preserves unknown squares instead of treating them as empty", () => {
   const ranks = [...startingRanks];
   ranks[4] = "....?...";
-  const result = decodeCompactVision({ ranks, orientation: "white-bottom", uncertainSquares: ["e4", "a3"], boardVisible: true, cropAligned: true });
+  const result = decodeCompactVision({ ranks, orientation: "white-bottom", uncertainSquares: ["e4", "a3"], boardVisible: true, cropAligned: true, piecesAligned: true });
   expect(result.uncertainSquares).toEqual(["e4", "a3"]);
   expect(result.placements.some((piece) => piece.square === "e4")).toBe(false);
 });
@@ -47,7 +47,21 @@ it.each([
   ["rnbqkbn!", ...startingRanks.slice(1)],
   Array(8).fill("QQQQQQQQ"),
 ])("rejects malformed or overpopulated compact boards", (ranks) => {
-  expect(() => decodeCompactVision({ ranks, orientation: "white-bottom", uncertainSquares: [], boardVisible: true, cropAligned: true })).toThrow();
+  expect(() => decodeCompactVision({ ranks, orientation: "white-bottom", uncertainSquares: [], boardVisible: true, cropAligned: true, piecesAligned: true })).toThrow();
+});
+it("requests correction for a displaced piece even when the guessed ranks form a legal move", () => {
+  const token = { sessionId: "00000000-0000-4000-8000-000000000001", revision: 0 };
+  const before = importPosition({ ...token, format: "start", text: "", coachedSide: "w", orientation: "white-bottom", confirmed: true }, 0);
+  // Real Lichess animation was incorrectly snapped to e3 during an e2-e4 move.
+  const ranks = [...startingRanks]; ranks[5] = "....P..."; ranks[6] = "PPPP.PPP";
+  const fields = { ranks, orientation: "white-bottom", uncertainSquares: [], boardVisible: true, cropAligned: true };
+  const aligned = decodeCompactVision({ ...fields, piecesAligned: true });
+  expect(matchObservation(before, aligned).kind).toBe("move");
+  const displaced = decodeCompactVision({ ...fields, piecesAligned: false });
+  expect(matchObservation(before, displaced).kind).toBe("correction");
+});
+it("requires an explicit piece-alignment check in compact recognition", () => {
+  expect(() => decodeCompactVision({ ranks: startingRanks, orientation: "white-bottom", uncertainSquares: [], boardVisible: true, cropAligned: true })).toThrow();
 });
 it("binds structured explanation to engine evidence and revision", () =>
   expect(validateExplanations(valid, analysis)[0]).toMatchObject({
@@ -97,7 +111,7 @@ it("uses the official Responses SDK with structured image input and independent 
   };
   const compact = {
     ranks: ["....k...", "........", "........", "........", "........", "........", "........", "....K..."],
-    orientation: "white-bottom", uncertainSquares: [], boardVisible: true, cropAligned: true,
+    orientation: "white-bottom", uncertainSquares: [], boardVisible: true, cropAligned: true, piecesAligned: true,
   };
   let request: any;
   const fetch = vi.fn(async (_url, init) => {
