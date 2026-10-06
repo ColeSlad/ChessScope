@@ -102,6 +102,7 @@ export class Stockfish {
       this.child.on("error", failed);
       this.child.on("exit", failed);
       createInterface({ input: this.child.stdout }).on("line", (line) => {
+        if (this.child !== child) return;
         for (const listener of [...this.listeners]) listener(line);
       });
       // Drain stderr; do not log game positions or engine diagnostics containing data.

@@ -67,3 +67,56 @@ it("drains obsolete searches through bestmove and readyok before accepting anoth
     rmSync(directory, { recursive: true, force: true });
   }
 });
+
+it("reports an engine process crash and recovers through explicit restart", async () => {
+  const directory = mkdtempSync(path.join(tmpdir(), "chess-helper-crash-"));
+  const file = path.join(directory, "fake-engine");
+  writeFileSync(
+    file,
+    `#!${process.execPath}
+const fs=require('node:fs');
+const readline=require('node:readline');
+readline.createInterface({input:process.stdin}).on('line',line=>{
+  if(line==='uci')console.log('uciok');
+  if(line==='isready')console.log('readyok');
+  if(line.startsWith('go ')){
+    if(!fs.existsSync('crashed-once')){fs.writeFileSync('crashed-once','1');process.exit(42);}
+    console.log('info depth 8 multipv 1 score cp 30 pv e2e4 e7e5');
+    console.log('bestmove e2e4');
+  }
+  if(line==='quit')process.exit(0);
+});
+`,
+    { mode: 0o755 },
+  );
+  let failures = 0;
+  const engine = new Stockfish(file, directory, () => failures++);
+  const position = importPosition(
+    {
+      sessionId: "00000000-0000-4000-8000-000000000001",
+      revision: 4,
+      format: "start",
+      text: "",
+      coachedSide: "w",
+      orientation: "white-bottom",
+      confirmed: true,
+    },
+    4,
+  );
+  try {
+    await expect(
+      engine.analyze(position, new AbortController().signal),
+    ).rejects.toThrow("Stockfish stopped");
+    expect(failures).toBe(1);
+    await engine.restart();
+    const result = await engine.analyze(
+      { ...position, revision: 5 },
+      new AbortController().signal,
+    );
+    expect(result.revision).toBe(5);
+    expect(result.candidates[0].id).toBe("e2e4");
+  } finally {
+    engine.shutdown();
+    rmSync(directory, { recursive: true, force: true });
+  }
+});
