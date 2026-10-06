@@ -201,7 +201,9 @@ export class Stockfish {
       signal.throwIfAborted();
       const recommendation = line.split(" ")[1];
       const final =
-        completeReport?.get(1)?.id === recommendation ? completeReport : report;
+        reports.complete?.get(1)?.id === recommendation
+          ? reports.complete
+          : reports.current;
       if (final.get(1)?.id !== recommendation)
         throw new Error(
           "Stockfish did not produce a validated final recommendation",
