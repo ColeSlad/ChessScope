@@ -29,6 +29,12 @@ Set your own OpenAI API key in Settings. It is encrypted using Electron `safeSto
 
 Automatic tracking is implemented but gated off until a complete recorded Chess.com / Lichess corpus passes recognition qualification. See [fixture requirements](tests/fixtures/README.md). An empty corpus is a failed gate, never a passing accuracy result. Manual position analysis and manual rescans remain available.
 
+For the fastest path, open **Correct Position → Starting Position**, check the confirmation box, and choose **Confirm & Analyze**. Manual FEN/PGN and piece editing also work without a successful scan. A rejected or resized capture is disconnected when you confirm a manual position; use Select Board to reconnect it. **Analyze** searches the confirmed position locally, while **Rescan** reads the browser board.
+
+After each move you play or observe, enter it in **Move already played** and choose **Update**. SAN (`e4`, `Nf3`, `O-O`) and UCI (`e2e4`, `e7e8q`) are accepted only when legal in the confirmed position. This uses chess.js and Stockfish without cloud recognition, preserves the known move history and special-move state, and does not play anything on the website. Correct Position is required if moves were missed. The engine's one-second search budget is separate from optional cloud explanation latency.
+
+Cloud scans now use compact rank strings. Individual synthetic-board checks measured Sol/Low at 2.88 s and Astra/Low at 2.23 s, compared with historical original-format samples of 7.43 s and 6.01 s. This is not a controlled benchmark or an end-to-end latency guarantee; see the [recognition timing report](docs/recognition-speed-report.json). Recorded-site qualification remains outstanding.
+
 The main process owns Stockfish and OpenAI; the sandboxed renderer has only a typed preload bridge. Capture is video only, locally cropped before IPC and cloud upload. Each asynchronous analysis carries a session ID and revision. Recognition and explanation each have one active request and one replaceable pending job. Pausing and detected board changes remove actionable results immediately.
 
 ## Build
@@ -53,6 +59,7 @@ npm run typecheck
 npm run test:native-storage # macOS encryption and persistence across process launches
 npm run test:capture-permission # real Electron permission dispatch; captures no pixels
 npm run test:cloud          # explicit live API checks using the key saved in this app
+npm run test:cloud -- --recognition-only # compact-output scan timing; skips explanations
 ```
 
 `test:cloud` incurs API usage and uses a synthetic board only to check Responses and structured-output compatibility. Its report is separate from recorded Chess.com / Lichess qualification. Neither this check nor unit tests unlock automatic tracking. See [actual verification results](docs/VALIDATION.md) and [remaining acceptance work](docs/RESUME.md).
