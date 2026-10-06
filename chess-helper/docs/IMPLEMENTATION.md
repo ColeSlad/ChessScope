@@ -22,3 +22,9 @@ Automatic tracking remains disabled until a recorded, supported fixture corpus p
 - [Stockfish UCI](https://official-stockfish.github.io/docs/stockfish-wiki/UCI-Protocol-and-Stockfish-Commands.html): engine configuration and score semantics.
 
 Screen-sharing compatibility testing is excluded. Signing/notarization requires the distributor's own Apple Developer identity.
+
+## Capture permission repair
+
+Step 29 fixes permission denial after selecting a browser window. Electron 42.5.2 first sends a `media` permission request with an empty `mediaTypes` array for display capture. The former policy rejected it before the display-source handler ran. The corrected policy permits this specific request only from trusted main frames with an explicitly selected source; camera and microphone requests remain denied. The source handler grants video only and rejects unavailable sources using Electron's supported `null` callback value.
+
+`npm run test:capture-permission` reproduces the old rejection and verifies the corrected dispatch in separate native Electron processes. It deliberately declines the display source before any pixels are captured; this verifies permission routing, not macOS Screen Recording authorization or live browser capture.

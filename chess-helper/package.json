@@ -20,7 +20,8 @@
     "icon:build": "swift scripts/make-icon.swift",
     "package:verify": "node scripts/verify-package.mjs",
     "test:native-storage": "node scripts/check-native-storage.mjs",
-    "test:cloud": "node scripts/check-cloud.mjs"
+    "test:cloud": "node scripts/check-cloud.mjs",
+    "test:capture-permission": "node scripts/check-capture-permission.mjs"
   },
   "dependencies": {
     "openai": "7.4.0",

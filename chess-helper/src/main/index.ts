@@ -31,6 +31,7 @@ import { CloudAI } from "./cloud";
 import { Store } from "./store";
 import { Session } from "./session";
 import { clampWindow, MouseEpoch } from "../core/desktop";
+import { allowCapturePermission, denyDisplayCapture } from "./capture-permission";
 
 app.setName("Chess Helper");
 app.setPath(
@@ -533,24 +534,28 @@ app
     captureSession.setPermissionRequestHandler(
       (contents, permission, callback, details) => {
         callback(
-          captureContentsAllowed(contents) &&
-            !!selectedSource &&
-            localURL(details.requestingUrl) &&
-            permission === "display-capture",
+          allowCapturePermission({
+            kind: "request",
+            permission,
+            trustedContents: captureContentsAllowed(contents),
+            sourceSelected: !!selectedSource,
+            trustedURL: localURL(details.requestingUrl),
+            isMainFrame: details.isMainFrame,
+            mediaTypes: "mediaTypes" in details ? details.mediaTypes : undefined,
+          }),
         );
       },
     );
     captureSession.setPermissionCheckHandler(
       (contents, permission, _origin, details) => {
-        // Chromium forwards newer permission names before older Electron type unions include them.
-        return (
-          captureContentsAllowed(contents) &&
-          !!selectedSource &&
-          details.isMainFrame &&
-          !!details.requestingUrl &&
-          localURL(details.requestingUrl) &&
-          String(permission) === "display-capture"
-        );
+        return allowCapturePermission({
+          kind: "check",
+          permission: String(permission),
+          trustedContents: captureContentsAllowed(contents),
+          sourceSelected: !!selectedSource,
+          trustedURL: !!details.requestingUrl && localURL(details.requestingUrl),
+          isMainFrame: details.isMainFrame,
+        });
       },
     );
     captureSession.setDisplayMediaRequestHandler(
@@ -565,21 +570,32 @@ app
                 window.webContents.mainFrame === frame,
             ) &&
             localURL(frame.url);
-          if (!own || !selectedSource || request.audioRequested) {
-            callback({});
+          if (
+            !own ||
+            !selectedSource ||
+            !request.videoRequested ||
+            request.audioRequested
+          ) {
+            denyDisplayCapture(callback);
             return;
           }
           const sourceId = selectedSource;
           const source = (await browserSources()).find(
             (s) => s.id === sourceId,
           );
-          if (!source || selectedSource !== sourceId) {
-            callback({});
+          if (
+            !source ||
+            selectedSource !== sourceId ||
+            !frame ||
+            frame.isDestroyed() ||
+            !localURL(frame.url)
+          ) {
+            denyDisplayCapture(callback);
             return;
           }
           callback({ video: source });
         } catch {
-          callback({});
+          denyDisplayCapture(callback);
         }
       },
       { useSystemPicker: false },
