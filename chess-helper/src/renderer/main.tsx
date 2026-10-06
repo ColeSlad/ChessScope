@@ -155,7 +155,6 @@ function Coach({ state }: { state: Snapshot }) {
           className={`status-dot ${state.status.state === "Ready" ? "ready" : ""}`}
         />
         {state.status.state}
-        <span className="revision">#{state.status.revision}</span>
       </div>
       <p className="status-message">{state.status.message}</p>
       <div className="board-section">
@@ -172,7 +171,7 @@ function Coach({ state }: { state: Snapshot }) {
         <div className="position-meta">
           <strong>
             {turn
-              ? `${turn === "w" ? "White" : "Black"} to move`
+              ? `${state.status.state === "Needs correction" ? "Last confirmed: " : ""}${turn === "w" ? "White" : "Black"} to move`
               : "No confirmed position"}
           </strong>
           <span>
@@ -211,10 +210,6 @@ function Coach({ state }: { state: Snapshot }) {
                 {explanation ? (
                   <>
                     <p>{explanation.explanation}</p>
-                    <p className="reply">
-                      <b>Engine-expected reply:</b>{" "}
-                      {candidate.variation[1]?.san ?? "No reply in this line"}
-                    </p>
                     {index === 0 && (
                       <div className="tradeoffs">
                         <p>
@@ -233,6 +228,10 @@ function Coach({ state }: { state: Snapshot }) {
                       : "Explanation unavailable"}
                   </p>
                 )}
+                <p className="reply">
+                  <b>Engine-expected reply:</b>{" "}
+                  {candidate.variation[1]?.san ?? "No reply in this line"}
+                </p>
                 <details>
                   <summary>
                     Variation · {candidate.variation.length} moves

@@ -38,6 +38,8 @@ app.setPath(
   path.join(app.getPath("appData"), "com.colesladowsky.chesshelper"),
 );
 app.setAppUserModelId("com.colesladowsky.chesshelper");
+const ownsInstance = app.requestSingleInstanceLock();
+if (!ownsInstance) app.quit();
 let coach: BrowserWindow;
 let tray: Tray;
 let controller: Session;
@@ -112,6 +114,9 @@ function showCoach() {
   }
   coach.webContents.send("chess:visibility", true);
 }
+app.on("second-instance", () => {
+  if (coach && !coach.isDestroyed()) showCoach();
+});
 function hideCoach() {
   mouse.hide();
   coach.setIgnoreMouseEvents(true, { forward: true });
@@ -412,6 +417,7 @@ function registerIPC() {
 app
   .whenReady()
   .then(async () => {
+    if (!ownsInstance) return;
     app.dock?.hide();
     const captureSession = electronSession.fromPartition(sessionPartition, {
       cache: false,
