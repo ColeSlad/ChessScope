@@ -235,3 +235,52 @@ describe("revision-safe sessions", () => {
     expect(session.snapshot().status.error?.action).toBe("Restart");
   });
 });
+
+it("clears results on engine restart and discards explanations from its previous search", async () => {
+  let releaseRestart!: () => void;
+  let resolveExplanation!: (value: MoveExplanation[]) => void;
+  let previous!: ConfirmedPosition;
+  const { session } = make({
+    engine: {
+      analyze: async (p) => analysis(p),
+      restart: () =>
+        new Promise<void>((resolve) => {
+          releaseRestart = resolve;
+        }),
+      shutdown: () => {},
+    },
+    cloud: {
+      recognize: vi.fn(),
+      explain: async (p) => {
+        previous = p;
+        return new Promise((resolve) => {
+          resolveExplanation = resolve;
+        });
+      },
+    },
+  });
+  setup(session);
+  await flush();
+  const revision = session.token().revision;
+  expect(session.snapshot().analysis).not.toBeNull();
+  const restarting = session.restartEngine();
+  expect(session.snapshot().analysis).toBeNull();
+  expect(session.token().revision).toBe(revision + 1);
+  resolveExplanation([
+    {
+      ...previous,
+      candidateId: "e2e4",
+      explanation: "Previous search",
+      reply: "e7e5",
+      benefit: "Space",
+      drawback: "Target",
+    },
+  ]);
+  await flush();
+  expect(session.snapshot().explanations).toEqual([]);
+  releaseRestart();
+  await restarting;
+  await flush();
+  expect(session.snapshot().analysis?.revision).toBe(revision + 1);
+  expect(session.snapshot().explanations).toEqual([]);
+});

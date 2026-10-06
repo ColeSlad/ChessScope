@@ -433,10 +433,18 @@ export class Session {
     this.publish();
   }
   async restartEngine() {
+    this.pause();
+    this.setStatus("Analyzing", "Restarting Stockfish.");
     const token = this.token();
     try {
       await this.deps.engine.restart();
-      if (this.isCurrent(token) && this.current.position) this.analyze();
+      if (!this.isCurrent(token)) return;
+      if (this.current.position) this.analyze();
+      else
+        this.setStatus(
+          "Paused",
+          "Stockfish restarted. Select a board or enter a position.",
+        );
     } catch {
       if (this.isCurrent(token))
         this.fail(
