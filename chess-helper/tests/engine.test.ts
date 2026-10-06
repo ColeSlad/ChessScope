@@ -86,6 +86,7 @@ readline.createInterface({input:process.stdin}).on('line',line=>{
   }
   if(line==='quit')process.exit(0);
 });
+
 `,
     { mode: 0o755 },
   );
@@ -115,6 +116,46 @@ readline.createInterface({input:process.stdin}).on('line',line=>{
     );
     expect(result.revision).toBe(5);
     expect(result.candidates[0].id).toBe("e2e4");
+  } finally {
+    engine.shutdown();
+    rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+
+it("keeps a coherent complete report when the final partial iteration changes recommendation", async () => {
+  const directory = mkdtempSync(path.join(tmpdir(), "chess-helper-report-"));
+  const file = path.join(directory, "fake-engine");
+  writeFileSync(file, `#!${process.execPath}
+const readline=require('node:readline');
+readline.createInterface({input:process.stdin}).on('line',line=>{
+  if(line==='uci')console.log('uciok');
+  if(line==='isready')console.log('readyok');
+  if(line.startsWith('go ')){
+    console.log('info depth 9 multipv 1 score cp 35 pv e2e4 e7e5');
+    console.log('info depth 9 multipv 2 score cp 30 pv d2d4 d7d5');
+    console.log('info depth 9 multipv 3 score cp 25 pv g1f3 d7d5');
+    console.log('info depth 10 multipv 1 score cp 38 pv d2d4 d7d5');
+    console.log('info depth 10 multipv 2 score cp 34 pv e2e4 e7e5');
+    console.log('info depth 10 multipv 3 score cp 26 pv g1f3 d7d5');
+    console.log('info depth 11 multipv 1 score cp 39 pv e2e4 e7e5');
+    console.log('info depth 11 multipv 2 score cp 32 upperbound pv d2d4 d7d5');
+    console.log('info depth 10 multipv 3 score cp 26 pv g1f3 d7d5');
+    console.log('bestmove e2e4');
+  }
+  if(line==='quit')process.exit(0);
+});
+`, { mode: 0o755 });
+  const engine = new Stockfish(file, directory);
+  try {
+    const position = importPosition({
+      sessionId: "00000000-0000-4000-8000-000000000001", revision: 0,
+      format: "start", text: "", coachedSide: "w", orientation: "white-bottom", confirmed: true,
+    }, 0);
+    const result = await engine.analyze(position, new AbortController().signal);
+    expect(result.candidates.map((candidate) => candidate.id)).toEqual(["e2e4", "d2d4", "g1f3"]);
+    expect(result.candidates.map((candidate) => candidate.depth)).toEqual([9, 9, 9]);
+    expect(result.candidates.map((candidate) => candidate.score.value)).toEqual([35, 30, 25]);
   } finally {
     engine.shutdown();
     rmSync(directory, { recursive: true, force: true });

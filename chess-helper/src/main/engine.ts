@@ -157,15 +157,20 @@ export class Stockfish {
     const expectedCandidates = Math.min(3, chess.moves().length);
     const reports: {
       current: Map<number, Candidate>;
-      complete: Map<number, Candidate> | null;
-    } = { current: new Map(), complete: null };
+      completeByRecommendation: Map<string, Map<number, Candidate>>;
+    } = { current: new Map(), completeByRecommendation: new Map() };
     const listener = (line: string) => {
       if (signal.aborted) return;
+      if (
+        line.startsWith("info ") &&
+        /\bpv /.test(line) &&
+        Number(/\bmultipv (\d+)/.exec(line)?.[1] ?? 1) === 1
+      )
+        reports.current = new Map();
       const parsed = parseInfo(line, position.fen);
       if (parsed && parsed.rank >= 1 && parsed.rank <= expectedCandidates) {
         // Stockfish emits each MultiPV report in rank order. The last report may
         // be partial, and individual lines can have different search depths.
-        if (parsed.rank === 1) reports.current = new Map();
         reports.current.set(parsed.rank, parsed.candidate);
         if (
           reports.current.size === expectedCandidates &&
@@ -173,7 +178,10 @@ export class Stockfish {
             [...reports.current.values()].map((candidate) => candidate.id),
           ).size === expectedCandidates
         )
-          reports.complete = new Map(reports.current);
+          reports.completeByRecommendation.set(
+            reports.current.get(1)!.id,
+            new Map(reports.current),
+          );
       }
     };
     this.listeners.add(listener);
@@ -201,10 +209,12 @@ export class Stockfish {
       drained = true;
       signal.throwIfAborted();
       const recommendation = line.split(" ")[1];
+      // A partial final iteration can switch back to an earlier recommendation.
+      // Preserve the most recent complete report for that move, with its actual
+      // depths/scores/rank order, rather than mixing iterations or bound scores.
+      // At most one report per legal root move is retained for this search.
       const final =
-        reports.complete?.get(1)?.id === recommendation
-          ? reports.complete
-          : reports.current;
+        reports.completeByRecommendation.get(recommendation) ?? reports.current;
       if (final.get(1)?.id !== recommendation)
         throw new Error(
           "Stockfish did not produce a validated final recommendation",
