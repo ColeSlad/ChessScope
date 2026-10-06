@@ -139,8 +139,8 @@ app.whenReady().then(async () => {
     } catch { callback({}); }
   }, { useSystemPicker: false });
   registerIPC();
-  const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="black" d="M7 21v-2h12v2H7zm1-3v-3l3-4-4 1-2-2 3-4 1-4 7 4 3 6-1 6H8zm2-11h2V5h-2v2z"/></svg>';
-  const icon = nativeImage.createFromDataURL(`data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`); icon.setTemplateImage(true);
+  const iconPath = app.isPackaged ? path.join(process.resourcesPath, 'trayTemplate.png') : path.join(app.getAppPath(), 'resources/trayTemplate.png');
+  const icon = nativeImage.createFromPath(iconPath).resize({ width: 18, height: 18 }); icon.setTemplateImage(true);
   tray = new Tray(icon); tray.setToolTip('Chess Helper'); controller.conflicts(shortcuts(store.settings)); refreshMenus();
   tray.on('click', toggleCoach); await load(coach, 'coach'); showCoach();
   let checking = false;
