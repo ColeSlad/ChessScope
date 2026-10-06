@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-10-06T01:57:52.774Z",
+  "purpose": "Live compact-rank recognition timing using a synthetic board, one request per model. Historical original-format timings are in api-report.json. This is not a controlled latency benchmark, recorded-site qualification, or end-to-end capture timing.",
+  "recognitionFormat": "compact-ranks",
+  "checks": [
+    {
+      "model": "gpt-6.1-sol",
+      "kind": "recognition",
+      "effort": "low",
+      "result": "passed",
+      "latencyMs": 2878.252167,
+      "syntheticPlacementMatches": true
+    },
+    {
+      "model": "gpt-6-astra",
+      "kind": "recognition",
+      "effort": "low",
+      "result": "passed",
+      "latencyMs": 2227.7497500000004,
+      "syntheticPlacementMatches": true
+    }
+  ]
+}

@@ -12,7 +12,7 @@ import {
 } from "../src/core/position";
 import type { Settings } from "../src/shared/contracts";
 
-const [imageFile, directory, reportFile] = process.argv.slice(2);
+const [imageFile, directory, reportFile, mode] = process.argv.slice(2);
 if (!imageFile || !directory || !reportFile)
   throw new Error("Invalid cloud check arguments");
 app.setName("Chess Helper");
@@ -54,19 +54,20 @@ app
     const checks: Record<string, unknown>[] = [];
     let exitCode = 1;
     try {
-      const analysis = await engine.analyze(
+      const analysis = mode === "recognition-only" ? null : await engine.analyze(
         position,
         new AbortController().signal,
       );
       for (const model of ["gpt-6.1-sol", "gpt-6-astra"] as const) {
-        for (const kind of ["recognition", "explanations"] as const) {
+        const kinds = mode === "recognition-only" ? ["recognition"] as const : ["recognition", "explanations"] as const;
+        for (const kind of kinds) {
           const started = performance.now();
           const setting: Settings["recognition"] = {
             model,
             effort: kind === "recognition" ? "low" : "medium",
           };
+          let syntheticPlacementMatches: boolean | null = null;
           try {
-            let syntheticPlacementMatches: boolean | null = null;
             if (kind === "recognition") {
               const result = await cloud.recognize(
                 {
@@ -88,7 +89,10 @@ app
                 result.orientation === "white-bottom" &&
                 placementKey(result.placements) ===
                   placementKey(placementsOf(position.fen));
+              if (!syntheticPlacementMatches)
+                throw new Error("Synthetic board recognition did not match the known position");
             } else {
+              if (!analysis) throw new Error("No engine evidence for explanation test");
               const explanations = await cloud.explain(
                 position,
                 analysis,
@@ -116,6 +120,7 @@ app
               result: "failed",
               message: cloudFailure(error),
               latencyMs: performance.now() - started,
+              ...(kind === "recognition" ? { syntheticPlacementMatches } : {}),
             };
             checks.push(check);
             console.log(JSON.stringify(check));
@@ -128,7 +133,10 @@ app
           {
             generatedAt: new Date().toISOString(),
             purpose:
-              "Live Responses/structured-output compatibility using a synthetic board and a confirmed engine position. This does not qualify recorded-site recognition or live capture latency.",
+              mode === "recognition-only"
+                ? "Live compact-rank recognition timing using a synthetic board, one request per model. Historical original-format timings are in api-report.json. This is not a controlled latency benchmark, recorded-site qualification, or end-to-end capture timing."
+                : "Live Responses/structured-output compatibility using a synthetic board and a confirmed engine position. This does not qualify recorded-site recognition or live capture latency.",
+            recognitionFormat: "compact-ranks",
             checks,
           },
           null,

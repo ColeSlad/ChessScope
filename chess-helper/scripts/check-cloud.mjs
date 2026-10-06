@@ -7,6 +7,7 @@ import os from "node:os";
 const directory = await fs.mkdtemp(
   path.join(os.tmpdir(), "chess-helper-cloud-check-"),
 );
+const recognitionOnly = process.argv.slice(2).includes("--recognition-only");
 try {
   const image = path.join(directory, "synthetic-board.jpg");
   execFileSync("swift", ["scripts/make-cloud-test-board.swift", image], {
@@ -26,7 +27,7 @@ try {
   const code = await new Promise((resolve, reject) => {
     const child = spawn(
       electron,
-      [script, image, directory, path.resolve("docs/api-report.json")],
+      [script, image, directory, path.resolve(recognitionOnly ? "docs/recognition-speed-report.json" : "docs/api-report.json"), recognitionOnly ? "recognition-only" : "all"],
       { stdio: "inherit" },
     );
     child.on("error", reject);

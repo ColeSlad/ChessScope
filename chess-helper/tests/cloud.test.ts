@@ -1,6 +1,6 @@
 import { it, expect } from "vitest";
 import { DEFAULT_POSITION } from "chess.js";
-import { validateExplanations, validateVision } from "../src/main/cloud";
+import { validateExplanations, validateVision, decodeCompactVision } from "../src/main/cloud";
 import { legalCandidate } from "../src/core/position";
 import type { EngineAnalysis } from "../src/shared/contracts";
 const analysis: EngineAnalysis = {
@@ -26,6 +26,29 @@ const valid = {
     },
   ],
 };
+const startingRanks = ["rnbqkbnr", "pppppppp", "........", "........", "........", "........", "PPPPPPPP", "RNBQKBNR"];
+it.each(["white-bottom", "black-bottom"])("decodes compact ranks in algebraic coordinates for %s", (orientation) => {
+  const result = decodeCompactVision({ ranks: startingRanks, orientation, uncertainSquares: [], boardVisible: true, cropAligned: true });
+  expect(result.placements).toHaveLength(32);
+  expect(result.placements).toContainEqual({ square: "a8", piece: "r" });
+  expect(result.placements).toContainEqual({ square: "h1", piece: "R" });
+  expect(result.orientation).toBe(orientation);
+});
+it("preserves unknown squares instead of treating them as empty", () => {
+  const ranks = [...startingRanks];
+  ranks[4] = "....?...";
+  const result = decodeCompactVision({ ranks, orientation: "white-bottom", uncertainSquares: ["e4", "a3"], boardVisible: true, cropAligned: true });
+  expect(result.uncertainSquares).toEqual(["e4", "a3"]);
+  expect(result.placements.some((piece) => piece.square === "e4")).toBe(false);
+});
+it.each([
+  startingRanks.slice(1),
+  ["rnbqkbn", ...startingRanks.slice(1)],
+  ["rnbqkbn!", ...startingRanks.slice(1)],
+  Array(8).fill("QQQQQQQQ"),
+])("rejects malformed or overpopulated compact boards", (ranks) => {
+  expect(() => decodeCompactVision({ ranks, orientation: "white-bottom", uncertainSquares: [], boardVisible: true, cropAligned: true })).toThrow();
+});
 it("binds structured explanation to engine evidence and revision", () =>
   expect(validateExplanations(valid, analysis)[0]).toMatchObject({
     candidateId: "e2e4",
@@ -64,13 +87,17 @@ it("uses the official Responses SDK with structured image input and independent 
   const { CloudAI } = await import("../src/main/cloud");
   const observation = {
     placements: [
-      { square: "e1", piece: "K" },
       { square: "e8", piece: "k" },
+      { square: "e1", piece: "K" },
     ],
     orientation: "white-bottom",
     uncertainSquares: [],
     boardVisible: true,
     cropAligned: true,
+  };
+  const compact = {
+    ranks: ["....k...", "........", "........", "........", "........", "........", "........", "....K..."],
+    orientation: "white-bottom", uncertainSquares: [], boardVisible: true, cropAligned: true,
   };
   let request: any;
   const fetch = vi.fn(async (_url, init) => {
@@ -89,7 +116,7 @@ it("uses the official Responses SDK with structured image input and independent 
             content: [
               {
                 type: "output_text",
-                text: JSON.stringify(observation),
+                text: JSON.stringify(compact),
                 annotations: [],
               },
             ],
