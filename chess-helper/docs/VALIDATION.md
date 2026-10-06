@@ -25,3 +25,5 @@ The official model docs establish schema compatibility, not an account's access.
 - `npm run typecheck`: blocked by missing `chess.js` dependency; no full build is claimed.
 - `npm run fixtures:evaluate`: fails explicitly because no recorded corpus exists; automatic tracking stays disabled.
 - Offline packages came from the local public npm cache. No application source or identity was reused. The partial toolchain lock was kept outside the project rather than delivered as a falsely complete lockfile.
+- Main and renderer source successfully bundled for syntax checking with `chess.js` marked external into temporary files. This establishes syntax/import compatibility for installed modules, not a runnable app or complete production build.
+- `ChessScope.bundle` verified successfully as a complete local commit history. No GitHub publish occurred.
