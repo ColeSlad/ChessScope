@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T18:08:56.292848+00:00",
+  "generatedAt": "2026-10-06T18:26:25.398217+00:00",
   "recognition": {
     "model": "gpt-6.1-sol",
     "effort": "low"
@@ -951,7 +951,7 @@
   "limitations": [
     "All 23 Lichess native cases reviewed; all 23 Chess.com native cases remain pending.",
     "Native source-window resize/closure, permission denial/revocation and remaining interaction acceptance are pending.",
-    "Astra/Low native capture is unmeasured. Automatic tracking remains disabled."
+    "Astra/Low native corpus is partially measured and incomplete. Automatic tracking remains disabled."
   ],
   "proof": "images/native-lichess-e4-ready.jpg",
   "results": {
@@ -984,5 +984,11 @@
     "images/native-lichess-e4-ready.jpg",
     "images/native-incomplete-crop-correction.jpg",
     "images/native-resized-lichess-ready.jpg"
-  ]
+  ],
+  "interactionChecks": {
+    "focusedSettingsAndCorrectionEditor": "passed",
+    "shortcutConflictReportingAndRestoration": "passed",
+    "menuHideShow": "passed",
+    "physicalGlobalShortcutDelivery": "unverified; injected Computer Use key did not toggle the panel"
+  }
 }
