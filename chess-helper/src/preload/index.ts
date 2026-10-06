@@ -19,6 +19,7 @@ const api: ChessHelperAPI = {
   selectSource: (value) => ipcRenderer.invoke("chess:source", value),
   selectBoard: (value) => ipcRenderer.invoke("chess:selection", value),
   correct: (value) => ipcRenderer.invoke("chess:correct", value),
+  recordMove: (value) => ipcRenderer.invoke("chess:played-move", value),
   start: (value) => ipcRenderer.invoke("chess:start", value),
   pause: (value) => ipcRenderer.invoke("chess:pause", value),
   rescan: (value) => ipcRenderer.invoke("chess:rescan", value),

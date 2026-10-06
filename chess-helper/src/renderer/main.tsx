@@ -104,6 +104,7 @@ function SideControls({
 }
 function Coach({ state }: { state: Snapshot }) {
   const { error, busy, run } = useAction();
+  const [playedMove, setPlayedMove] = useState("");
   const position = state.position;
   const turn = position ? new Chess(position.fen).turn() : null;
   const candidates = state.analysis?.candidates ?? [];
@@ -186,6 +187,23 @@ function Coach({ state }: { state: Snapshot }) {
           )}
         </div>
       </div>
+      {position && state.status.state !== "Needs correction" && (
+        <form className="played-move-form" onSubmit={(event) => {
+          event.preventDefault();
+          void run(async () => {
+            await api!.recordMove({ ...tokenOf(state), move: playedMove });
+            setPlayedMove("");
+          });
+        }}>
+          <label htmlFor="played-move">Move already played</label>
+          <div className="fields-row">
+            <input id="played-move" value={playedMove} maxLength={16} placeholder="e4, Nf3, or e2e4" autoComplete="off" spellCheck={false}
+              onChange={(event) => setPlayedMove(event.target.value)} />
+            <button disabled={busy || !playedMove.trim()}>Update</button>
+          </div>
+          <p className="muted">Updates the confirmed position locally. No scan and no move execution.</p>
+        </form>
+      )}
       {candidates.length > 0 && (
         <section aria-label="Engine recommendations">
           <div className="section-label">

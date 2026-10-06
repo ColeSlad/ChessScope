@@ -157,6 +157,10 @@ export const correctionSchema = tokenSchema
   })
   .strict();
 export type Correction = z.infer<typeof correctionSchema>;
+export const playedMoveSchema = tokenSchema
+  .extend({ move: z.string().trim().min(2).max(16).regex(/^[a-zA-Z0-9+#=x-]+$/) })
+  .strict();
+export type PlayedMove = z.infer<typeof playedMoveSchema>;
 export type Source = { id: string; name: string; thumbnail: string };
 export type Snapshot = {
   status: SessionStatus;
@@ -206,6 +210,7 @@ export interface ChessHelperAPI {
   selectSource(token: Token & { sourceId: string }): Promise<void>;
   selectBoard(selection: CaptureSelection): Promise<void>;
   correct(correction: Correction): Promise<void>;
+  recordMove(move: PlayedMove): Promise<void>;
   start(token: Token): Promise<void>;
   pause(token: Token): Promise<void>;
   rescan(token: Token): Promise<void>;

@@ -12,8 +12,9 @@ import type {
   EngineAnalysis,
   BoardObservation,
   MoveExplanation,
+  PlayedMove,
 } from "../shared/contracts";
-import { sameToken, importPosition, matchObservation } from "../core/position";
+import { sameToken, importPosition, matchObservation, moveUci, uciOf } from "../core/position";
 import { StableFrames } from "../core/stability";
 import { LatestTask } from "../core/latest-task";
 import { cloudFailure } from "./cloud";
@@ -326,6 +327,35 @@ export class Session {
     this.manualSampling = false;
     this.setStatus("Reading board", "Waiting for two stable board samples.");
     this.sendCapture("start");
+  }
+  recordMove(value: PlayedMove) {
+    this.assertCurrent(value);
+    const position = this.current.position;
+    if (!position || this.current.status.state === "Needs correction")
+      throw new Error("Confirm or correct the complete position before recording a move.");
+    const chess = new Chess(position.fen);
+    const notation = value.move.trim().replace(/^0-0(-0)?([+#]?)$/, (_all, queenside, suffix) => `O-O${queenside ? "-O" : ""}${suffix}`);
+    let move;
+    try {
+      move = /^[a-h][1-8][a-h][1-8][qrbn]?$/.test(notation)
+        ? moveUci(chess, notation)
+        : chess.move(notation, { strict: true });
+    } catch {
+      throw new Error("That move is not legal in the confirmed position. Use SAN (e4, Nf3, O-O) or UCI (e2e4); correct the position if moves were missed.");
+    }
+    this.invalidate();
+    this.current.position = {
+      ...position, ...this.token(),
+      fen: chess.fen({ forceEnpassantSquare: true }),
+      moves: [...position.moves, uciOf(move)],
+    };
+    this.current.observation = null;
+    this.current.running = false;
+    this.manualSampling = false;
+    this.stable.reset();
+    this.lastFrame = -1;
+    this.sendCapture("stop");
+    this.analyze();
   }
   pause() {
     this.invalidate();

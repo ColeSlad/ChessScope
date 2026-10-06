@@ -23,6 +23,7 @@ import {
   settingsSchema,
   frameSchema,
   captureFailureSchema,
+  playedMoveSchema,
   type Snapshot,
   type Token,
   type CaptureCommand,
@@ -314,6 +315,7 @@ function registerIPC() {
     windows.get("correction")?.close();
     showCoach();
   });
+  invoke("played-move", playedMoveSchema, ["coach"], (value) => controller.recordMove(value));
   invoke("start", tokenSchema, ["coach"], () => controller.start());
   invoke("pause", tokenSchema, ["coach"], () => controller.pause());
   invoke("rescan", tokenSchema, ["coach"], () => controller.rescan());

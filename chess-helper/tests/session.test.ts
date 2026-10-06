@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { DEFAULT_POSITION } from "chess.js";
+import { Chess } from "chess.js";
 import { Session, type SessionDependencies } from "../src/main/session";
 import {
   DEFAULT_SETTINGS,
@@ -111,6 +112,35 @@ describe("revision-safe sessions", () => {
     await flush();
     expect(session.snapshot().status.state).toBe("Ready");
     expect(session.snapshot().observation).toBeNull();
+  });
+  it("records a legal played move locally, preserves chess state, and never requests recognition", async () => {
+    const { session, deps } = make();
+    deps.engine.analyze = vi.fn(async (p) => ({ ...p, candidates: [], elapsedMs: 1000, terminal: null }));
+    setup(session);
+    await flush();
+    const previous = session.token();
+    session.recordMove({ ...previous, move: "e4" });
+    const expected = new Chess();
+    expected.move("e4");
+    expect(session.snapshot().position).toMatchObject({
+      fen: expected.fen({ forceEnpassantSquare: true }),
+      initialFen: DEFAULT_POSITION, moves: ["e2e4"], historyComplete: true,
+      revision: previous.revision + 1,
+    });
+    session.recordMove({ ...session.token(), move: "e7e5" });
+    expect(session.snapshot().position?.moves).toEqual(["e2e4", "e7e5"]);
+    expect(deps.cloud.recognize).not.toHaveBeenCalled();
+    expect(() => session.recordMove({ ...previous, move: "Nf3" })).toThrow("older position");
+  });
+  it("rejects illegal played moves without changing analysis or position", async () => {
+    const { session } = make();
+    setup(session);
+    await flush();
+    const before = session.snapshot();
+    expect(() => session.recordMove({ ...session.token(), move: "e2e5" })).toThrow("not legal");
+    expect(session.snapshot()).toEqual(before);
+    session.needsCorrection("Moves were missed");
+    expect(() => session.recordMove({ ...session.token(), move: "e4" })).toThrow("complete position");
   });
   it.each([false, true])("analyzes the confirmed position without rescanning when automatic tracking is unqualified (setting %s)", async (automaticTracking) => {
     const { session, deps } = make({
