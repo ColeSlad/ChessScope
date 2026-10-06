@@ -153,12 +153,27 @@ export class Stockfish {
         terminal: chess.isCheckmate() ? "checkmate" : "stalemate",
       };
     const started = performance.now();
-    const candidates = new Map<number, Candidate>();
+    const expectedCandidates = Math.min(3, chess.moves().length);
+    const reports: {
+      current: Map<number, Candidate>;
+      complete: Map<number, Candidate> | null;
+    } = { current: new Map(), complete: null };
     const listener = (line: string) => {
       if (signal.aborted) return;
       const parsed = parseInfo(line, position.fen);
-      if (parsed && parsed.rank >= 1 && parsed.rank <= 3)
-        candidates.set(parsed.rank, parsed.candidate);
+      if (parsed && parsed.rank >= 1 && parsed.rank <= expectedCandidates) {
+        // Stockfish emits each MultiPV report in rank order. The last report may
+        // be partial, and individual lines can have different search depths.
+        if (parsed.rank === 1) reports.current = new Map();
+        reports.current.set(parsed.rank, parsed.candidate);
+        if (
+          reports.current.size === expectedCandidates &&
+          new Set(
+            [...reports.current.values()].map((candidate) => candidate.id),
+          ).size === expectedCandidates
+        )
+          reports.complete = new Map(reports.current);
+      }
     };
     this.listeners.add(listener);
     const bestmove = this.waitFor((line) => line.startsWith("bestmove "), 8000);
@@ -185,16 +200,15 @@ export class Stockfish {
       drained = true;
       signal.throwIfAborted();
       const recommendation = line.split(" ")[1];
-      const first = candidates.get(1);
-      if (!first || first.id !== recommendation)
+      const final =
+        completeReport?.get(1)?.id === recommendation ? completeReport : report;
+      if (final.get(1)?.id !== recommendation)
         throw new Error(
           "Stockfish did not produce a validated final recommendation",
         );
-      const finalDepth = first.depth;
-      const results = [...candidates.entries()]
+      const results = [...final.entries()]
         .sort(([a], [b]) => a - b)
-        .map(([, candidate]) => candidate)
-        .filter((candidate) => candidate.depth === finalDepth);
+        .map(([, candidate]) => candidate);
       if (new Set(results.map((c) => c.id)).size !== results.length)
         throw new Error("Stockfish returned duplicate candidates");
       return {

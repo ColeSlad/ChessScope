@@ -29,7 +29,7 @@ it("drains obsolete searches through bestmove and readyok before accepting anoth
     file = path.join(directory, "fake-engine");
   writeFileSync(
     file,
-    `#!${process.execPath}\nconst readline=require('node:readline');let timer;readline.createInterface({input:process.stdin}).on('line',line=>{if(line==='uci')console.log('uciok');if(line==='isready')console.log('readyok');if(line.startsWith('go ')){console.log('info depth 9 multipv 1 score cp 35 pv e2e4 e7e5');timer=setTimeout(()=>console.log('bestmove e2e4'),80);}if(line==='stop'){clearTimeout(timer);setTimeout(()=>console.log('bestmove e2e4'),5);}if(line==='quit')process.exit(0);});\n`,
+    `#!${process.execPath}\nconst readline=require('node:readline');let timer;readline.createInterface({input:process.stdin}).on('line',line=>{if(line==='uci')console.log('uciok');if(line==='isready')console.log('readyok');if(line.startsWith('go ')){console.log('info depth 9 multipv 1 score cp 35 pv e2e4 e7e5');console.log('info depth 9 multipv 2 score cp 30 pv d2d4 d7d5');console.log('info depth 9 multipv 3 score cp 25 pv g1f3 d7d5');console.log('info depth 10 multipv 1 score cp 36 pv e2e4 e7e5');timer=setTimeout(()=>console.log('bestmove e2e4'),80);}if(line==='stop'){clearTimeout(timer);setTimeout(()=>console.log('bestmove e2e4'),5);}if(line==='quit')process.exit(0);});\n`,
     { mode: 0o755 },
   );
   const engine = new Stockfish(file, directory);
@@ -58,6 +58,10 @@ it("drains obsolete searches through bestmove and readyok before accepting anoth
     const result = await second;
     expect(result.revision).toBe(1);
     expect(result.candidates[0].id).toBe("e2e4");
+    expect(result.candidates).toHaveLength(3);
+    expect(result.candidates.every((candidate) => candidate.depth === 9)).toBe(
+      true,
+    );
   } finally {
     engine.shutdown();
     rmSync(directory, { recursive: true, force: true });
