@@ -6,16 +6,16 @@ An independent Electron / React / TypeScript / Vite macOS menu-bar app for chess
 
 ```sh
 cd chess-helper
-npm install
-npm run engine:prepare -- --pin
+npm ci
+npm run engine:prepare
 npm test
 npm run build
 npm run dev
 ```
 
-The first engine preparation downloads the pinned official Stockfish 17.1 Apple Silicon release, corresponding source distribution, GPL license, and required NNUE files. Review and commit the generated SHA-256 lock before distributing. Later preparations verify it. The source distribution and license are included alongside the binary in packaged app resources. No other project, credentials, or identity is used.
+Engine preparation downloads the pinned official Stockfish 17.1 Apple Silicon release, corresponding source distribution, GPL license, and required NNUE files, and verifies the committed SHA-256 lock. Use `--pin` only when deliberately reviewing an engine update. The source distribution and license are included alongside the binary in packaged app resources. No other project, credentials, or identity is used.
 
-Commit the generated package-lock.json after the initial network-enabled installation; subsequent clean builds use `npm ci`. The current offline checkout does not yet have a complete dependency lock.
+All direct dependencies have exact versions and the complete dependency tree is committed in `package-lock.json`. Use `npm ci` for clean builds.
 
 Set your own OpenAI API key in Settings. It is encrypted using Electron `safeStorage` in `~/Library/Application Support/com.colesladowsky.chesshelper/preferences.json`. It is never returned to the renderer. All session positions, capture frames, and results remain in memory. No screenshot logging or telemetry is enabled.
 
@@ -36,8 +36,22 @@ The main process owns Stockfish and OpenAI; the sandboxed renderer has only a ty
 ```sh
 npm run package:dir   # development .app
 npm run package:mac   # Apple Silicon .dmg + .zip
+npm run package:verify # packaged identity, preload, renderer, and engine launch
 ```
 
 Packaging refuses an unpinned or missing engine, networks, license, or source. Electron Builder uses product name Chess Helper and ID `com.colesladowsky.chesshelper`. A public, trusted distribution needs the distributor's own Apple signing/notarization setup (CSC credentials and Apple API credentials); development builds can be unsigned. See [validation status](docs/VALIDATION.md).
 
 The coaching, settings, and selection windows apply Electron content protection. macOS ScreenCaptureKit can still capture them. Invisibility is not guaranteed; screen-sharing compatibility is intentionally untested.
+
+## Verification
+
+```sh
+npm test                 # rules, revisions, queues, UCI, and installed-engine integration
+npm run typecheck
+npm run test:native-storage # macOS encryption and persistence across process launches
+npm run test:cloud          # explicit live API checks using the key saved in this app
+```
+
+`test:cloud` incurs API usage and uses a synthetic board only to check Responses and structured-output compatibility. Its report is separate from recorded Chess.com / Lichess qualification. Neither this check nor unit tests unlock automatic tracking. See [actual verification results](docs/VALIDATION.md) and [remaining acceptance work](docs/RESUME.md).
+
+Local build output is `release/mac-arm64/ChessHelper.app`, `release/Chess-Helper-0.1.0-arm64.dmg`, and `release/Chess-Helper-0.1.0-arm64.zip`. These generated artifacts are ignored by Git. The app's displayed product name is Chess Helper.
