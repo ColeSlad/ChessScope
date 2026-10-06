@@ -7,8 +7,10 @@ import {
   type ConfirmedPosition,
   type MoveExplanation,
   type CapturedFrame,
+  type BoardObservation,
 } from "../src/shared/contracts";
 import { legalCandidate, placementsOf } from "../src/core/position";
+import { sessionIsActive } from "../src/core/session-controls";
 const flush = async () => {
   for (let i = 0; i < 12; i++) await Promise.resolve();
 };
@@ -91,6 +93,56 @@ function frame(session: Session, id: number, value = 0): CapturedFrame {
   };
 }
 describe("revision-safe sessions", () => {
+  it("analyzes a manually confirmed starting board without waiting for cloud recognition", async () => {
+    let resolve!: (observation: BoardObservation) => void;
+    const { session, deps } = make();
+    deps.cloud.recognize = vi.fn(() => new Promise<BoardObservation>((r) => { resolve = r; }));
+    select(session);
+    session.frame(frame(session, 1));
+    const pending = frame(session, 2);
+    session.frame(pending);
+    expect(sessionIsActive(session.snapshot())).toBe(true);
+    setup(session);
+    await flush();
+    expect(session.snapshot().position?.fen).toBe(DEFAULT_POSITION);
+    expect(session.snapshot().status.state).toBe("Ready");
+    expect(deps.engine.analyze).toHaveBeenCalledTimes(1);
+    resolve({ ...pending, placements: [], orientation: "white-bottom", uncertainSquares: [], boardVisible: false, cropAligned: false });
+    await flush();
+    expect(session.snapshot().status.state).toBe("Ready");
+    expect(session.snapshot().observation).toBeNull();
+  });
+  it.each([false, true])("analyzes the confirmed position without rescanning when automatic tracking is unqualified (setting %s)", async (automaticTracking) => {
+    const { session, deps } = make({
+      settings: { ...DEFAULT_SETTINGS, automaticTracking },
+      trackingQualified: () => false,
+    });
+    select(session);
+    setup(session);
+    await flush();
+    session.pause();
+    vi.mocked(deps.capture).mockClear();
+    session.start();
+    expect(sessionIsActive(session.snapshot())).toBe(true);
+    await flush();
+    expect(session.snapshot().status.state).toBe("Ready");
+    expect(session.snapshot().running).toBe(false);
+    expect(deps.capture).toHaveBeenCalledWith(expect.objectContaining({ action: "stop" }));
+    expect(deps.capture).not.toHaveBeenCalledWith(expect.objectContaining({ action: "sample" }));
+    expect(deps.cloud.recognize).not.toHaveBeenCalled();
+  });
+  it("still requires a new crop after vision explicitly reports hidden or misaligned capture", async () => {
+    const { session, deps } = make();
+    deps.cloud.recognize = vi.fn(async (frame) => ({
+      ...frame, placements: [], orientation: "white-bottom", uncertainSquares: [], boardVisible: false, cropAligned: false,
+    }));
+    select(session);
+    session.frame(frame(session, 1));
+    session.frame(frame(session, 2));
+    await flush();
+    expect(() => setup(session)).toThrow("Select and read the visible board");
+    expect(deps.engine.analyze).not.toHaveBeenCalled();
+  });
   it("publishes an actionable status and current revision when rescanning without a position", () => {
     const { session, deps } = make();
     const previous = session.token();

@@ -286,7 +286,8 @@ export class Session {
     const observation = this.current.observation;
     if (
       this.current.selection &&
-      (!observation || !observation.boardVisible || !observation.cropAligned)
+      observation &&
+      (!observation.boardVisible || !observation.cropAligned)
     )
       throw new Error(
         "Select and read the visible board before confirming the position.",
@@ -310,22 +311,15 @@ export class Session {
     this.invalidate();
     this.stable.reset();
     this.lastFrame = -1;
-    if (!this.current.selection) {
-      this.current.running = true;
-      this.analyze();
-      return;
-    }
     if (
+      !this.current.selection ||
       !this.current.settings.automaticTracking ||
       !this.current.trackingQualified
     ) {
       this.current.running = false;
-      this.manualSampling = true;
-      this.setStatus(
-        "Reading board",
-        "Rescanning once. Automatic tracking is awaiting fixture qualification.",
-      );
-      this.sendCapture("sample");
+      this.manualSampling = false;
+      this.sendCapture("stop");
+      this.analyze();
       return;
     }
     this.current.running = true;

@@ -17,6 +17,7 @@ import { Board, GLYPHS } from "./Board";
 import { BoardCapture } from "./capture";
 import { installMouseHitTesting } from "./mouse";
 import { captureFailureCode, captureFailureMessage } from "../core/capture-errors";
+import { sessionIsActive, automaticTrackingEnabled } from "../core/session-controls";
 import "./styles.css";
 declare global {
   interface Window {
@@ -302,13 +303,13 @@ function Coach({ state }: { state: Snapshot }) {
           disabled={busy}
           onClick={() =>
             void run(() =>
-              state.running
+              sessionIsActive(state)
                 ? api!.pause(tokenOf(state))
                 : api!.start(tokenOf(state)),
             )
           }
         >
-          {state.running ? "Pause" : "Start"}
+          {sessionIsActive(state) ? "Pause" : automaticTrackingEnabled(state) ? "Start" : "Analyze"}
         </button>
         <button
           disabled={busy}
@@ -324,7 +325,9 @@ function Coach({ state }: { state: Snapshot }) {
         </button>
       </footer>
       <p className="bottom-note">
-        Arrows appear only here. Moves are always yours to play.
+        {automaticTrackingEnabled(state)
+          ? "Arrows appear only here. Moves are always yours to play."
+          : "Analyze uses the confirmed position. Rescan reads the browser board."}
       </p>
     </main>
   );
@@ -814,6 +817,9 @@ function CorrectionView({ state }: { state: Snapshot }) {
             Confirm & Analyze
           </button>
         </div>
+        {!confirmed && !staleEditor && (
+          <p className="muted">Check the confirmation box above to enable Confirm & Analyze.</p>
+        )}
       </form>
     </main>
   );

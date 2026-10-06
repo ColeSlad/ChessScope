@@ -34,6 +34,7 @@ import { Session } from "./session";
 import { clampWindow, MouseEpoch } from "../core/desktop";
 import { allowCapturePermission, denyDisplayCapture } from "./capture-permission";
 import { captureFailureMessage } from "../core/capture-errors";
+import { sessionIsActive, automaticTrackingEnabled } from "../core/session-controls";
 
 app.setName("Chess Helper");
 app.setPath(
@@ -131,13 +132,13 @@ function toggleCoach() {
   refreshMenus();
 }
 function auxiliary(role: "settings" | "selection" | "correction") {
-  if (role === "selection" || role === "correction") controller.pause();
   const existing = windows.get(role);
   if (existing) {
     existing.show();
     existing.focus();
     return;
   }
+  if (role === "selection" || role === "correction") controller.pause();
   const window = new BrowserWindow({
     width: role === "selection" ? 900 : 670,
     height: role === "settings" ? 650 : 790,
@@ -173,8 +174,8 @@ function menuItems(): Electron.MenuItemConstructorOptions[] {
       click: toggleCoach,
     },
     {
-      label: state?.running ? "Pause" : "Start",
-      click: () => (state?.running ? controller.pause() : controller.start()),
+      label: state && sessionIsActive(state) ? "Pause" : state && !automaticTrackingEnabled(state) ? "Analyze Position" : "Start",
+      click: () => (state && sessionIsActive(state) ? controller.pause() : controller.start()),
     },
     { label: "Rescan Board", click: () => controller.rescan() },
     { label: "Select Board…", click: () => auxiliary("selection") },
@@ -229,7 +230,7 @@ function shortcuts(settings: z.infer<typeof settingsSchema>): string[] {
           ? toggleCoach
           : name === "pause"
             ? () =>
-                controller.snapshot().running
+                sessionIsActive(controller.snapshot())
                   ? controller.pause()
                   : controller.start()
             : () => controller.rescan(),
