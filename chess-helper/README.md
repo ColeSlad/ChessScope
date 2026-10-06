@@ -27,7 +27,7 @@ Set your own OpenAI API key in Settings. It is encrypted using Electron `safeSto
 4. Rescan reads two stable samples. Ambiguous recognition, resizing, flips, missed moves, closed windows, permission loss, and engine failure clear recommendations and show a recovery action.
 5. Start/Pause and Rescan are available in the menu and as rebindable shortcuts. Defaults: Command+Shift+H, Command+Shift+P, Command+Shift+R.
 
-Automatic tracking is implemented but gated off until a complete recorded Chess.com / Lichess corpus passes recognition qualification. See [fixture requirements](tests/fixtures/README.md). An empty corpus is a failed gate, never a passing accuracy result. Manual position analysis and manual rescans remain available.
+Automatic tracking is implemented but gated off until a complete recorded Chess.com / Lichess corpus passes recognition qualification and live capture is measured. See [fixture requirements](tests/fixtures/README.md). When qualified and enabled, confirmation starts continuous sampling and each legal board change produces the next engine recommendation. Rescan keeps that continuous stream active; Pause stops it. An empty corpus is a failed gate, never a passing accuracy result. Manual position analysis and manual rescans remain available.
 
 For the fastest path, open **Correct Position → Starting Position**, check the confirmation box, and choose **Confirm & Analyze**. Manual FEN/PGN and piece editing also work without a successful scan. A rejected or resized capture is disconnected when you confirm a manual position; use Select Board to reconnect it. **Analyze** searches the confirmed position locally, while **Rescan** reads the browser board.
 
@@ -60,6 +60,8 @@ npm run test:native-storage # macOS encryption and persistence across process la
 npm run test:capture-permission # real Electron permission dispatch; captures no pixels
 npm run test:cloud          # explicit live API checks using the key saved in this app
 npm run test:cloud -- --recognition-only # compact-output scan timing; skips explanations
+npm run fixtures:evaluate -- --preflight # recorded-image provenance and coverage; no API requests
+npm run fixtures:evaluate    # recorded recognition using the key saved in Settings
 ```
 
 `test:cloud` incurs API usage and uses a synthetic board only to check Responses and structured-output compatibility. Its report is separate from recorded Chess.com / Lichess qualification. Neither this check nor unit tests unlock automatic tracking. See [actual verification results](docs/VALIDATION.md) and [remaining acceptance work](docs/RESUME.md).
