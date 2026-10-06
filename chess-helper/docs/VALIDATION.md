@@ -1,6 +1,6 @@
 # Validation status
 
-Verified October 6, 2026 on Apple Silicon macOS. This records actual results separately from outstanding release acceptance.
+Verified October 6, 2026 on Apple Silicon macOS. This records actual results separately from outstanding release acceptance. The user selected Sol-only operation and qualification in step 52: Sol/Low recognition and Sol/Medium explanations are freshly verified in production Settings. Astra results remain historical evidence and do not gate this release.
 
 | Check | Evidence |
 | --- | --- |
