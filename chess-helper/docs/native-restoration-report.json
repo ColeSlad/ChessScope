@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-06T18:57:24.678177+00:00",
+  "verifiedAt": "2026-10-06T22:11:26.635349+00:00",
   "productionApplication": "release/mac-arm64/ChessHelper.app",
   "qualificationAppQuitThroughNativeMenu": true,
   "productionLaunchVerifiedByNativeRendererURL": true,
@@ -31,8 +31,17 @@
     "dist/renderer/index.html": "b4aa7e8351ddff7b0c4c0d045ba8bfb2319493e9d67ac93bdd4cb5a6f078e5a3"
   },
   "limitations": [
-    "Native reads timed out after the verified production Settings view and closing Settings. The final panel visibility is not reverified.",
-    "Public-tab handoff attempts also timed out; recreate the owned public analysis tabs if they close during turn cleanup.",
-    "Qualification remains incomplete: API 429 errors, remaining native corpus cases and lifecycle checks."
-  ]
+    "Sol/Low returned HTTP 429 on the verified public Chess.com starting-board scan. Resolve the saved key\u2019s API limit before more native cloud scans.",
+    "All 23 native Chess.com cases and remaining lifecycle checks remain unqualified. Automatic tracking stays disabled."
+  ],
+  "previousVerificationAt": "2026-10-06T18:57:24.678177+00:00",
+  "qualificationTarget": {
+    "model": "gpt-6.1-sol",
+    "effort": "low",
+    "soleTarget": true
+  },
+  "productionSettingsLeftOpen": true,
+  "nativeControlRecovered": true,
+  "publicAnalysisTabHandoffConfirmed": true,
+  "packagedVerificationNote": "Production package/build are unchanged since the successful byte/protection verification in step 51."
 }
