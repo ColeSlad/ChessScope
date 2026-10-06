@@ -340,6 +340,12 @@ export class Session {
   }
   rescan() {
     if (!this.current.selection) {
+      if (!this.current.position) {
+        this.needsCorrection(
+          "Select a board or enter a position before rescanning.",
+        );
+        return;
+      }
       this.invalidate();
       this.analyze();
       return;

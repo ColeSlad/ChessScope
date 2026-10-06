@@ -91,6 +91,15 @@ function frame(session: Session, id: number, value = 0): CapturedFrame {
   };
 }
 describe("revision-safe sessions", () => {
+  it("publishes an actionable status and current revision when rescanning without a position", () => {
+    const { session, deps } = make();
+    const previous = session.token();
+    session.rescan();
+    expect(session.snapshot().status.state).toBe("Needs correction");
+    expect(session.token().revision).toBe(previous.revision + 1);
+    expect(deps.emit).toHaveBeenLastCalledWith(session.snapshot());
+    expect(deps.engine.analyze).not.toHaveBeenCalled();
+  });
   it("discards engine completion after pause even if engine ignores abort", async () => {
     let resolve!: (a: EngineAnalysis) => void;
     let pending!: ConfirmedPosition;
