@@ -26,6 +26,7 @@ Set your own OpenAI API key in Settings. It is encrypted using Electron `safeSto
 3. The panel shows Stockfish results first; cloud explanations arrive afterwards. Scores use White's perspective. Opponent-to-move lines are clearly labeled.
 4. Rescan reads two stable samples. Ambiguous recognition, resizing, flips, missed moves, closed windows, permission loss, and engine failure clear recommendations and show a recovery action.
 5. Start/Pause and Rescan are available in the menu and as rebindable shortcuts. Defaults: Command+Shift+H, Command+Shift+P, Command+Shift+R.
+6. Quit closes the app from the coaching panel. Settings also has a Quit Chess Helper button, and the menu retains its quit command. Hiding the panel keeps the app running.
 
 Automatic tracking is implemented but gated off until a complete recorded Chess.com / Lichess corpus passes recognition qualification and live capture is measured. See [fixture requirements](tests/fixtures/README.md). When qualified and enabled, confirmation starts continuous sampling and each legal board change produces the next engine recommendation. Rescan keeps that continuous stream active; Pause stops it. An empty corpus is a failed gate, never a passing accuracy result. Manual position analysis and manual rescans remain available.
 

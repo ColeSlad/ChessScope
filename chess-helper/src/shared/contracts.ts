@@ -223,6 +223,7 @@ export interface ChessHelperAPI {
   restartEngine(token: Token): Promise<void>;
   openWindow(name: "settings" | "selection" | "correction"): Promise<void>;
   hide(): Promise<void>;
+  quit(): Promise<void>;
   cursor(): Promise<Cursor>;
   hitTest(value: { epoch: number; interactive: boolean }): Promise<void>;
   screenPermission(): Promise<string>;

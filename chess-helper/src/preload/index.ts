@@ -30,6 +30,7 @@ const api: ChessHelperAPI = {
   restartEngine: (value) => ipcRenderer.invoke("chess:restart-engine", value),
   openWindow: (value) => ipcRenderer.invoke("chess:open", value),
   hide: () => ipcRenderer.invoke("chess:hide"),
+  quit: () => ipcRenderer.invoke("chess:quit"),
   cursor: () => ipcRenderer.invoke("chess:cursor"),
   hitTest: (value) => ipcRenderer.invoke("chess:hit-test", value),
   screenPermission: () => ipcRenderer.invoke("chess:permission"),

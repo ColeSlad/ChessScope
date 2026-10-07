@@ -341,6 +341,9 @@ function Coach({ state }: { state: Snapshot }) {
         <button onClick={() => void run(() => api!.openWindow("settings"))}>
           Settings
         </button>
+        <button onClick={() => void run(() => api!.quit())}>
+          Quit
+        </button>
       </footer>
       <p className="bottom-note">
         {automaticTrackingEnabled(state)
@@ -525,6 +528,9 @@ function SettingsView({ state }: { state: Snapshot }) {
           </p>
         )}
         <div className="form-actions">
+          <button type="button" onClick={() => void run(() => api!.quit())}>
+            Quit Chess Helper
+          </button>
           <button type="button" onClick={() => window.close()}>
             Close
           </button>

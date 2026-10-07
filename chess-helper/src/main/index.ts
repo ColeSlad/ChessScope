@@ -372,6 +372,9 @@ function registerIPC() {
     false,
   );
   invoke("hide", z.undefined(), ["coach"], hideCoach, false);
+  invoke("quit", z.undefined(), ["coach", "settings"], () => {
+    setImmediate(() => app.quit());
+  }, false);
   invoke(
     "cursor",
     z.undefined(),
