@@ -47,11 +47,11 @@
     "packagedVerificationNote": "Production package/build are unchanged since the successful byte/protection verification in step 51."
   },
   "currentStatus": {
-    "recordedAt": "2026-10-06T22:27:02.490205+00:00",
+    "recordedAt": "2026-10-08T16:26:57.540873+00:00",
     "state": "restoration-pending",
     "temporaryQualificationAppRunning": true,
     "protectedProductionAppRunning": false,
-    "evidence": "Scoped read-only process inspection finds only ChessHelperQualification at the approved temporary package path. Native reads, screenshot and path rebinding time out.",
+    "evidence": "October 8 scoped read-only process inspection finds only the approved ChessHelperQualification executable. Production and qualification native app bindings both time out.",
     "userAction": "Quit Chess Helper Qualification from its menu; then reopen and verify protected production through Computer Use.",
     "solPreferencesLastVerified": {
       "recognition": {
@@ -64,7 +64,14 @@
       }
     },
     "automaticTrackingReleaseGate": false,
-    "apiBlocker": "credit_balance_exhausted",
-    "apiDiagnosticReport": "sol-access-report.json"
+    "apiBlocker": null,
+    "apiDiagnosticReport": "sol-access-report.json",
+    "apiAccessLastVerified": {
+      "generatedAt": "2026-10-08T16:16:48.993Z",
+      "model": "gpt-6.1-sol",
+      "effort": "low",
+      "outcome": "request-accepted",
+      "scope": "One bounded text-only request; no native vision or fixture claim."
+    }
   }
 }

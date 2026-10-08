@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T16:16:48.993Z",
+  "generatedAt": "2026-10-06T22:15:56.257Z",
   "recognition": {
     "model": "gpt-6.1-sol",
     "effort": "low"
@@ -7,8 +7,11 @@
   "purpose": "One bounded text-only Sol access diagnostic using the app's saved encrypted credential. This is not vision or fixture qualification.",
   "attempts": 1,
   "automaticRetries": 0,
-  "latencyMs": 2358.857541,
-  "outcome": "request-accepted",
-  "responseStatus": "completed",
+  "latencyMs": 1188.927959,
+  "outcome": "request-failed",
+  "httpStatus": 429,
+  "code": "credit_balance_exhausted",
+  "type": "insufficient_quota",
+  "retryAfterSeconds": null,
   "documentation": "https://developers.openai.com/api/docs/guides/error-codes"
 }
