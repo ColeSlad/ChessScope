@@ -153,170 +153,7 @@ function Coach({ state }: { state: Snapshot }) {
           −
         </button>
       </header>
-      <div className="status-line" role="status">
-        <span
-          className={`status-dot ${state.status.state === "Ready" ? "ready" : ""}`}
-        />
-        {state.status.state}
-      </div>
-      <p className="status-message">{state.status.message}</p>
-      <div className="board-section">
-        <Board
-          placements={placements}
-          orientation={
-            position?.orientation ??
-            state.selection?.orientation ??
-            "white-bottom"
-          }
-          arrow={candidates[0]?.id}
-          uncertain={state.observation?.uncertainSquares}
-        />
-        <div className="position-meta">
-          <strong>
-            {turn
-              ? `${state.status.state === "Needs correction" ? "Last confirmed: " : ""}${turn === "w" ? "White" : "Black"} to move`
-              : "No confirmed position"}
-          </strong>
-          <span>
-            {position
-              ? `Coaching ${position.coachedSide === "w" ? "White" : "Black"}`
-              : "Confirm a board to begin"}
-          </span>
-          {position && !position.historyComplete && (
-            <span>Earlier history unknown</span>
-          )}
-        </div>
-      </div>
-      {position && state.status.state !== "Needs correction" && (
-        <form className="played-move-form" onSubmit={(event) => {
-          event.preventDefault();
-          void run(async () => {
-            await api!.recordMove({ ...tokenOf(state), move: playedMove });
-            setPlayedMove("");
-          });
-        }}>
-          <label htmlFor="played-move">Move already played</label>
-          <div className="fields-row">
-            <input id="played-move" value={playedMove} maxLength={16} placeholder="e4, Nf3, or e2e4" autoComplete="off" spellCheck={false}
-              onChange={(event) => setPlayedMove(event.target.value)} />
-            <button disabled={busy || !playedMove.trim()}>Update</button>
-          </div>
-          <p className="muted">Updates the confirmed position locally. No scan and no move execution.</p>
-        </form>
-      )}
-      {candidates.length > 0 && (
-        <section aria-label="Engine recommendations">
-          <div className="section-label">
-            {turn !== position?.coachedSide
-              ? "EXPECTED OPPONENT CONTINUATIONS"
-              : "ENGINE RECOMMENDATION"}
-            <span>White’s score</span>
-          </div>
-          {candidates.map((candidate, index) => {
-            const explanation = state.explanations.find(
-              (entry) => entry.candidateId === candidate.id,
-            );
-            return (
-              <article
-                className={`candidate ${index === 0 ? "primary-candidate" : ""}`}
-                key={candidate.id}
-              >
-                <div className="candidate-heading">
-                  <strong>{candidate.san}</strong>
-                  <span className="score">{displayScore(candidate.score)}</span>
-                  <span className="depth">Depth {candidate.depth}</span>
-                </div>
-                <p className="move-description">{candidate.plain}</p>
-                {explanation ? (
-                  <>
-                    <p>{explanation.explanation}</p>
-                    {index === 0 && (
-                      <div className="tradeoffs">
-                        <p>
-                          <b>Benefit</b> {explanation.benefit}
-                        </p>
-                        <p>
-                          <b>Watch for</b> {explanation.drawback}
-                        </p>
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <p className="muted">
-                    {state.explanationState === "loading"
-                      ? "Adding an explanation…"
-                      : "Explanation unavailable"}
-                  </p>
-                )}
-                <p className="reply">
-                  <b>Engine-expected reply:</b>{" "}
-                  {candidate.variation[1]?.san ?? "No reply in this line"}
-                </p>
-                <details>
-                  <summary>
-                    Variation · {candidate.variation.length} moves
-                  </summary>
-                  <p className="variation">
-                    {candidate.variation.map((move, i) => (
-                      <span key={i}>{move.san} </span>
-                    ))}
-                  </p>
-                </details>
-              </article>
-            );
-          })}
-          <p className="disclosure">
-            Stockfish’s recommendation at the displayed depth. AI explanations
-            interpret the engine’s evidence.
-          </p>
-          {state.explanationState === "unavailable" && (
-            <button
-              disabled={busy || !state.hasApiKey}
-              onClick={() =>
-                void run(() => api!.retryExplanation(tokenOf(state)))
-              }
-            >
-              Retry Explanation
-            </button>
-          )}
-        </section>
-      )}
-      {!position && (
-        <div className="empty-state">
-          <strong>A second pair of eyes for your board.</strong>
-          <p>
-            Select a browser window or enter a position. You’ll confirm the
-            pieces and special-move rights before receiving advice.
-          </p>
-          <button
-            className="accent-button"
-            onClick={() => void run(() => api!.openWindow("selection"))}
-          >
-            Select Board
-          </button>
-        </div>
-      )}
-      {state.analysis?.terminal && (
-        <p className="terminal">
-          {state.analysis.terminal === "checkmate" ? "Checkmate" : "Stalemate"}{" "}
-          — no legal moves.
-        </p>
-      )}
-      <ErrorMessage message={error} />
-      {state.status.error?.code === "engine" && (
-        <button
-          onClick={() => void run(() => api!.restartEngine(tokenOf(state)))}
-        >
-          Restart Engine
-        </button>
-      )}
-      {state.shortcutConflicts.length > 0 && (
-        <p className="error">
-          Shortcut conflicts: {state.shortcutConflicts.join(", ")}. Rebind in
-          Settings.
-        </p>
-      )}
-      <footer className="coach-actions">
+      <aside className="coach-actions" aria-label="Board controls">
         <button
           disabled={busy}
           onClick={() =>
@@ -341,15 +178,185 @@ function Coach({ state }: { state: Snapshot }) {
         <button onClick={() => void run(() => api!.openWindow("settings"))}>
           Settings
         </button>
-        <button onClick={() => void run(() => api!.quit())}>
+        <button className="quit-button" onClick={() => void run(() => api!.quit())}>
           Quit
         </button>
-      </footer>
-      <p className="bottom-note">
-        {automaticTrackingEnabled(state)
-          ? "Arrows appear only here. Moves are always yours to play."
-          : "Analyze uses the confirmed position. Rescan reads the browser board."}
-      </p>
+      </aside>
+      <div
+        className="coach-content"
+        role="region"
+        aria-label="Position and recommendations"
+        tabIndex={0}
+      >
+        <div className="status-line" role="status">
+          <span
+            className={`status-dot ${state.status.state === "Ready" ? "ready" : ""}`}
+          />
+          {state.status.state}
+        </div>
+        <p className="status-message">{state.status.message}</p>
+        <div className="board-section">
+          <Board
+            placements={placements}
+            orientation={
+              position?.orientation ??
+              state.selection?.orientation ??
+              "white-bottom"
+            }
+            arrow={candidates[0]?.id}
+            uncertain={state.observation?.uncertainSquares}
+          />
+          <div className="position-meta">
+            <strong>
+              {turn
+                ? `${state.status.state === "Needs correction" ? "Last confirmed: " : ""}${turn === "w" ? "White" : "Black"} to move`
+                : "No confirmed position"}
+            </strong>
+            <span>
+              {position
+                ? `Coaching ${position.coachedSide === "w" ? "White" : "Black"}`
+                : "Confirm a board to begin"}
+            </span>
+            {position && !position.historyComplete && (
+              <span>Earlier history unknown</span>
+            )}
+          </div>
+        </div>
+        {position && state.status.state !== "Needs correction" && (
+          <form className="played-move-form" onSubmit={(event) => {
+            event.preventDefault();
+            void run(async () => {
+              await api!.recordMove({ ...tokenOf(state), move: playedMove });
+              setPlayedMove("");
+            });
+          }}>
+            <label htmlFor="played-move">Move already played</label>
+            <div className="fields-row">
+              <input id="played-move" value={playedMove} maxLength={16} placeholder="e4, Nf3, or e2e4" autoComplete="off" spellCheck={false}
+                onChange={(event) => setPlayedMove(event.target.value)} />
+              <button disabled={busy || !playedMove.trim()}>Update</button>
+            </div>
+            <p className="muted">Updates the confirmed position locally. No scan and no move execution.</p>
+          </form>
+        )}
+        {candidates.length > 0 && (
+          <section aria-label="Engine recommendations">
+            <div className="section-label">
+              {turn !== position?.coachedSide
+                ? "EXPECTED OPPONENT CONTINUATIONS"
+                : "ENGINE RECOMMENDATION"}
+              <span>White’s score</span>
+            </div>
+            {candidates.map((candidate, index) => {
+              const explanation = state.explanations.find(
+                (entry) => entry.candidateId === candidate.id,
+              );
+              return (
+                <article
+                  className={`candidate ${index === 0 ? "primary-candidate" : ""}`}
+                  key={candidate.id}
+                >
+                  <div className="candidate-heading">
+                    <strong>{candidate.san}</strong>
+                    <span className="score">{displayScore(candidate.score)}</span>
+                    <span className="depth">Depth {candidate.depth}</span>
+                  </div>
+                  <p className="move-description">{candidate.plain}</p>
+                  {explanation ? (
+                    <>
+                      <p>{explanation.explanation}</p>
+                      {index === 0 && (
+                        <div className="tradeoffs">
+                          <p>
+                            <b>Benefit</b> {explanation.benefit}
+                          </p>
+                          <p>
+                            <b>Watch for</b> {explanation.drawback}
+                          </p>
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <p className="muted">
+                      {state.explanationState === "loading"
+                        ? "Adding an explanation…"
+                        : "Explanation unavailable"}
+                    </p>
+                  )}
+                  <p className="reply">
+                    <b>Engine-expected reply:</b>{" "}
+                    {candidate.variation[1]?.san ?? "No reply in this line"}
+                  </p>
+                  <details>
+                    <summary>
+                      Variation · {candidate.variation.length} moves
+                    </summary>
+                    <p className="variation">
+                      {candidate.variation.map((move, i) => (
+                        <span key={i}>{move.san} </span>
+                      ))}
+                    </p>
+                  </details>
+                </article>
+              );
+            })}
+            <p className="disclosure">
+              Stockfish’s recommendation at the displayed depth. AI explanations
+              interpret the engine’s evidence.
+            </p>
+            {state.explanationState === "unavailable" && (
+              <button
+                disabled={busy || !state.hasApiKey}
+                onClick={() =>
+                  void run(() => api!.retryExplanation(tokenOf(state)))
+                }
+              >
+                Retry Explanation
+              </button>
+            )}
+          </section>
+        )}
+        {!position && (
+          <div className="empty-state">
+            <strong>A second pair of eyes for your board.</strong>
+            <p>
+              Select a browser window or enter a position. You’ll confirm the
+              pieces and special-move rights before receiving advice.
+            </p>
+            <button
+              className="accent-button"
+              onClick={() => void run(() => api!.openWindow("selection"))}
+            >
+              Select Board
+            </button>
+          </div>
+        )}
+        {state.analysis?.terminal && (
+          <p className="terminal">
+            {state.analysis.terminal === "checkmate" ? "Checkmate" : "Stalemate"}{" "}
+            — no legal moves.
+          </p>
+        )}
+        <ErrorMessage message={error} />
+        {state.status.error?.code === "engine" && (
+          <button
+            onClick={() => void run(() => api!.restartEngine(tokenOf(state)))}
+          >
+            Restart Engine
+          </button>
+        )}
+        {state.shortcutConflicts.length > 0 && (
+          <p className="error">
+            Shortcut conflicts: {state.shortcutConflicts.join(", ")}. Rebind in
+            Settings.
+          </p>
+        )}
+        <p className="bottom-note">
+          {automaticTrackingEnabled(state)
+            ? "Arrows appear only here. Moves are always yours to play."
+            : "Analyze uses the confirmed position. Rescan reads the browser board."}
+        </p>
+      </div>
     </main>
   );
 }
