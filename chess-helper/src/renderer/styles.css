@@ -573,11 +573,6 @@ summary {
   border-radius: 7px;
   padding: 10px;
 }
-.confirmation {
-  border-top: 1px solid var(--border);
-  padding-top: 15px;
-  margin-top: 17px;
-}
 .sources {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));

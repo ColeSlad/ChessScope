@@ -597,9 +597,12 @@ function CorrectionView({ state }: { state: Snapshot }) {
     );
   const [brush, setBrush] = useState<Placement["piece"] | "erase">("P"),
     [text, setText] = useState(state.position?.fen ?? ""),
-    [confirmed, setConfirmed] = useState(false),
     [previewText, setPreviewText] = useState<string | null>(null);
   const { error, busy, run } = useAction();
+  const canApply =
+    !busy &&
+    !staleEditor &&
+    ((mode !== "fen" && mode !== "pgn") || previewText === text);
   const fen = `${placementFen(placements)} ${turn} ${rights || "-"} ${ep || "-"} ${half || "0"} ${full || "1"}`;
   const previewImport = () => {
     try {
@@ -614,7 +617,6 @@ function CorrectionView({ state }: { state: Snapshot }) {
       setHalf(parts[4]);
       setFull(parts[5]);
       setPreviewText(text);
-      setConfirmed(false);
     } catch {
       void run(async () => {
         throw new Error(
@@ -626,7 +628,7 @@ function CorrectionView({ state }: { state: Snapshot }) {
   return (
     <main className="form-shell">
       <header>
-        <h1>Confirm Your Position</h1>
+        <h1>Correct Position</h1>
         <p>
           Check the miniature board. A screenshot cannot establish castling
           rights, en passant, or earlier history.
@@ -643,7 +645,6 @@ function CorrectionView({ state }: { state: Snapshot }) {
             aria-pressed={mode === value}
             onClick={() => {
               setMode(value);
-              setConfirmed(false);
               if (value === "start")
                 setPlacements(placementsOf(DEFAULT_POSITION));
             }}
@@ -659,6 +660,7 @@ function CorrectionView({ state }: { state: Snapshot }) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          if (!canApply) return;
           void run(() =>
             api!.correct({
               ...editorToken,
@@ -678,7 +680,6 @@ function CorrectionView({ state }: { state: Snapshot }) {
             onSquare={
               mode === "editor"
                 ? (square) => {
-                    setConfirmed(false);
                     setPlacements((current) => [
                       ...current.filter((p) => p.square !== square),
                       ...(brush === "erase" ? [] : [{ square, piece: brush }]),
@@ -716,10 +717,7 @@ function CorrectionView({ state }: { state: Snapshot }) {
             <textarea
               rows={4}
               value={text}
-              onChange={(e) => {
-                setText(e.target.value);
-                setConfirmed(false);
-              }}
+              onChange={(e) => setText(e.target.value)}
             />
             <button type="button" onClick={previewImport}>
               Preview Import
@@ -739,10 +737,7 @@ function CorrectionView({ state }: { state: Snapshot }) {
                 <select
                   value={turn}
                   disabled={mode !== "editor"}
-                  onChange={(e) => {
-                    setTurn(e.target.value as Side);
-                    setConfirmed(false);
-                  }}
+                  onChange={(e) => setTurn(e.target.value as Side)}
                 >
                   <option value="w">White</option>
                   <option value="b">Black</option>
@@ -754,10 +749,7 @@ function CorrectionView({ state }: { state: Snapshot }) {
                   value={ep}
                   disabled={mode !== "editor"}
                   placeholder="- or e3"
-                  onChange={(e) => {
-                    setEp(e.target.value);
-                    setConfirmed(false);
-                  }}
+                  onChange={(e) => setEp(e.target.value)}
                 />
               </label>
             </div>
@@ -780,7 +772,6 @@ function CorrectionView({ state }: { state: Snapshot }) {
                                 .join("")
                             : current.replace(right, ""),
                         );
-                        setConfirmed(false);
                       }}
                     />
                     {right === right.toUpperCase() ? "White" : "Black"}{" "}
@@ -797,10 +788,7 @@ function CorrectionView({ state }: { state: Snapshot }) {
                   min="0"
                   value={half}
                   disabled={mode !== "editor"}
-                  onChange={(e) => {
-                    setHalf(e.target.value);
-                    setConfirmed(false);
-                  }}
+                  onChange={(e) => setHalf(e.target.value)}
                 />
               </label>
               <label>
@@ -810,10 +798,7 @@ function CorrectionView({ state }: { state: Snapshot }) {
                   min="1"
                   value={full}
                   disabled={mode !== "editor"}
-                  onChange={(e) => {
-                    setFull(e.target.value);
-                    setConfirmed(false);
-                  }}
+                  onChange={(e) => setFull(e.target.value)}
                 />
               </label>
             </div>
@@ -822,29 +807,10 @@ function CorrectionView({ state }: { state: Snapshot }) {
         <SideControls
           side={side}
           orientation={orientation}
-          onSide={(value) => {
-            setSide(value);
-            setConfirmed(false);
-          }}
-          onOrientation={(value) => {
-            setOrientation(value);
-            setConfirmed(false);
-          }}
+          onSide={setSide}
+          onOrientation={setOrientation}
         />
         {mode === "editor" && <p className="fen-output">{fen}</p>}
-        <label className="checkbox confirmation">
-          <input
-            type="checkbox"
-            required
-            disabled={
-              (mode === "fen" || mode === "pgn") && previewText !== text
-            }
-            checked={confirmed}
-            onChange={(e) => setConfirmed(e.target.checked)}
-          />
-          I checked the pieces, orientation, turn, castling, and en passant
-          against the actual board.
-        </label>
         <ErrorMessage
           message={
             staleEditor
@@ -858,19 +824,11 @@ function CorrectionView({ state }: { state: Snapshot }) {
           </button>
           <button
             className="accent-button"
-            disabled={
-              busy ||
-              staleEditor ||
-              !confirmed ||
-              ((mode === "fen" || mode === "pgn") && previewText !== text)
-            }
+            disabled={!canApply}
           >
-            Confirm & Analyze
+            Apply & Analyze
           </button>
         </div>
-        {!confirmed && !staleEditor && (
-          <p className="muted">Check the confirmation box above to enable Confirm & Analyze.</p>
-        )}
       </form>
     </main>
   );
