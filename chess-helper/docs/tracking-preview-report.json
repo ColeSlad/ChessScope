@@ -1,0 +1,63 @@
+{
+  "verifiedAt": "2026-10-08T16:52:38.957Z",
+  "userApprovedUnqualifiedPreview": true,
+  "recognition": {
+    "model": "gpt-6.1-sol",
+    "effort": "low"
+  },
+  "explanations": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium"
+  },
+  "qualified": false,
+  "nativeFixtureQualificationComplete": false,
+  "implementationSha256": "1c1c81cf28acf9659346b663005c88e7c018e7677e5c1f3d17fe0c3603e60b59",
+  "recordedImplementationSha256": "614957cda7227260ef90eaf3caaed67cbd277c6a26cedff359c00fd423c0e2e2",
+  "recordedReportMatchesPreviewImplementation": false,
+  "policyFileSha256": {
+    "src/core/tracking-policy.ts": "a7dde54b8aced19d943f7356d1520983d79d7441ee5ff00d3b1003a44a9dd6de",
+    "src/core/session-controls.ts": "80b757da6711781d6f39dffa2a1decb93472b8758130c64b658e673fb086a8c0",
+    "src/main/index.ts": "12366bf326f9bfd0205af1f232be8104b4ca88782c932f17943a24b170383e33"
+  },
+  "optInRequired": true,
+  "defaultAutomaticTracking": false,
+  "productionPreferenceEnabled": true,
+  "nativeSaveVerified": true,
+  "preferenceSurvivesQuitAndRelaunch": true,
+  "quitButtonVerified": true,
+  "productionRendererURLVerified": true,
+  "productionContentProtection": true,
+  "automaticCaptureActive": false,
+  "boardSelected": false,
+  "activation": "Select a browser board and confirm its complete position. Tracking then starts automatically; Pause stops it and Start resumes it.",
+  "tests": {
+    "files": 12,
+    "passed": 116,
+    "coverage": [
+      "Explicit opt-in before preview capture",
+      "Both players’ legal moves",
+      "Continuous Rescan",
+      "Pause and resume",
+      "Missed moves request correction",
+      "All seven other model/effort combinations remain unavailable"
+    ]
+  },
+  "uiFixtureChecks": [
+    "Sol/Low preview opt-in enables and saves",
+    "Unsupported recognition allows clearing an existing opt-in",
+    "Editing settings clears stale saved feedback"
+  ],
+  "packagedSha256": {
+    "dist/main/main.cjs": "640b8afaebd0140d4f377b29b46e82fe5dae5bcebdb98e8fdf69458c761a9ea5",
+    "dist/preload/preload.cjs": "9a131142369a90e879b30bf95dd5f13401cae76ed6931499ba5a25bea741f830",
+    "dist/renderer/index.html": "59b4a577b2c1d71ecb560801f9d1d1621155f0d8b4d8fb75a89c04ed535267ef",
+    "dist/renderer/assets/index-BIxnwO8_.css": "6c02ae8b593e4ebde913009e04c289f0005aea0261f3931dfbb7772c0b04d3e3",
+    "dist/renderer/assets/index-C3eIUC-k.js": "67e222b8950a3ef3565e66c20cffba18e6420b93a3b34803bb5e6350dd060340"
+  },
+  "limitations": [
+    "All native Chess.com fixtures and remaining lifecycle acceptance are incomplete.",
+    "Recorded reports bind the earlier implementation; rerun after preview eligibility changes before claiming full qualification.",
+    "Native production screenshots are blank under content protection; native Settings and preference persistence are verified through accessibility state.",
+    "The app is left with Settings focused for reliable native control; no browser board is selected after relaunch."
+  ]
+}

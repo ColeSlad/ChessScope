@@ -173,6 +173,7 @@ export type Snapshot = {
   settings: Settings;
   hasApiKey: boolean;
   trackingQualified: boolean;
+  trackingPreviewAvailable: boolean;
   shortcutConflicts: string[];
   running: boolean;
 };

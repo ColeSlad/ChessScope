@@ -8,5 +8,6 @@ export function sessionIsActive(state: Snapshot): boolean {
 }
 
 export function automaticTrackingEnabled(state: Snapshot): boolean {
-  return !!state.selection && state.settings.automaticTracking && state.trackingQualified;
+  return !!state.selection && state.settings.automaticTracking &&
+    (state.trackingQualified || state.trackingPreviewAvailable);
 }

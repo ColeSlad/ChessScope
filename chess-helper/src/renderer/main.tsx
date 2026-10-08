@@ -18,6 +18,7 @@ import { BoardCapture } from "./capture";
 import { installMouseHitTesting } from "./mouse";
 import { captureFailureCode, captureFailureMessage } from "../core/capture-errors";
 import { sessionIsActive, automaticTrackingEnabled } from "../core/session-controls";
+import { solTrackingPreviewAvailable } from "../core/tracking-policy";
 import "./styles.css";
 declare global {
   interface Window {
@@ -195,6 +196,9 @@ function Coach({ state }: { state: Snapshot }) {
           {state.status.state}
         </div>
         <p className="status-message">{state.status.message}</p>
+        {automaticTrackingEnabled(state) && !state.trackingQualified && (
+          <p className="tracking-preview-note">Sol/Low tracking preview</p>
+        )}
         <div className="board-section">
           <Board
             placements={placements}
@@ -361,11 +365,17 @@ function Coach({ state }: { state: Snapshot }) {
   );
 }
 function SettingsView({ state }: { state: Snapshot }) {
-  const [settings, setSettings] = useState<Settings>(state.settings);
+  const [settings, setDraftSettings] = useState<Settings>(state.settings);
   const [key, setKey] = useState("");
   const [changeKey, setChangeKey] = useState(false);
   const [saved, setSaved] = useState(false);
+  const setSettings = (next: Settings) => {
+    setDraftSettings(next);
+    setSaved(false);
+  };
   const { error, busy, run } = useAction();
+  const previewAvailable = solTrackingPreviewAvailable(settings);
+  const trackingAvailable = state.trackingQualified || previewAvailable;
   return (
     <main className="form-shell">
       <header>
@@ -475,7 +485,7 @@ function SettingsView({ state }: { state: Snapshot }) {
             <input
               type="checkbox"
               checked={settings.automaticTracking}
-              disabled={!state.trackingQualified}
+              disabled={!trackingAvailable && !settings.automaticTracking}
               onChange={(e) =>
                 setSettings({
                   ...settings,
@@ -485,10 +495,16 @@ function SettingsView({ state }: { state: Snapshot }) {
             />
             Track automatically at two samples per second
           </label>
-          {!state.trackingQualified && (
+          {previewAvailable && !state.trackingQualified && (
             <p className="muted">
-              Automatic tracking is awaiting recorded Chess.com and Lichess
-              fixture validation. Use Rescan to read a board manually.
+              Sol/Low preview: follows stable board changes after you confirm
+              the position. Full live-board qualification is still incomplete.
+            </p>
+          )}
+          {!trackingAvailable && (
+            <p className="muted">
+              Automatic tracking preview is available with Sol and Low board
+              recognition. Choose those settings or use manual Rescan.
             </p>
           )}
         </section>

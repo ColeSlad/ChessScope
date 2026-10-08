@@ -1,5 +1,84 @@
 {
   "lastSuccessfulRestoration": {
+    "verifiedAt": "2026-10-08T16:52:38.957Z",
+    "productionApplication": "release/mac-arm64/ChessHelper.app",
+    "qualificationAppQuitConfirmedByUser": true,
+    "qualificationAppAbsentInScopedProcessCheck": true,
+    "productionLaunchVerifiedByNativeRendererURL": true,
+    "productionPausedOnLaunch": true,
+    "productionSettingsVerified": {
+      "recognition": {
+        "model": "gpt-6.1-sol",
+        "effort": "low"
+      },
+      "explanations": {
+        "model": "gpt-6.1-sol",
+        "effort": "medium"
+      },
+      "automaticTracking": true,
+      "automaticTrackingControlDisabled": false,
+      "shortcuts": {
+        "showHide": "Command+Shift+B",
+        "startPause": "Command+Shift+P",
+        "rescan": "Command+Shift+R"
+      },
+      "keyStatus": "Saved securely; no key value read or copied"
+    },
+    "packagedFilesMatchBuild": true,
+    "packagedContentProtection": true,
+    "sourceReleaseGate": false,
+    "trackingPreviewOptIn": true,
+    "packagedSha256": {
+      "dist/main/main.cjs": "640b8afaebd0140d4f377b29b46e82fe5dae5bcebdb98e8fdf69458c761a9ea5",
+      "dist/preload/preload.cjs": "9a131142369a90e879b30bf95dd5f13401cae76ed6931499ba5a25bea741f830",
+      "dist/renderer/index.html": "59b4a577b2c1d71ecb560801f9d1d1621155f0d8b4d8fb75a89c04ed535267ef",
+      "dist/renderer/assets/index-BIxnwO8_.css": "6c02ae8b593e4ebde913009e04c289f0005aea0261f3931dfbb7772c0b04d3e3",
+      "dist/renderer/assets/index-C3eIUC-k.js": "67e222b8950a3ef3565e66c20cffba18e6420b93a3b34803bb5e6350dd060340"
+    },
+    "productionSettingsLeftOpen": true,
+    "nativeControlRecovered": true,
+    "productionQuitButtonVerified": true,
+    "trackingPreferenceSurvivesRelaunch": true,
+    "limitations": [
+      "All native Chess.com fixtures and remaining lifecycle acceptance are incomplete.",
+      "Recorded reports bind the earlier implementation; rerun after preview eligibility changes before claiming full qualification.",
+      "Native production screenshots are blank under content protection; native Settings and preference persistence are verified through accessibility state.",
+      "The app is left with Settings focused for reliable native control; no browser board is selected after relaunch."
+    ]
+  },
+  "currentStatus": {
+    "recordedAt": "2026-10-08T16:52:38.957Z",
+    "state": "production-restored",
+    "temporaryQualificationAppRunning": false,
+    "protectedProductionAppRunning": true,
+    "evidence": "User-confirmed complete quit corroborated by scoped process inspection; protected production renderer URL, Settings opt-in/save and preference persistence after native Quit/relaunch verified.",
+    "userAction": "Select a browser board and confirm its complete position. Tracking then starts automatically; Pause stops it and Start resumes it.",
+    "solPreferencesLastVerified": {
+      "recognition": {
+        "model": "gpt-6.1-sol",
+        "effort": "low"
+      },
+      "explanations": {
+        "model": "gpt-6.1-sol",
+        "effort": "medium"
+      }
+    },
+    "automaticTrackingReleaseGate": false,
+    "apiBlocker": null,
+    "apiDiagnosticReport": "sol-access-report.json",
+    "apiAccessLastVerified": {
+      "generatedAt": "2026-10-08T16:16:48.993Z",
+      "model": "gpt-6.1-sol",
+      "effort": "low",
+      "outcome": "request-accepted",
+      "scope": "One bounded text-only request; no native vision or fixture claim."
+    },
+    "trackingPreviewOptIn": true,
+    "automaticTrackingPreference": true,
+    "automaticCaptureActive": false,
+    "previewReport": "tracking-preview-report.json"
+  },
+  "previousSuccessfulRestoration": {
     "verifiedAt": "2026-10-06T22:11:26.635349+00:00",
     "productionApplication": "release/mac-arm64/ChessHelper.app",
     "qualificationAppQuitThroughNativeMenu": true,
@@ -32,7 +111,7 @@
       "dist/renderer/index.html": "b4aa7e8351ddff7b0c4c0d045ba8bfb2319493e9d67ac93bdd4cb5a6f078e5a3"
     },
     "limitations": [
-      "Sol/Low returned HTTP 429 on the verified public Chess.com starting-board scan. Resolve the saved key\u2019s API limit before more native cloud scans.",
+      "Sol/Low returned HTTP 429 on the verified public Chess.com starting-board scan. Resolve the saved key’s API limit before more native cloud scans.",
       "All 23 native Chess.com cases and remaining lifecycle checks remain unqualified. Automatic tracking stays disabled."
     ],
     "previousVerificationAt": "2026-10-06T18:57:24.678177+00:00",
@@ -45,33 +124,5 @@
     "nativeControlRecovered": true,
     "publicAnalysisTabHandoffConfirmed": true,
     "packagedVerificationNote": "Production package/build are unchanged since the successful byte/protection verification in step 51."
-  },
-  "currentStatus": {
-    "recordedAt": "2026-10-08T16:26:57.540873+00:00",
-    "state": "restoration-pending",
-    "temporaryQualificationAppRunning": true,
-    "protectedProductionAppRunning": false,
-    "evidence": "October 8 scoped read-only process inspection finds only the approved ChessHelperQualification executable. Production and qualification native app bindings both time out.",
-    "userAction": "Quit Chess Helper Qualification from its menu; then reopen and verify protected production through Computer Use.",
-    "solPreferencesLastVerified": {
-      "recognition": {
-        "model": "gpt-6.1-sol",
-        "effort": "low"
-      },
-      "explanations": {
-        "model": "gpt-6.1-sol",
-        "effort": "medium"
-      }
-    },
-    "automaticTrackingReleaseGate": false,
-    "apiBlocker": null,
-    "apiDiagnosticReport": "sol-access-report.json",
-    "apiAccessLastVerified": {
-      "generatedAt": "2026-10-08T16:16:48.993Z",
-      "model": "gpt-6.1-sol",
-      "effort": "low",
-      "outcome": "request-accepted",
-      "scope": "One bounded text-only request; no native vision or fixture claim."
-    }
   }
 }

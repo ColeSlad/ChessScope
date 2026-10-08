@@ -236,6 +236,11 @@ legend {
   color: var(--muted);
   min-height: 36px;
 }
+.tracking-preview-note {
+  color: var(--muted);
+  font-size: 11px;
+  margin: 6px 0;
+}
 .board-section {
   display: flex;
   align-items: center;

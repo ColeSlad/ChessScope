@@ -36,6 +36,7 @@ import { clampWindow, MouseEpoch } from "../core/desktop";
 import { allowCapturePermission, denyDisplayCapture } from "./capture-permission";
 import { captureFailureMessage } from "../core/capture-errors";
 import { sessionIsActive, automaticTrackingEnabled } from "../core/session-controls";
+import { solTrackingPreviewAvailable } from "../core/tracking-policy";
 
 app.setName("Chess Helper");
 app.setPath(
@@ -58,7 +59,7 @@ const devURL = !app.isPackaged ? process.env.CHESS_HELPER_DEV_URL : undefined;
 if (devURL && devURL !== "http://127.0.0.1:5173")
   throw new Error("Unsupported development origin");
 const rendererFile = path.join(__dirname, "../renderer/index.html");
-const qualified = false; // Recorded production fixtures have not yet qualified this release.
+const qualified = false; // Native fixture and lifecycle qualification remains incomplete.
 const sessionPartition = "chess-helper-session";
 const preload = path.join(__dirname, "../preload/preload.cjs");
 function localURL(url: string) {
@@ -350,9 +351,9 @@ function registerIPC() {
       .strict(),
     ["settings"],
     (value) => {
-      if (value.settings.automaticTracking && !qualified)
+      if (value.settings.automaticTracking && !qualified && !solTrackingPreviewAvailable(value.settings))
         throw new Error(
-          "This release has not passed the recorded-board fixture gate. Use manual Rescan.",
+          "Automatic tracking preview requires Sol with Low board recognition. Select those settings or turn tracking off.",
         );
       store.save(value.settings, value.apiKey);
       controller.settings(value.settings, shortcuts(value.settings));
@@ -450,6 +451,7 @@ app
       settings: store.settings,
       hasApiKey: () => store.hasApiKey,
       trackingQualified: () => qualified,
+      trackingPreviewAvailable: solTrackingPreviewAvailable,
       emit: broadcast,
       capture,
     });

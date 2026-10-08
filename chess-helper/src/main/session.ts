@@ -1,5 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { Chess } from "chess.js";
+import { automaticTrackingEnabled } from "../core/session-controls";
 import type {
   Snapshot,
   Token,
@@ -45,6 +46,7 @@ export interface SessionDependencies {
   settings: Settings;
   hasApiKey: () => boolean;
   trackingQualified: (settings: Settings) => boolean;
+  trackingPreviewAvailable?: (settings: Settings) => boolean;
   emit: (snapshot: Snapshot) => void;
   capture: (command: CaptureCommand) => void;
 }
@@ -77,6 +79,7 @@ export class Session {
       settings: deps.settings,
       hasApiKey: deps.hasApiKey(),
       trackingQualified: deps.trackingQualified(deps.settings),
+      trackingPreviewAvailable: deps.trackingPreviewAvailable?.(deps.settings) ?? false,
       shortcutConflicts: [],
       running: false,
     };
@@ -236,8 +239,7 @@ export class Session {
   }
   private canTrackAutomatically() {
     return !!this.current.position && !!this.current.selection &&
-      this.captureUsable && this.current.settings.automaticTracking &&
-      this.current.trackingQualified;
+      this.captureUsable && automaticTrackingEnabled(this.current);
   }
   private beginCaptureAfterConfirmation() {
     this.current.running = this.canTrackAutomatically();
@@ -450,6 +452,7 @@ export class Session {
     this.pause();
     this.current.settings = settings;
     this.current.trackingQualified = this.deps.trackingQualified(settings);
+    this.current.trackingPreviewAvailable = this.deps.trackingPreviewAvailable?.(settings) ?? false;
     this.current.shortcutConflicts = conflicts;
     this.publish();
   }

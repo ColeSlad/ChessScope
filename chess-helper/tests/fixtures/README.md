@@ -4,6 +4,8 @@ The version 2 manifest contains 46 real Chrome recordings taken on October 6, 20
 
 All crops were visually reviewed against their ground-truth positions. `npm run fixtures:evaluate -- --preflight` passes with 46 recordings and no missing coverage. The browser's JPEG screenshot API normalizes pixels to CSS dimensions on this devicePixelRatio=2 Retina display; the recording notes preserve that distinction. This corpus does not establish native display-capture resolution or latency. Packaged app capture must still be measured and reviewed before the release gate can open.
 
+The user explicitly approved an opt-in Sol/Low preview in step 60 while full qualification remains incomplete. Preview permission is separate from `trackingQualified`, which remains false. The retained recorded reports bind the earlier implementation; the new eligibility changes require reevaluation before claiming full qualification. See [preview evidence](../../docs/tracking-preview-report.json). Other recognition configurations remain unavailable for automatic tracking.
+
 Add explicitly recorded board crops, with permission to retain them, to this directory. Do not record private surrounding browser content. Each entry requires:
 
 ```json
