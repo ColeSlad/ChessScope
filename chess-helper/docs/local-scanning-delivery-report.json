@@ -23,8 +23,14 @@
     "productionQuitObserved": true,
     "temporaryQualificationLaunchObserved": true,
     "picker": "No browser windows available",
-    "relaunchIntoNewProductionObserved": false,
-    "liveCaptureMeasured": false
+    "relaunchIntoNewProductionObserved": true,
+    "liveCaptureMeasured": false,
+    "temporaryQualificationQuitObserved": true,
+    "temporaryQualificationAbsentInScopedProcessCheck": true,
+    "productionPausedOnLaunch": true,
+    "productionSettingsLeftOpen": true,
+    "automaticCaptureActive": false
   },
-  "settingsMigration": "Existing encrypted key retained without reading its value; actual native Settings show On This Mac, explanations off and tracking opted in. No preference changes."
+  "settingsMigration": "Existing encrypted key retained without reading its value; actual native Settings show On This Mac, explanations off and tracking opted in. No preference changes.",
+  "restoredAt": "2026-10-14T18:10:47.909242Z"
 }
