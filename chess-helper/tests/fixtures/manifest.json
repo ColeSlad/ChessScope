@@ -1139,6 +1139,31 @@
         "scaleFactor": 2,
         "notes": "Used the visible cg-resize handle to shrink the actual board from 640 to 480 CSS pixels. Browser viewport override alone had not resized this board. Real Chrome crop; CSS-normalized pixels on devicePixelRatio=2 display."
       }
+    },
+    {
+      "id": "chesscom-start-white-2026-10-14",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "retina",
+        "resize"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": null,
+      "expectedFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectsCorrection": false,
+      "image": "chesscom-start-white-2026-10-14.jpg",
+      "sha256": "9d14745f8a8fe32038ae2f3a35345fe4f62b248ccdee15b2a628d23ad03e213e",
+      "recording": {
+        "recordedAt": "2026-10-14T17:41:34.062530Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 720,
+        "pixelHeight": 720,
+        "scaleFactor": 2,
+        "notes": "Fresh public starting board on October 14, default green/neo pieces, 720 CSS-pixel board. Board-only Chrome screenshot normalized to CSS pixels on Retina; re-encoded with Electron nativeImage to JPEG quality 90. Account/browser pixels omitted. Correctly recognized with native decoder before inclusion; never used to train templates. This is browser recording evidence, not native live capture."
+      }
     }
   ]
 }

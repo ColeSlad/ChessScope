@@ -870,7 +870,6 @@ function SelectionView({ state }: { state: Snapshot }) {
     [permission, setPermission] = useState("unknown");
   const video = useRef<HTMLVideoElement>(null),
     stream = useRef<MediaStream | null>(null),
-    preview = useRef<HTMLDivElement>(null),
     epoch = useRef(0),
     drag = useRef<{ x: number; y: number } | null>(null);
   const { error, busy, run } = useAction();
@@ -922,7 +921,9 @@ function SelectionView({ state }: { state: Snapshot }) {
     }
   };
   const point = (event: React.PointerEvent) => {
-    const rect = preview.current!.getBoundingClientRect();
+    // The preview includes a border and may be taller than a wide source.
+    // Capture coordinates must refer to the displayed video pixels.
+    const rect = video.current!.getBoundingClientRect();
     return {
       x: Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width)),
       y: Math.min(1, Math.max(0, (event.clientY - rect.top) / rect.height)),
@@ -998,7 +999,6 @@ function SelectionView({ state }: { state: Snapshot }) {
         </button>
       </div>
       <div
-        ref={preview}
         className="capture-preview"
         onPointerDown={(event) => {
           if (!stream.current) return;
@@ -1014,18 +1014,20 @@ function SelectionView({ state }: { state: Snapshot }) {
           drag.current = null;
         }}
       >
-        <video ref={video} muted playsInline />
-        {crop && (
-          <div
-            className="crop-rectangle"
-            style={{
-              left: `${crop.x * 100}%`,
-              top: `${crop.y * 100}%`,
-              width: `${crop.width * 100}%`,
-              height: `${crop.height * 100}%`,
-            }}
-          />
-        )}
+        <div className="capture-surface">
+          <video ref={video} muted playsInline />
+          {crop && (
+            <div
+              className="crop-rectangle"
+              style={{
+                left: `${crop.x * 100}%`,
+                top: `${crop.y * 100}%`,
+                width: `${crop.width * 100}%`,
+                height: `${crop.height * 100}%`,
+              }}
+            />
+          )}
+        </div>
         {!sourceId && <span>Select a window to see its preview</span>}
       </div>
       <SideControls

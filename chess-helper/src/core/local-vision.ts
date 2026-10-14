@@ -1,4 +1,5 @@
 import type { Orientation, Placement, VisionResult } from "../shared/contracts";
+import { findBoardGrid, type BoardGrid } from "./board-grid";
 
 export type PixelImage = {
   width: number;
@@ -41,18 +42,32 @@ function pixel(image: PixelImage, x: number, y: number): RGB {
 }
 
 /** Normalized foreground shape and brightness, independent of tile/highlight color. */
-export function squareImage(image: PixelImage, row: number, col: number): SquareImage {
+export function squareImage(image: PixelImage, row: number, col: number,
+  grid: BoardGrid = { x: 0, y: 0, cellWidth: image.width / 8, cellHeight: image.height / 8 }): SquareImage {
   const at = (x: number, y: number) => pixel(image,
-    (col + x) * image.width / 8 - 0.5, (row + y) * image.height / 8 - 0.5);
+    grid.x + (col + x) * grid.cellWidth - 0.5, grid.y + (row + y) * grid.cellHeight - 0.5);
   const corners: RGB[] = [];
   for (const x of [0.06, 0.09, 0.91, 0.94])
     for (const y of [0.06, 0.09, 0.91, 0.94]) corners.push(at(x, y));
-  const background = [0, 1, 2].map(channel => median(corners.map(c => c[channel]))) as RGB;
+  for (const value of [0.15, 0.3, 0.45, 0.6, 0.75, 0.9]) {
+    corners.push(at(value, 0.03), at(value, 0.97), at(0.03, value), at(0.97, value));
+  }
+  // Labels and the resize grip can contaminate most of a corner. Use the
+  // dominant border-color cluster instead of synthesizing a channel median.
+  let cluster: RGB[] = [];
+  for (const sample of corners) {
+    const neighbors = corners.filter(color => colorDistance(sample, color) <= 10);
+    if (neighbors.length > cluster.length) cluster = neighbors;
+  }
+  const background = [0, 1, 2].map(channel => median(cluster.map(c => c[channel]))) as RGB;
   const feature = new Uint8Array(FEATURE_SIZE * FEATURE_SIZE * 2);
   let mass = 0, residual = 0;
   for (let y = 0; y < FEATURE_SIZE; y++) for (let x = 0; x < FEATURE_SIZE; x++) {
     // Exclude board-coordinate text and square edges, retaining the centered piece.
-    const rgb = at(0.1 + (x + 0.5) / FEATURE_SIZE * 0.8, 0.08 + (y + 0.5) / FEATURE_SIZE * 0.82);
+    const nx = 0.1 + (x + 0.5) / FEATURE_SIZE * 0.8, ny = 0.08 + (y + 0.5) / FEATURE_SIZE * 0.82;
+    // Lichess draws its resize grip over the bottom-right board corner.
+    if (row === 7 && col === 7 && nx > 0.84 && ny > 0.82) continue;
+    const rgb = at(nx, ny);
     const contrast = Math.max(0, Math.min(1, (colorDistance(rgb, background) - 10) / 30));
     // Both supported sets use achromatic pieces. Colored check glows and move
     // highlights remain background, rather than becoming false piece silhouettes.
@@ -99,7 +114,9 @@ export class LocalBoardReader {
     };
     if (image.width < 256 || image.width > 2048 || image.height !== image.width ||
       image.data.length !== image.width * image.height * 4) return rejected;
-    const squares = Array.from({ length: 64 }, (_, i) => squareImage(image, i >> 3, i % 8));
+    const grid = findBoardGrid(image);
+    if (!grid) return rejected;
+    const squares = Array.from({ length: 64 }, (_, i) => squareImage(image, i >> 3, i % 8, grid));
     const palette = (parity: number): RGB => [0, 1, 2].map(channel =>
       median(squares.filter((_, i) => ((i >> 3) + i % 8) % 2 === parity).map(s => s.background[channel]))) as RGB;
     const light = palette(0), dark = palette(1);

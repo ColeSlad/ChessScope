@@ -35,6 +35,7 @@ function recordQualificationSnapshot(snapshot: Snapshot) {
     at: new Date().toISOString(),
     endpoint: snapshot.status.state,
     elapsedMs,
+    boardReader: snapshot.settings.boardReader,
     recognition: snapshot.settings.recognition,
     fen: snapshot.position?.fen ?? null,
     engineMs: snapshot.analysis?.elapsedMs ?? null,

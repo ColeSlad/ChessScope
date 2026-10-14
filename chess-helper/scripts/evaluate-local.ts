@@ -61,8 +61,9 @@ async function main() {
     !f.tags.includes("stalemate") && results.find(r => r.id === f.id)?.outcome !== "correct").map(f => f.id);
   const timings = results.map(r => r.recognitionMs).sort((a,b) => a-b);
   const hash = createHash("sha256");
-  const sources = ["src/core/local-vision.ts", "src/main/local-recognition.ts", "src/data/local-templates.json",
-    "src/core/position.ts", "src/core/stability.ts", "src/main/session.ts", "src/core/tracking-policy.ts", "src/shared/contracts.ts"];
+  const sources = ["src/core/local-vision.ts", "src/core/board-grid.ts", "src/main/local-recognition.ts", "src/data/local-templates.json",
+    "src/core/position.ts", "src/core/stability.ts", "src/main/session.ts", "src/core/tracking-policy.ts", "src/shared/contracts.ts",
+    "src/renderer/capture.ts", "src/renderer/main.tsx", "src/renderer/styles.css"];
   for (const file of sources) { hash.update(file); hash.update(fs.readFileSync(file)); }
   if (captureVariant && process.argv.includes("--capture-variants")) {
     for (const width of [512, 1024]) {
@@ -80,19 +81,22 @@ async function main() {
     }
   }
   const unsafeVariants = captureVariants.flatMap(v => v.results.filter(r => r.outcome === "incorrect" || r.outcome === "error").map(r => `${v.width}:${r.id}`));
+  const readableVariantMisses = captureVariants.flatMap(v => manifest.cases.filter(f => !f.expectsCorrection &&
+    !f.tags.includes("checkmate") && !f.tags.includes("stalemate") && v.results.find(r => r.id === f.id)?.outcome !== "correct")
+    .map(f => `${v.width}:${f.id}`));
   const sessionReplay = native && process.argv.includes("--session")
     ? await (await import("./local-session-check")).checkLocalSession(process.cwd(), recognizer)
     : null;
-  const passed = !missing.length && !counts.incorrect && !counts.error && !readableMisses.length && !unsafeVariants.length;
+  const passed = !missing.length && !counts.incorrect && !counts.error && !readableMisses.length && !unsafeVariants.length && !readableVariantMisses.length;
   const report = {
-    generatedAt: new Date().toISOString(), reader: "local-template-v1", runtime: native ? "Electron nativeImage / Apple Silicon" : "Node / jpeg-js test decoder",
+    generatedAt: new Date().toISOString(), reader: "local-template-v2-grid", runtime: native ? "Electron nativeImage / Apple Silicon" : "Node / jpeg-js test decoder",
     profiles: templates.profiles.map(p => ({ id: p.id, label: p.label })), training: templates.training,
     templateSha256: createHash("sha256").update(fs.readFileSync("src/data/local-templates.json")).digest("hex"),
     manifestSha256: createHash("sha256").update(rawManifest).digest("hex"), implementationSha256: hash.digest("hex"), implementationFiles: sources,
     counts, heldOut, missingCoverage: missing, readableMisses, recordedFixturesPassed: passed,
     qualified: false, liveCaptureMeasured: false, cloudRequests: 0,
     limits: "Supports the recorded default green/neo Chess.com and brown/cburnett Lichess themes. Obscuring terminal badges, unknown themes, incomplete crops, displaced pieces and missed moves require correction. Orientation is the user-selected orientation, validated by legal continuation after initial confirmation.",
-    captureVariants: { description: "Derived stress inputs: original recordings resized to square canvases and JPEG quality 90, as in capture. These are not new live recordings or Retina capture evidence.", unsafeVariants, runs: captureVariants },
+    captureVariants: { description: "Derived stress inputs: original recordings resized to square canvases and JPEG quality 90, as in capture. These are not new live recordings or Retina capture evidence.", unsafeVariants, readableMisses: readableVariantMisses, runs: captureVariants },
     sessionReplay,
     latency: { medianMs: timings[Math.ceil(timings.length * 0.5) - 1], p95Ms: timings[Math.ceil(timings.length * 0.95) - 1], maxMs: timings.at(-1),
       includes: "JPEG decoding, normalized piece matching, and validated observation construction. Excludes capture/stability wait, Stockfish, optional explanations and UI rendering." }, results,

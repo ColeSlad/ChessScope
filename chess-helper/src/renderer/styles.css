@@ -619,6 +619,9 @@ summary {
   height: auto;
   display: block;
 }
+.capture-surface {
+  position: relative;
+}
 .capture-preview > span {
   position: absolute;
   inset: 0;
