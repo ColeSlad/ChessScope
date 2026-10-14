@@ -1,0 +1,27 @@
+{
+  "verifiedAt": "2026-10-14T15:34:44.594Z",
+  "fixtureReport": "local-recognition-report.json",
+  "implementationSha256": "4c4d8bef1ed6eb7ffe9ca980e7d73ec9cf93be479540d10e57bb4a99a803d7fb",
+  "recordedFixturesPassed": true,
+  "trackingQualified": false,
+  "localPreviewAvailable": true,
+  "productionContentProtection": true,
+  "packagedBytesMatchBuild": true,
+  "assets": {
+    "dist/main/main.cjs": "ecf87680d9c8642d3b6a90f53d40053534a4e220cfc89eb4cb568713833fd29b",
+    "dist/preload/preload.cjs": "9a131142369a90e879b30bf95dd5f13401cae76ed6931499ba5a25bea741f830",
+    "dist/renderer/index.html": "3df5505881d5a57ea66539dbfee623338a1f607f2500b107974cbb09f990f6e0",
+    "dist/renderer/assets/index-hu42EZR5.css": "24ad46deaa6d0235ab9ceb312fa4f61014ac047e409cae50c8c39cb45f932f66",
+    "dist/renderer/assets/index-jJ9zZGpC.js": "e802d0c6f46d08c4b05810b8c5ffea7c26e9d553b040c84030f14cae36f4593b"
+  },
+  "uiPreview": {
+    "image": "images/local-scanning-settings.png",
+    "source": "Actual built renderer with mock IPC; local reader selection, explanation toggle and save feedback verified. No capture or cloud requests."
+  },
+  "nativeVerification": {
+    "appBindings": "Both production path and executable-name lookup timed out.",
+    "relaunchObserved": false,
+    "liveCaptureMeasured": false
+  },
+  "settingsMigration": "Legacy saved settings default to local reading while retaining encrypted credentials, shortcuts, tracking opt-in and existing explanation behavior. Regression-tested; live saved preferences were not read or changed in this turn."
+}

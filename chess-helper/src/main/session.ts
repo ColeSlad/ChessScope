@@ -43,6 +43,13 @@ export interface SessionDependencies {
       signal: AbortSignal,
     ): Promise<MoveExplanation[]>;
   };
+  local: {
+    recognize(
+      frame: CapturedFrame,
+      orientation: CaptureSelection["orientation"],
+      signal: AbortSignal,
+    ): Promise<BoardObservation>;
+  };
   settings: Settings;
   hasApiKey: () => boolean;
   trackingQualified: (settings: Settings) => boolean;
@@ -84,18 +91,22 @@ export class Session {
       running: false,
     };
     this.recognition = new LatestTask(async (frame, signal) => {
+      const local = this.current.settings.boardReader === "local";
       try {
         const selection = this.current.selection;
         if (!selection || !this.isCurrent(frame)) return;
-        const observation = await deps.cloud.recognize(
-          frame,
-          selection.orientation,
-          this.current.settings.recognition,
-          signal,
-        );
+        const observation = local
+          ? await deps.local.recognize(frame, selection.orientation, signal)
+          : await deps.cloud.recognize(frame, selection.orientation, this.current.settings.recognition, signal);
         if (signal.aborted || !this.isCurrent(observation)) return;
         this.current.observation = observation;
         this.captureUsable = observation.boardVisible && observation.cropAligned;
+        if (local && (!observation.boardVisible || !observation.cropAligned || observation.uncertainSquares.length)) {
+          this.needsCorrection(
+            "The local reader is unsure of this board. Use a clear full-board crop with Chess.com’s default green pieces or Lichess’s brown/cburnett pieces, then rescan or correct the position.",
+          );
+          return;
+        }
         if (!this.current.position) {
           this.needsCorrection(
             "Confirm the recognized board and initialize its complete chess state.",
@@ -118,7 +129,9 @@ export class Session {
         if (!signal.aborted && this.isCurrent(frame))
           this.fail(
             "recognition",
-            deps.hasApiKey()
+            local
+              ? "The local board could not be read. Select a clear full-board crop or correct the position."
+              : deps.hasApiKey()
               ? cloudFailure(error)
               : "Add an API key in Settings to recognize the board.",
             "Rescan or correct the position.",
@@ -251,6 +264,11 @@ export class Session {
   requestExplanation() {
     const { position, analysis } = this.current;
     if (!position || !analysis || !analysis.candidates.length) return;
+    if (!this.current.settings.explanationsEnabled) {
+      this.current.explanationState = "idle";
+      this.publish();
+      return;
+    }
     if (!this.deps.hasApiKey()) {
       this.current.explanationState = "unavailable";
       this.publish();
@@ -419,7 +437,9 @@ export class Session {
     }
     if (decision.ready) {
       const currentFrame = { ...frame, ...this.token() };
-      this.setStatus("Reading board", "Recognizing the cropped board.");
+      this.setStatus("Reading board", this.current.settings.boardReader === "local"
+        ? "Reading the board on this Mac."
+        : "Recognizing the cropped board with cloud AI.");
       this.recognition.submit(currentFrame);
     }
   }

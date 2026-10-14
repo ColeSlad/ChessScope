@@ -17,7 +17,7 @@
     "package:dir": "npm run build && npm run engine:verify && electron-builder --mac --arm64 --dir",
     "package:mac": "npm run build && npm run engine:verify && electron-builder --mac --arm64",
     "fixtures:evaluate": "node scripts/evaluate-fixtures.mjs",
-    "fixtures:local": "node scripts/evaluate-local.mjs --native --report --capture-variants",
+    "fixtures:local": "node scripts/evaluate-local.mjs --native --report --capture-variants --session",
     "templates:prepare": "node scripts/prepare-local-templates.mjs",
     "icon:build": "swift scripts/make-icon.swift",
     "package:verify": "node scripts/verify-package.mjs",
@@ -86,7 +86,7 @@
       "entitlementsInherit": "resources/entitlements.mac.plist",
       "extendInfo": {
         "LSUIElement": true,
-        "NSScreenCaptureUsageDescription": "Chess Helper captures your selected browser window and uploads only the board crop for recognition."
+        "NSScreenCaptureUsageDescription": "Chess Helper captures your selected browser window and reads the board crop locally. Cloud scanning uploads only the board crop when you select it."
       },
       "icon": "resources/app-icon.icns",
       "binaries": [

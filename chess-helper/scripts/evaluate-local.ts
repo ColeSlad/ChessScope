@@ -46,7 +46,7 @@ async function main() {
       // This is a recognition/complete-state benchmark, not an engine latency measurement.
       analyze: async position => ({ ...position, candidates: [], elapsedMs: 0, terminal: null }),
     });
-    results.push({ ...result, training: templates.training.some(t => t.id === fixture.id) });
+    results.push({ ...result, engineMs: null, training: templates.training.some(t => t.id === fixture.id) });
     console.log(JSON.stringify({ id: fixture.id, outcome: result.outcome, matches: result.recognitionMatches,
       recognitionMs: result.recognitionMs }));
   }
@@ -69,16 +69,20 @@ async function main() {
       const rows: FixtureResult[] = [];
       for (const fixture of manifest.cases) {
         const bytes = captureVariant(fs.readFileSync(`tests/fixtures/${fixture.image}`), width);
-        rows.push(await evaluate(fixture, bytes, DEFAULT_SETTINGS.recognition, {
+        const result = await evaluate(fixture, bytes, DEFAULT_SETTINGS.recognition, {
           recognize: (frame, orientation, _setting, signal) => recognizer.recognize(frame, orientation, signal),
           analyze: async position => ({ ...position, candidates: [], elapsedMs: 0, terminal: null }),
-        }));
+        });
+        rows.push({ ...result, engineMs: null });
       }
       captureVariants.push({ width, results: rows });
       console.log(JSON.stringify({ derivedCaptureWidth: width, counts: summarize(rows) }));
     }
   }
   const unsafeVariants = captureVariants.flatMap(v => v.results.filter(r => r.outcome === "incorrect" || r.outcome === "error").map(r => `${v.width}:${r.id}`));
+  const sessionReplay = native && process.argv.includes("--session")
+    ? await (await import("./local-session-check")).checkLocalSession(process.cwd(), recognizer)
+    : null;
   const passed = !missing.length && !counts.incorrect && !counts.error && !readableMisses.length && !unsafeVariants.length;
   const report = {
     generatedAt: new Date().toISOString(), reader: "local-template-v1", runtime: native ? "Electron nativeImage / Apple Silicon" : "Node / jpeg-js test decoder",
@@ -89,6 +93,7 @@ async function main() {
     qualified: false, liveCaptureMeasured: false, cloudRequests: 0,
     limits: "Supports the recorded default green/neo Chess.com and brown/cburnett Lichess themes. Obscuring terminal badges, unknown themes, incomplete crops, displaced pieces and missed moves require correction. Orientation is the user-selected orientation, validated by legal continuation after initial confirmation.",
     captureVariants: { description: "Derived stress inputs: original recordings resized to square canvases and JPEG quality 90, as in capture. These are not new live recordings or Retina capture evidence.", unsafeVariants, runs: captureVariants },
+    sessionReplay,
     latency: { medianMs: timings[Math.ceil(timings.length * 0.5) - 1], p95Ms: timings[Math.ceil(timings.length * 0.95) - 1], maxMs: timings.at(-1),
       includes: "JPEG decoding, normalized piece matching, and validated observation construction. Excludes capture/stability wait, Stockfish, optional explanations and UI rendering." }, results,
   };

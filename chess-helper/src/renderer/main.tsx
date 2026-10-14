@@ -18,7 +18,7 @@ import { BoardCapture } from "./capture";
 import { installMouseHitTesting } from "./mouse";
 import { captureFailureCode, captureFailureMessage } from "../core/capture-errors";
 import { sessionIsActive, automaticTrackingEnabled } from "../core/session-controls";
-import { solTrackingPreviewAvailable } from "../core/tracking-policy";
+import { trackingPreviewAvailable } from "../core/tracking-policy";
 import "./styles.css";
 declare global {
   interface Window {
@@ -197,7 +197,7 @@ function Coach({ state }: { state: Snapshot }) {
         </div>
         <p className="status-message">{state.status.message}</p>
         {automaticTrackingEnabled(state) && !state.trackingQualified && (
-          <p className="tracking-preview-note">Sol/Low tracking preview</p>
+          <p className="tracking-preview-note">{state.settings.boardReader === "local" ? "Local tracking preview" : "Sol/Low tracking preview"}</p>
         )}
         <div className="board-section">
           <Board
@@ -280,13 +280,13 @@ function Coach({ state }: { state: Snapshot }) {
                         </div>
                       )}
                     </>
-                  ) : (
+                  ) : state.settings.explanationsEnabled ? (
                     <p className="muted">
                       {state.explanationState === "loading"
                         ? "Adding an explanation…"
                         : "Explanation unavailable"}
                     </p>
-                  )}
+                  ) : null}
                   <p className="reply">
                     <b>Engine-expected reply:</b>{" "}
                     {candidate.variation[1]?.san ?? "No reply in this line"}
@@ -305,10 +305,10 @@ function Coach({ state }: { state: Snapshot }) {
               );
             })}
             <p className="disclosure">
-              Stockfish’s recommendation at the displayed depth. AI explanations
-              interpret the engine’s evidence.
+              Stockfish’s recommendation at the displayed depth.
+              {state.settings.explanationsEnabled && " AI explanations interpret the engine’s evidence."}
             </p>
-            {state.explanationState === "unavailable" && (
+            {state.settings.explanationsEnabled && state.explanationState === "unavailable" && (
               <button
                 disabled={busy || !state.hasApiKey}
                 onClick={() =>
@@ -374,7 +374,7 @@ function SettingsView({ state }: { state: Snapshot }) {
     setSaved(false);
   };
   const { error, busy, run } = useAction();
-  const previewAvailable = solTrackingPreviewAvailable(settings);
+  const previewAvailable = trackingPreviewAvailable(settings);
   const trackingAvailable = state.trackingQualified || previewAvailable;
   return (
     <main className="form-shell">
@@ -398,8 +398,36 @@ function SettingsView({ state }: { state: Snapshot }) {
         }}
       >
         <section>
-          <h2>Cloud AI</h2>
-          {(["recognition", "explanations"] as const).map((kind) => (
+          <h2>Board Scanning</h2>
+          <label>
+            Read Board
+            <select
+              value={settings.boardReader}
+              onChange={(e) => setSettings({ ...settings, boardReader: e.target.value as Settings["boardReader"] })}
+            >
+              <option value="local">On This Mac</option>
+              <option value="cloud">Cloud AI</option>
+            </select>
+          </label>
+          <p className="muted">
+            {settings.boardReader === "local"
+              ? "Reads Chess.com’s default green board and Lichess’s brown/cburnett board on this Mac. No API key or upload is needed for scanning. Uncertain pieces request correction."
+              : "Uploads only your selected board crop to the recognition model below. Cloud scans require an API key and are billed to your account."}
+          </p>
+        </section>
+        <section>
+          <h2>Optional Cloud AI</h2>
+          <label className="checkbox">
+            <input
+              type="checkbox"
+              checked={settings.explanationsEnabled}
+              onChange={(e) => setSettings({ ...settings, explanationsEnabled: e.target.checked })}
+            />
+            Generate AI Move Explanations
+          </label>
+          {(["recognition", "explanations"] as const)
+            .filter(kind => kind === "recognition" ? settings.boardReader === "cloud" : settings.explanationsEnabled)
+            .map((kind) => (
             <fieldset key={kind}>
               <legend>
                 {kind === "recognition"
@@ -463,9 +491,9 @@ function SettingsView({ state }: { state: Snapshot }) {
             />
           </label>
           <p className="muted">
-            Only the board crop is uploaded for recognition. Explanations
-            receive the confirmed position and engine lines. API usage is billed
-            to your account.
+            AI explanations receive the confirmed position and engine lines.
+            Turn explanations off and use On This Mac for fully offline scanning
+            and Stockfish analysis. API usage is billed to your account.
           </p>
           {state.hasApiKey && (
             <button
@@ -497,14 +525,14 @@ function SettingsView({ state }: { state: Snapshot }) {
           </label>
           {previewAvailable && !state.trackingQualified && (
             <p className="muted">
-              Sol/Low preview: follows stable board changes after you confirm
+              {settings.boardReader === "local" ? "Local preview" : "Sol/Low preview"}: follows stable board changes after you apply
               the position. Full live-board qualification is still incomplete.
             </p>
           )}
           {!trackingAvailable && (
             <p className="muted">
-              Automatic tracking preview is available with Sol and Low board
-              recognition. Choose those settings or use manual Rescan.
+              Automatic tracking preview is available with On This Mac or Sol
+              and Low cloud recognition. Choose one of those readers or use manual Rescan.
             </p>
           )}
         </section>
@@ -929,7 +957,9 @@ function SelectionView({ state }: { state: Snapshot }) {
         </p>
       </header>
       <p className="muted">
-        Only the board crop is sent to cloud AI. No audio is captured.
+        {state.settings.boardReader === "local"
+          ? "The board crop is read on this Mac. No board image is uploaded."
+          : "Only the board crop is sent to cloud AI."} No audio is captured.
         Screenshots stay in memory.
       </p>
       {(permission === "denied" || permission === "restricted") && (

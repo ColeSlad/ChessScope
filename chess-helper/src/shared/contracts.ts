@@ -124,8 +124,10 @@ export const aiSettingSchema = z
   .strict();
 export const settingsSchema = z
   .object({
+    boardReader: z.enum(["local", "cloud"]).default("local"),
     recognition: aiSettingSchema,
     explanations: aiSettingSchema,
+    explanationsEnabled: z.boolean().default(true),
     shortcuts: z
       .object({
         toggle: z.string().min(1).max(80),
@@ -138,8 +140,10 @@ export const settingsSchema = z
   .strict();
 export type Settings = z.infer<typeof settingsSchema>;
 export const DEFAULT_SETTINGS: Settings = {
+  boardReader: "local",
   recognition: { model: "gpt-6.1-sol", effort: "low" },
   explanations: { model: "gpt-6.1-sol", effort: "medium" },
+  explanationsEnabled: true,
   shortcuts: {
     toggle: "Command+Shift+H",
     pause: "Command+Shift+P",

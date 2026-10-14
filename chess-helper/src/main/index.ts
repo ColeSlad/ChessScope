@@ -30,13 +30,14 @@ import {
 } from "../shared/contracts";
 import { Stockfish } from "./engine";
 import { CloudAI } from "./cloud";
+import { LocalRecognition } from "./local-recognition";
 import { Store } from "./store";
 import { Session } from "./session";
 import { clampWindow, MouseEpoch } from "../core/desktop";
 import { allowCapturePermission, denyDisplayCapture } from "./capture-permission";
 import { captureFailureMessage } from "../core/capture-errors";
 import { sessionIsActive, automaticTrackingEnabled } from "../core/session-controls";
-import { solTrackingPreviewAvailable } from "../core/tracking-policy";
+import { trackingPreviewAvailable } from "../core/tracking-policy";
 
 app.setName("Chess Helper");
 app.setPath(
@@ -184,6 +185,7 @@ function menuItems(): Electron.MenuItemConstructorOptions[] {
     { label: "Correct Position…", click: () => auxiliary("correction") },
     {
       label: "Retry Explanation",
+      enabled: !!state?.settings.explanationsEnabled,
       click: () => controller.requestExplanation(),
     },
     { label: "Restart Engine", click: () => void controller.restartEngine() },
@@ -351,9 +353,9 @@ function registerIPC() {
       .strict(),
     ["settings"],
     (value) => {
-      if (value.settings.automaticTracking && !qualified && !solTrackingPreviewAvailable(value.settings))
+      if (value.settings.automaticTracking && !qualified && !trackingPreviewAvailable(value.settings))
         throw new Error(
-          "Automatic tracking preview requires Sol with Low board recognition. Select those settings or turn tracking off.",
+          "Automatic tracking preview requires local scanning or Sol with Low cloud recognition. Select one of those readers or turn tracking off.",
         );
       store.save(value.settings, value.apiKey);
       controller.settings(value.settings, shortcuts(value.settings));
@@ -448,10 +450,11 @@ app
     controller = new Session({
       engine,
       cloud: new CloudAI(() => store.apiKey()),
+      local: new LocalRecognition(),
       settings: store.settings,
       hasApiKey: () => store.hasApiKey,
       trackingQualified: () => qualified,
-      trackingPreviewAvailable: solTrackingPreviewAvailable,
+      trackingPreviewAvailable,
       emit: broadcast,
       capture,
     });

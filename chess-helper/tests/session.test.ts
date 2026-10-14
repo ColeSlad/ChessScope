@@ -28,11 +28,15 @@ const analysis = (position: ConfirmedPosition): EngineAnalysis => ({
 });
 function make(overrides: Partial<SessionDependencies> = {}) {
   const deps: SessionDependencies = {
-    settings: structuredClone(DEFAULT_SETTINGS),
+    settings: { ...structuredClone(DEFAULT_SETTINGS), boardReader: "cloud" },
     hasApiKey: () => true,
     trackingQualified: () => true,
     emit: vi.fn(),
     capture: vi.fn(),
+    local: {
+      recognize: vi.fn(async (frame: CapturedFrame): Promise<BoardObservation> => ({ sessionId: frame.sessionId, revision: frame.revision, frameId: frame.frameId,
+        placements: placementsOf(DEFAULT_POSITION), orientation: "white-bottom", uncertainSquares: [], boardVisible: true, cropAligned: true })),
+    },
     engine: {
       analyze: vi.fn(async (p) => analysis(p)),
       restart: vi.fn(async () => {}),
