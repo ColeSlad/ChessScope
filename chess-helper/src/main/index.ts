@@ -31,6 +31,7 @@ import {
 import { Stockfish } from "./engine";
 import { CloudAI } from "./cloud";
 import { LocalRecognition } from "./local-recognition";
+import { NativeWindowCapture, NativeCaptureError } from "./native-capture";
 import { Store } from "./store";
 import { Session } from "./session";
 import { clampWindow, MouseEpoch } from "../core/desktop";
@@ -51,6 +52,7 @@ let coach: BrowserWindow;
 let tray: Tray;
 let controller: Session;
 let store: Store;
+let nativeCapture: NativeWindowCapture;
 const windows = new Map<string, BrowserWindow>();
 const mouse = new MouseEpoch();
 let selectedSource: string | null = null;
@@ -96,6 +98,7 @@ function broadcast(snapshot: Snapshot) {
   refreshMenus();
 }
 function capture(command: CaptureCommand) {
+  if (command.action === "stop") nativeCapture?.cancel();
   if (coach && !coach.isDestroyed())
     coach.webContents.send("chess:capture", command);
 }
@@ -329,6 +332,19 @@ function registerIPC() {
     (value) => controller.frame(value),
     false,
   );
+  invoke("native-frame", tokenSchema, ["coach"], async (token) => {
+    const snapshot = controller.snapshot();
+    if (!snapshot.selection || snapshot.selection.sourceId !== selectedSource ||
+      (!snapshot.running && snapshot.status.state !== "Reading board"))
+      throw new Error("Start or rescan the selected board before capturing.");
+    try {
+      const frame = await nativeCapture.capture(snapshot.selection);
+      controller.assertCurrent(token);
+      return { frame };
+    } catch (error) {
+      return { error: error instanceof NativeCaptureError ? error.code : "unavailable" };
+    }
+  });
   invoke(
     "capture-error",
     captureFailureSchema,
@@ -434,6 +450,10 @@ app
       cache: false,
     });
     store = new Store(app.getPath("userData"));
+    nativeCapture = new NativeWindowCapture(path.join(
+      app.isPackaged ? process.resourcesPath : path.join(app.getAppPath(), "resources"),
+      "native", "board-capture.node",
+    ));
     const engineDir = app.isPackaged
       ? path.join(process.resourcesPath, "stockfish")
       : path.join(app.getAppPath(), "resources/stockfish");
@@ -668,6 +688,7 @@ app
   });
 app.on("window-all-closed", () => {});
 app.on("before-quit", () => {
+  nativeCapture?.cancel();
   quitting = true;
   controller?.shutdown();
   globalShortcut.unregisterAll();

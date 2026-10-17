@@ -12,3 +12,4 @@ chess-helper/resources/stockfish/*.tar
 chess-helper/resources/stockfish/*.zip
 chess-helper/resources/stockfish/*.tar.gz
 chess-helper/resources/stockfish/.prepare-*/
+chess-helper/resources/native/

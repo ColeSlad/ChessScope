@@ -1164,6 +1164,107 @@
         "scaleFactor": 2,
         "notes": "Fresh public starting board on October 14, default green/neo pieces, 720 CSS-pixel board. Board-only Chrome screenshot normalized to CSS pixels on Retina; re-encoded with Electron nativeImage to JPEG quality 90. Account/browser pixels omitted. Correctly recognized with native decoder before inclusion; never used to train templates. This is browser recording evidence, not native live capture."
       }
+    },
+    {
+      "id": "chesscom-native-cursor-2026-10-17",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "retina",
+        "ambiguous"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": null,
+      "expectedFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectsCorrection": true,
+      "image": "chesscom-native-cursor-2026-10-17.jpg",
+      "sha256": "89dba6d1d5e513dfb7c1e6e8b6dd5e5a5a07837dfc5596e34b68ec76770be50f",
+      "recording": {
+        "recordedAt": "2026-10-17T22:26:33.807727Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 1024,
+        "pixelHeight": 1024,
+        "scaleFactor": 2,
+        "notes": "Electron window stream with unsupported cursor exclusion. An actual I-beam overlays empty g6. Reader conservatively requests correction. Native source window 3456 pixels wide on Retina; board-only pixels retained by the approved temporary app. Not a browser screenshot or template source."
+      }
+    },
+    {
+      "id": "chesscom-native-start-2026-10-17",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "retina"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": null,
+      "expectedFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectsCorrection": false,
+      "image": "chesscom-native-start-2026-10-17.jpg",
+      "sha256": "77b29c26cf6f63b98402c28cc4c3122df3a3be34e5d6d987ef330a67349d9073",
+      "recording": {
+        "recordedAt": "2026-10-17T22:36:30.835792Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 1024,
+        "pixelHeight": 1024,
+        "scaleFactor": 2,
+        "notes": "In-process ScreenCaptureKit, cursor excluded; live selected window, full-board crop, 1024-pixel JPEG 90. No uncertainty. Native source window 3456 pixels wide on Retina; board-only pixels retained by the approved temporary app. Not a browser screenshot or template source."
+      }
+    },
+    {
+      "id": "chesscom-native-selection-2026-10-17",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "retina",
+        "ambiguous",
+        "highlight"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": null,
+      "expectedFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectsCorrection": true,
+      "image": "chesscom-native-selection-2026-10-17.jpg",
+      "sha256": "06e82f53682bd2f9d100ee6bd9d2a55291da82e4a9402d16105471436258f994",
+      "recording": {
+        "recordedAt": "2026-10-17T22:37:55.945878Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 1024,
+        "pixelHeight": 1024,
+        "scaleFactor": 2,
+        "notes": "Real selected e2 pawn, legal-move hints and browser-automation pointer overlay. Reader rejects obscured/ambiguous squares; no move is accepted. Native source window 3456 pixels wide on Retina; board-only pixels retained by the approved temporary app. Not a browser screenshot or template source."
+      }
+    },
+    {
+      "id": "chesscom-native-e4-2026-10-17",
+      "site": "chess.com",
+      "tags": [
+        "default-2d",
+        "white-bottom",
+        "retina",
+        "move",
+        "highlight"
+      ],
+      "orientation": "white-bottom",
+      "beforeFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "expectedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+      "expectsCorrection": false,
+      "image": "chesscom-native-e4-2026-10-17.jpg",
+      "sha256": "4b7b502db63657fccedc19a9d1304dc925bcf9575d9ba610ca5181ab9a921e95",
+      "recording": {
+        "recordedAt": "2026-10-17T22:40:07.123345Z",
+        "url": "https://www.chess.com/analysis",
+        "theme": "default-2d",
+        "pixelWidth": 1024,
+        "pixelHeight": 1024,
+        "scaleFactor": 2,
+        "notes": "In-process ScreenCaptureKit; native crop after real e2-e4 on public analysis page, with last-move highlights and pointer away. Full legal FEN accepted. Native source window 3456 pixels wide on Retina; board-only pixels retained by the approved temporary app. Not a browser screenshot or template source."
+      }
     }
   ]
 }

@@ -8,6 +8,7 @@ An independent Electron / React / TypeScript / Vite macOS menu-bar app for chess
 cd chess-helper
 npm ci
 npm run engine:prepare
+npm run native:prepare
 npm test
 npm run build
 npm run dev
@@ -16,6 +17,8 @@ npm run dev
 Engine preparation downloads the pinned official Stockfish 17.1 Apple Silicon release, corresponding source distribution, GPL license, and required NNUE files, and verifies the committed SHA-256 lock. Use `--pin` only when deliberately reviewing an engine update. The source distribution and license are included alongside the binary in packaged app resources. No other project, credentials, or identity is used.
 
 All direct dependencies have exact versions and the complete dependency tree is committed in `package-lock.json`. Use `npm ci` for clean builds.
+
+Native capture requires Apple Silicon, macOS 14 or later, Xcode command-line tools and Node’s installed `include/node/node_api.h` headers. Packaging builds the N-API module automatically; run `native:prepare` before development.
 
 Board scanning defaults to **On This Mac**, using local piece templates for the supported Chess.com default green board/pieces and Lichess brown/cburnett board. No API key or upload is needed for local scanning or Stockfish. In Settings, turn **Generate AI Move Explanations** off for fully offline operation; explanations remain enabled by default to preserve existing behavior. Cloud AI scanning is a separate explicit reader choice and never an automatic fallback. A saved OpenAI key is encrypted using Electron `safeStorage` in `~/Library/Application Support/com.colesladowsky.chesshelper/preferences.json` and never returned to the renderer. Session positions, capture frames and results remain in memory; no screenshot logging or telemetry is enabled.
 
@@ -36,9 +39,9 @@ After each move you play or observe, enter it in **Move already played** and cho
 
 Cloud scans use compact rank strings and require explicit piece alignment. The pre-preview [Sol/Low](docs/fixture-report-gpt-6.1-sol-low.json) and historical [Astra/Low](docs/fixture-report-gpt-6-astra-low.json) reports each pass across 46 real Chess.com/Lichess crops: 34 correct and 12 corrections, with zero incorrect accepts or errors. Recorded-pipeline median/p95 are 7.63/12.88 s for Sol and 4.61/9.68 s for Astra, including recognition, validation and applicable engine analysis. Native capture and explanation latency are excluded. These reports bind the earlier implementation; the new preview eligibility changes require reevaluation before claiming full qualification. Historical synthetic compatibility timings are in the [recognition timing report](docs/recognition-speed-report.json).
 
-Local recognition aligns the whole checkerboard before comparing piece templates, tolerating small crop offsets. Templates use only the two initial recordings, with 45 other recordings evaluated separately. The current Electron-decoder report reads 35 positions exactly and routes 12 to correction, with zero incorrect accepts or errors. Median JPEG decoding plus recognition is 16.25 ms, p95 20.15 ms; capture/stability, Stockfish and explanation time are excluded. Unknown themes, obscuring badges, incomplete crops and displaced pieces request correction. Recorded replays through the actual Session and Stockfish follow both players on both sites, including Rescan and Pause/resume, with zero cloud calls when explanations are off. These checks do not establish live capture qualification.
+Local recognition aligns the whole checkerboard before comparing piece templates, tolerating small crop offsets. Templates use only the two initial recordings, with 49 other recordings evaluated separately. The current Electron-decoder report reads 37 positions exactly and routes 14 to correction across 51 recordings, with zero incorrect accepts or errors. Median JPEG decoding plus recognition is 17.53 ms, p95 25.80 ms; capture/stability, Stockfish and explanation time are excluded. Unknown themes, obscuring badges, incomplete crops and displaced pieces request correction. Automatic local tracking retries up to five uncertain observations with advice cleared and stops on the sixth. Only a clean, legal observation can update the position; initial and manual scans remain immediately correctable. Recorded replays through the actual Session and Stockfish follow both players on both sites, including Rescan and Pause/resume, with zero cloud calls when explanations are off. These checks do not establish live capture qualification.
 
-The main process owns local recognition, Stockfish and OpenAI; the sandboxed renderer has only a typed preload bridge. Capture is video only and locally cropped before IPC. Crops reach the cloud only when Cloud AI is explicitly selected. Each asynchronous analysis carries a session ID and revision. Recognition and explanation each have one active request and one replaceable pending job. Pausing and detected board changes remove actionable results immediately.
+The main process owns local recognition, Stockfish and OpenAI; the sandboxed renderer has only a typed preload bridge. On macOS, an in-process ScreenCaptureKit module captures the explicitly selected window with the OS cursor excluded and returns only its board crop. It uses Chess Helper’s existing Screen Recording permission. The source picker still uses a video preview; audio is never requested. Pausing discards in-flight frames. Crops reach the cloud only when Cloud AI is explicitly selected. Each asynchronous analysis carries a session ID and revision. Recognition and explanation each have one active request and one replaceable pending job. Pausing and detected board changes remove actionable results immediately.
 
 ## Build
 

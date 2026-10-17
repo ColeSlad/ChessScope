@@ -216,17 +216,52 @@ describe("local automatic tracking without cloud recognition", () => {
     expect(h.session.snapshot().status.state).toBe("Ready");
   });
 
-  it("requests correction for uncertain local pieces and never falls back to a cloud scan", async () => {
+  it("bounds retries for uncertain local pieces with advice cleared and no cloud fallback", async () => {
     const h = harness(false, true, true, "local", false); await flush();
     h.deps.local.recognize = vi.fn(async (frame: CapturedFrame): Promise<BoardObservation> => ({ ...frame, placements: placementsOf(DEFAULT_POSITION),
       orientation: "white-bottom", uncertainSquares: ["e4"], boardVisible: true, cropAligned: true }));
     h.sample(); h.sample(); await flush();
+    expect(h.session.snapshot().status.state).toBe("Reading board");
+    expect(h.session.snapshot().analysis).toBeNull();
+    expect(h.session.snapshot().running).toBe(true);
+    for (let retry = 1; retry < 6; retry++) { h.sample(); h.sample(); await flush(); }
     expect(h.session.snapshot().status.state).toBe("Needs correction");
     expect(h.session.snapshot().position?.fen).toBe(DEFAULT_POSITION);
     expect(h.session.snapshot().analysis).toBeNull();
     expect(h.session.snapshot().running).toBe(false);
     expect(h.recognize).not.toHaveBeenCalled();
     expect(h.deps.cloud.explain).not.toHaveBeenCalled();
+  });
+
+  it("recovers from transient selection overlays only after a clean legal observation", async () => {
+    const h = harness(false, true, true, "local", false); await flush();
+    let reads = 0;
+    const clean = h.deps.local.recognize;
+    h.deps.local.recognize = vi.fn(async (frame, orientation, signal) => ++reads === 1
+      ? { ...frame, placements: placementsOf(DEFAULT_POSITION), orientation,
+          uncertainSquares: ["e2", "e4"], boardVisible: true, cropAligned: false }
+      : clean(frame, orientation, signal));
+    h.sample(); h.sample(); await flush();
+    expect(h.session.snapshot().position?.fen).toBe(DEFAULT_POSITION);
+    expect(h.session.snapshot().analysis).toBeNull();
+    const chess = new Chess(); chess.move("e4");
+    h.observe(chess.fen({ forceEnpassantSquare: true }));
+    h.sample(30); h.sample(30); await flush();
+    expect(h.session.snapshot().position?.fen).toBe(chess.fen({ forceEnpassantSquare: true }));
+    expect(h.session.snapshot().status.state).toBe("Ready");
+    expect(h.session.snapshot().running).toBe(true);
+    expect(h.recognize).not.toHaveBeenCalled();
+  });
+
+  it("keeps explicit manual rescans immediately correctable when uncertain", async () => {
+    const h = harness(false, true, true, "local", false); await flush();
+    h.session.pause(); h.session.rescan();
+    h.deps.local.recognize = vi.fn(async frame => ({ ...frame, placements: placementsOf(DEFAULT_POSITION),
+      orientation: "white-bottom", uncertainSquares: ["e4"], boardVisible: true, cropAligned: false }));
+    h.sample(); h.sample(); await flush();
+    expect(h.session.snapshot().status.state).toBe("Needs correction");
+    expect(h.session.snapshot().running).toBe(false);
+    expect(h.session.snapshot().analysis).toBeNull();
   });
 
   it("keeps local decoder failures in the local recovery flow with no API request", async () => {

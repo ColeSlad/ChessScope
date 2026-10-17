@@ -1,6 +1,12 @@
 import type { CaptureCommand, CaptureFailureCode, ChessHelperAPI } from "../shared/contracts";
 import { captureFailureCode } from "../core/capture-errors";
 
+export function requestBoardStream(): Promise<MediaStream> {
+  // Screen Capture defines cursor exclusion; TypeScript's DOM constraints omit it.
+  const video: MediaTrackConstraints & { cursor: "never" } = { frameRate: 2, cursor: "never" };
+  return navigator.mediaDevices.getDisplayMedia({ audio: false, video });
+}
+
 export function boardSignature(canvas: HTMLCanvasElement): number[] {
   const thumb = document.createElement("canvas");
   thumb.width = thumb.height = 64;
@@ -31,6 +37,7 @@ export class BoardCapture {
   private starting = false;
   private frame = 0;
   private samples = 0;
+  private nativeActive = false;
   constructor(private api: ChessHelperAPI) {
     this.video.muted = true;
     this.video.playsInline = true;
@@ -46,16 +53,20 @@ export class BoardCapture {
       JSON.stringify(previous.selection.crop) ===
         JSON.stringify(command.selection.crop);
     this.command = command;
-    if (sameSource && (this.stream || this.starting)) return;
+    if (sameSource && (this.stream || this.starting || this.nativeActive)) return;
     this.stop();
     this.command = command;
     this.starting = true;
     const epoch = this.epoch;
+    if (this.api.nativeFrame) {
+      this.starting = false;
+      this.nativeActive = true;
+      this.samples = 0;
+      this.tick(epoch);
+      return;
+    }
     try {
-      const stream = await navigator.mediaDevices.getDisplayMedia({
-        audio: false,
-        video: { frameRate: 2 },
-      });
+      const stream = await requestBoardStream();
       if (epoch !== this.epoch) {
         stream.getTracks().forEach((track) => track.stop());
         return;
@@ -85,12 +96,29 @@ export class BoardCapture {
     }).catch(() => {}); // A newer session may already have replaced this capture.
   }
   private tick(epoch: number) {
-    if (epoch !== this.epoch || !this.command?.selection || !this.stream)
+    if (epoch !== this.epoch || !this.command?.selection || (!this.stream && !this.nativeActive))
       return;
     const started = performance.now();
     const send = async () => {
       const command = this.command!;
       const selection = command.selection!;
+      if (this.api.nativeFrame) {
+        const result = await this.api.nativeFrame({ sessionId: command.sessionId, revision: command.revision });
+        if (epoch !== this.epoch) return;
+        if ("error" in result) { this.fail(epoch, result.error); return; }
+        const image = new Image();
+        image.src = result.frame.image;
+        await image.decode();
+        if (epoch !== this.epoch) return;
+        const canvas = document.createElement("canvas");
+        canvas.width = canvas.height = image.naturalWidth;
+        canvas.getContext("2d")!.drawImage(image, 0, 0);
+        await this.api.frame({ sessionId: command.sessionId, revision: command.revision,
+          frameId: ++this.frame, ...result.frame,
+          signature: boardSignature(canvas) });
+        if (epoch === this.epoch && ++this.samples > 120 && command.action === "sample") this.fail(epoch, "timeout");
+        return;
+      }
       const width = this.video.videoWidth,
         height = this.video.videoHeight;
       if (!width || !height || this.video.readyState < 2) return;
@@ -151,6 +179,7 @@ export class BoardCapture {
     if (this.timer) clearTimeout(this.timer);
     this.timer = null;
     this.starting = false;
+    this.nativeActive = false;
     this.command = null;
     this.stream?.getTracks().forEach((track) => track.stop());
     this.stream = null;

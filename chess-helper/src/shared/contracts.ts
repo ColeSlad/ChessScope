@@ -194,6 +194,8 @@ export const frameSchema = tokenSchema
   })
   .strict();
 export type CapturedFrame = z.infer<typeof frameSchema>;
+export type NativeBoardFrame = Pick<CapturedFrame, "image" | "sourceWidth" | "sourceHeight">;
+export type NativeCaptureResult = { frame: NativeBoardFrame } | { error: CaptureFailureCode };
 export const captureFailureSchema = tokenSchema
   .extend({
     code: z.enum(["permission-denied", "source-ended", "unavailable", "frame-failed", "timeout"]),
@@ -220,6 +222,7 @@ export interface ChessHelperAPI {
   pause(token: Token): Promise<void>;
   rescan(token: Token): Promise<void>;
   frame(frame: CapturedFrame): Promise<void>;
+  nativeFrame?(token: Token): Promise<NativeCaptureResult>;
   captureError(failure: CaptureFailure): Promise<void>;
   saveSettings(
     token: Token & { settings: Settings; apiKey?: string },

@@ -69,6 +69,7 @@ export class Session {
   private lastFrame = -1;
   private manualSampling = false;
   private captureUsable = false;
+  private uncertainReads = 0;
   constructor(private deps: SessionDependencies) {
     this.current = {
       status: {
@@ -102,6 +103,16 @@ export class Session {
         this.current.observation = observation;
         this.captureUsable = observation.boardVisible && observation.cropAligned;
         if (local && (!observation.boardVisible || !observation.cropAligned || observation.uncertainSquares.length)) {
+          if (this.current.running && observation.uncertainSquares.length && ++this.uncertainReads < 6) {
+            // Selection hints, dragged pieces and cursors can briefly obscure a
+            // stable sample. Keep all advice cleared; accept only a later clean
+            // observation. Persistent uncertainty still stops for correction.
+            this.invalidate();
+            this.stable.reset();
+            this.setStatus("Reading board", "The board is partly obscured. Waiting for a clear position.");
+            this.sendCapture("start");
+            return;
+          }
           this.needsCorrection(
             "The local reader is unsure of this board. Use a clear full-board crop with Chess.com’s default green pieces or Lichess’s brown/cburnett pieces, then rescan or correct the position.",
           );
@@ -118,6 +129,7 @@ export class Session {
           this.needsCorrection(matched.reason);
           return;
         }
+        this.uncertainReads = 0;
         if (matched.kind === "move")
           this.current.position = { ...matched.position, ...this.token() };
         if (matched.kind === "unchanged")
@@ -213,6 +225,10 @@ export class Session {
   private publish() {
     this.deps.emit(this.snapshot());
   }
+  private resetSamples() {
+    this.stable.reset();
+    this.uncertainReads = 0;
+  }
   private setStatus(state: Snapshot["status"]["state"], message: string) {
     this.current.status = { ...this.token(), state, message };
     this.publish();
@@ -257,7 +273,7 @@ export class Session {
   private beginCaptureAfterConfirmation() {
     this.current.running = this.canTrackAutomatically();
     this.manualSampling = false;
-    this.stable.reset();
+    this.resetSamples();
     this.lastFrame = -1;
     this.sendCapture(this.current.running ? "start" : "stop");
   }
@@ -291,7 +307,7 @@ export class Session {
     this.current.observation = null;
     this.current.running = false;
     this.lastFrame = -1;
-    this.stable.reset();
+    this.resetSamples();
     this.manualSampling = true;
     this.setStatus(
       "Reading board",
@@ -308,7 +324,7 @@ export class Session {
     this.current.observation = null;
     this.current.running = false;
     this.manualSampling = false;
-    this.stable.reset();
+    this.resetSamples();
     this.lastFrame = -1;
     this.setStatus(
       "Paused",
@@ -337,7 +353,7 @@ export class Session {
       return;
     }
     this.invalidate();
-    this.stable.reset();
+    this.resetSamples();
     this.lastFrame = -1;
     if (!this.canTrackAutomatically()) {
       this.current.running = false;
@@ -381,7 +397,7 @@ export class Session {
     this.current.running = false;
     this.manualSampling = false;
     this.sendCapture("stop");
-    this.stable.reset();
+    this.resetSamples();
     this.setStatus("Paused", "Tracking and analysis paused.");
   }
   rescan() {
@@ -397,7 +413,7 @@ export class Session {
       return;
     }
     this.invalidate();
-    this.stable.reset();
+    this.resetSamples();
     this.lastFrame = -1;
     this.manualSampling = !this.current.running;
     this.setStatus(

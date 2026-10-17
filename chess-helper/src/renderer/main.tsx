@@ -14,7 +14,7 @@ import type {
 } from "../shared/contracts";
 import { placementsOf, placementFen, displayScore } from "../core/position";
 import { Board, GLYPHS } from "./Board";
-import { BoardCapture } from "./capture";
+import { BoardCapture, requestBoardStream } from "./capture";
 import { installMouseHitTesting } from "./mouse";
 import { captureFailureCode, captureFailureMessage } from "../core/capture-errors";
 import { sessionIsActive, automaticTrackingEnabled } from "../core/session-controls";
@@ -896,10 +896,7 @@ function SelectionView({ state }: { state: Snapshot }) {
     setSourceId(id);
     try {
       await api!.selectSource({ ...tokenOf(state), sourceId: id });
-      const next = await navigator.mediaDevices.getDisplayMedia({
-        audio: false,
-        video: { frameRate: 2 },
-      });
+      const next = await requestBoardStream();
       if (request !== epoch.current) {
         next.getTracks().forEach((t) => t.stop());
         return;

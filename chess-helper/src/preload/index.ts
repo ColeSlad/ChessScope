@@ -24,6 +24,7 @@ const api: ChessHelperAPI = {
   pause: (value) => ipcRenderer.invoke("chess:pause", value),
   rescan: (value) => ipcRenderer.invoke("chess:rescan", value),
   frame: (value) => ipcRenderer.invoke("chess:frame", value),
+  nativeFrame: process.platform === "darwin" ? (value) => ipcRenderer.invoke("chess:native-frame", value) : undefined,
   captureError: (value) => ipcRenderer.invoke("chess:capture-error", value),
   saveSettings: (value) => ipcRenderer.invoke("chess:settings", value),
   retryExplanation: (value) => ipcRenderer.invoke("chess:explain", value),

@@ -1,7 +1,7 @@
 import { afterEach, expect, it, vi } from "vitest";
 import { BoardCapture } from "../src/renderer/capture";
 import { captureFailureMessage } from "../src/core/capture-errors";
-import { captureFailureSchema, type CaptureCommand, type ChessHelperAPI } from "../src/shared/contracts";
+import { captureFailureSchema, frameSchema, type CaptureCommand, type ChessHelperAPI, type NativeCaptureResult } from "../src/shared/contracts";
 
 afterEach(() => vi.unstubAllGlobals());
 const command: CaptureCommand = {
@@ -27,6 +27,9 @@ it("reports capture permission denial with the active revision and no frame uplo
   const frame = vi.fn();
   const capture = new BoardCapture({ captureError, frame } as unknown as ChessHelperAPI);
   await capture.receive(command);
+  expect(navigator.mediaDevices.getDisplayMedia).toHaveBeenCalledExactlyOnceWith({
+    audio: false, video: { frameRate: 2, cursor: "never" },
+  });
   expect(captureError).toHaveBeenCalledExactlyOnceWith({
     sessionId: command.sessionId, revision: command.revision, code: "permission-denied",
   });
@@ -55,4 +58,37 @@ it("distinguishes denied macOS authorization, restrictions, and a closed capture
   expect(captureFailureMessage("restricted", "permission-denied")).toContain("administrator");
   expect(captureFailureMessage("granted", "source-ended")).toContain("stopped sharing");
   expect(captureFailureSchema.safeParse({ sessionId: command.sessionId, revision: command.revision, code: "untrusted-error" }).success).toBe(false);
+});
+
+it("submits only the native board crop and current token, without starting display video", async () => {
+  const context = { drawImage: vi.fn(), getImageData: () => ({ data: new Uint8ClampedArray(64 * 64 * 4) }) };
+  vi.stubGlobal("document", { createElement: () => ({ getContext: () => context, srcObject: null }) });
+  vi.stubGlobal("Image", class { naturalWidth = 64; src = ""; async decode() {} });
+  const getDisplayMedia = vi.fn();
+  vi.stubGlobal("navigator", { mediaDevices: { getDisplayMedia } });
+  const board = { image: "data:image/jpeg;base64,AA==", sourceWidth: 800, sourceHeight: 800 };
+  const nativeFrame = vi.fn().mockResolvedValue({ frame: board });
+  const frame = vi.fn().mockResolvedValue(undefined);
+  const capture = new BoardCapture({ nativeFrame, frame } as unknown as ChessHelperAPI);
+  await capture.receive(command);
+  await vi.waitFor(() => expect(frame).toHaveBeenCalledOnce());
+  capture.stop();
+  expect(nativeFrame).toHaveBeenCalledExactlyOnceWith({ sessionId: command.sessionId, revision: command.revision });
+  expect(frameSchema.parse(frame.mock.calls[0][0])).toMatchObject({ ...board, frameId: 1 });
+  expect(getDisplayMedia).not.toHaveBeenCalled();
+});
+
+it("discards a native capture response arriving after pause", async () => {
+  vi.stubGlobal("document", { createElement: () => ({ srcObject: null }) });
+  let resolve!: (value: NativeCaptureResult) => void;
+  const nativeFrame = vi.fn(() => new Promise<NativeCaptureResult>(done => { resolve = done; }));
+  const frame = vi.fn();
+  const captureError = vi.fn();
+  const capture = new BoardCapture({ nativeFrame, frame, captureError } as unknown as ChessHelperAPI);
+  await capture.receive(command);
+  capture.stop();
+  resolve({ error: "source-ended" });
+  await Promise.resolve();
+  expect(frame).not.toHaveBeenCalled();
+  expect(captureError).not.toHaveBeenCalled();
 });

@@ -63,7 +63,8 @@ async function main() {
   const hash = createHash("sha256");
   const sources = ["src/core/local-vision.ts", "src/core/board-grid.ts", "src/main/local-recognition.ts", "src/data/local-templates.json",
     "src/core/position.ts", "src/core/stability.ts", "src/main/session.ts", "src/core/tracking-policy.ts", "src/shared/contracts.ts",
-    "src/renderer/capture.ts", "src/renderer/main.tsx", "src/renderer/styles.css"];
+    "src/renderer/capture.ts", "src/renderer/main.tsx", "src/renderer/styles.css",
+    "src/main/native-capture.ts", "src/native/board-capture.mm", "src/preload/index.ts", "src/main/index.ts"];
   for (const file of sources) { hash.update(file); hash.update(fs.readFileSync(file)); }
   if (captureVariant && process.argv.includes("--capture-variants")) {
     for (const width of [512, 1024]) {

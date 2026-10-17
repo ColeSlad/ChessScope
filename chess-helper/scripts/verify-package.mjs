@@ -2,6 +2,8 @@ import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { listPackage } from "@electron/asar";
+import { createHash } from "node:crypto";
+import { createRequire } from "node:module";
 
 const application = path.resolve(
   process.argv[2] ?? "release/mac-arm64/ChessHelper.app",
@@ -41,6 +43,16 @@ for (const file of [
     throw new Error(`Packaged application is missing ${file}`);
 if (!fs.existsSync(path.join(contents, "Resources/trayTemplate.png")))
   throw new Error("The packaged application is missing its native tray icon");
+const native = path.join(contents, "Resources/native");
+const nativeManifest = JSON.parse(fs.readFileSync(path.join(native, "manifest.json"), "utf8"));
+const hash = file => createHash("sha256").update(fs.readFileSync(file)).digest("hex");
+if (nativeManifest.sourceSha256 !== hash("src/native/board-capture.mm") ||
+    nativeManifest.sourceSha256 !== hash(path.join(native, "board-capture.mm")) ||
+    nativeManifest.binarySha256 !== hash(path.join(native, "board-capture.node")) ||
+    property("LSMinimumSystemVersion") !== "14.0")
+  throw new Error("Packaged native capture helper does not match its source/build");
+const nativeCheck = createRequire(import.meta.url)(path.join(native, "board-capture.node")).selfTest();
+if (!nativeCheck.ready || !nativeCheck.cursorExcluded) throw new Error("Native capture self-check failed");
 execFileSync(
   process.execPath,
   [
@@ -51,5 +63,5 @@ execFileSync(
   { stdio: "inherit" },
 );
 console.log(
-  "Verified packaged identity, menu-bar configuration, arm64 executable, renderer, preload, tray, and bundled engine resources.",
+  "Verified packaged identity, arm64 executable, renderer/preload, tray, cursor-free capture helper and bundled engine resources.",
 );

@@ -55,9 +55,9 @@ describe("local reading of real recorded boards", () => {
     if (fixture.tags.includes("animation") || fixture.tags.includes("ambiguous")) expect(correction).toBe(true);
   });
 
-  it("learns only from the two initial recordings, with 45 distinct evaluation recordings", () => {
+  it("learns only from the two initial recordings, with 49 distinct evaluation recordings", () => {
     expect(templates.training.map(t => t.id)).toEqual(["lichess-start-white", "chesscom-start-white"]);
-    expect(cases.filter(c => !templates.training.some(t => t.id === c.id))).toHaveLength(45);
+    expect(cases.filter(c => !templates.training.some(t => t.id === c.id))).toHaveLength(49);
   });
 
   it("gives identical results for native BGRA and test RGBA pixel layouts", () => {
