@@ -37,6 +37,47 @@ it("bounds concurrent captures and discards an in-flight screenshot after pause"
   resolve({ image: "late" });
   expect(backend).toHaveBeenCalledOnce();
 });
+it("resumes immediately after pause without overlapping the old OS screenshot", async () => {
+  const paused = capture.capture(selection);
+  await Promise.resolve();
+  const finishOldShot = resolve;
+  capture.cancel();
+  await expect(paused).rejects.toMatchObject({ code: "unavailable" });
+  const resumed = capture.capture({ ...selection, revision: 1 });
+  await Promise.resolve();
+  expect(backend).toHaveBeenCalledOnce();
+  finishOldShot({ image: "discard this canceled frame" });
+  await vi.advanceTimersByTimeAsync(0);
+  expect(backend).toHaveBeenCalledTimes(2);
+  const fresh = { image: "data:image/jpeg;base64,AA==", sourceWidth: 1600, sourceHeight: 1000 };
+  resolve(fresh);
+  await expect(resumed).resolves.toEqual(fresh);
+});
+it("can pause a resumed request while it waits without taking another screenshot", async () => {
+  const first = capture.capture(selection);
+  await Promise.resolve();
+  capture.cancel();
+  await expect(first).rejects.toMatchObject({ code: "unavailable" });
+  const resumed = capture.capture(selection);
+  capture.cancel();
+  await expect(resumed).rejects.toMatchObject({ code: "unavailable" });
+  resolve({ error: "source-ended" });
+  await vi.advanceTimersByTimeAsync(0);
+  expect(backend).toHaveBeenCalledOnce();
+});
+it("bounds a resumed request waiting for an unresponsive canceled screenshot", async () => {
+  const first = capture.capture(selection);
+  await Promise.resolve();
+  capture.cancel();
+  await expect(first).rejects.toMatchObject({ code: "unavailable" });
+  const resumed = capture.capture(selection);
+  const rejection = expect(resumed).rejects.toMatchObject({ code: "unavailable" });
+  await vi.advanceTimersByTimeAsync(5000);
+  await rejection;
+  resolve({ error: "unavailable" });
+  await vi.advanceTimersByTimeAsync(0);
+  expect(backend).toHaveBeenCalledOnce();
+});
 it.each(["permission-denied", "source-ended", "unavailable"])("returns a sanitized %s failure", async error => {
   const pending = capture.capture(selection);
   await Promise.resolve(); resolve({ error });
