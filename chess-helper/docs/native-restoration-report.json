@@ -1,7 +1,7 @@
 {
   "lastSuccessfulRestoration": {
-    "verifiedAt": "2026-10-14T18:10:47.909242Z",
-    "step": 65,
+    "verifiedAt": "2026-10-17T23:00:08.683Z",
+    "step": 67,
     "productionApplication": "release/mac-arm64/ChessHelper.app",
     "qualificationAppQuitThroughNativeSettingsButton": true,
     "qualificationAppAbsentInScopedProcessCheck": true,
@@ -24,83 +24,45 @@
     "sourceReleaseGate": false,
     "trackingPreviewOptIn": true,
     "packagedSha256": {
-      "dist/main/main.cjs": "a6e40b0c38904a894f608beb6f9ca113ca63b78d2fd5c76ee5c9d409e1b5e02c",
-      "dist/preload/preload.cjs": "9a131142369a90e879b30bf95dd5f13401cae76ed6931499ba5a25bea741f830",
-      "dist/renderer/index.html": "0db6c8bf5c8dd8325a4b280c776eb0f9462d1b702a2e4b38ee7e1931d60d3558",
+      "dist/main/main.cjs": "67a6fe98f472ec0aed3e33ee77d1a399c4c91d33f4f7736ba5c92548fc5bb093",
+      "dist/preload/preload.cjs": "5dcf09a9dfb7782c3bf34d1e97c214f354c99921a3e1a6353414c6d9b09a5d28",
+      "dist/renderer/index.html": "493ddd840712c10f0be11f785659fa2a742cd628a541a9fa16e402cc701c9b63",
       "dist/renderer/assets/index-B7rEtv0l.css": "bb2b7f309e2405af28f490259d0bec9ab34d40c6900a1f44ce73a2165a821193",
-      "dist/renderer/assets/index-CdiPc-fu.js": "fbd38a8204e5ab922457836a67d028775e3ddefba61854e0597a4343c2de1535"
+      "dist/renderer/assets/index-CVLXwlqQ.js": "421a8ed441c4aba951f1c4e0099d993efb2ca8cc1e82b6c9cbb3fd22372ef8d1"
+    },
+    "native": {
+      "minimumMacOS": "14.0",
+      "nodeApi": 8,
+      "sourceSha256": "e17fdba2ed1c331e5f92a4bebc2479282bceab0fef3c94c84a9bee98c5f03197",
+      "binarySha256": "cdd1ed2c6746b9dc0686ebb87898c3d5fe3687268ae4eedbd1fb0badfe885a24"
     },
     "productionSettingsLeftOpen": true,
     "nativeControlRecovered": true,
     "trackingPreferenceSurvivesRelaunch": true,
     "limitations": [
-      "The temporary picker offered no browser windows, so no local live capture was performed.",
-      "No board is selected after relaunch. Select a visible public board and apply the complete position to start the opted-in local preview.",
-      "Recorded/default-theme checks pass; full live corpus and lifecycle qualification remains incomplete."
+      "Complete native fixture corpus on both sites/orientations is not rerun for this backend.",
+      "Actual OS Screen Recording denial/revocation and remaining workspace/geometry behavior are unverified.",
+      "Injected global shortcut did not establish physical shortcut delivery; native menu commands verified Pause/Start/Rescan.",
+      "Native coaching access intermittently timed out; focused Settings/menu and raising the observed window recovered control.",
+      "Window closure initially reported crop resize; a rescan verified the explicit source-ended recovery.",
+      "Production is restored Paused with no selected board; preview preference remains on."
     ]
   },
   "currentStatus": {
-    "recordedAt": "2026-10-14T18:10:47.909242Z",
+    "recordedAt": "2026-10-17T23:00:08.683Z",
     "state": "production-restored",
     "temporaryQualificationAppRunning": false,
     "protectedProductionAppRunning": true,
-    "evidence": "Native temporary Quit button, scoped executable inspection (only production running), fresh protected production renderer URL, Paused launch and Settings verification.",
     "automaticTrackingReleaseGate": false,
     "trackingPreviewOptIn": true,
     "automaticTrackingPreference": true,
     "automaticCaptureActive": false,
     "boardReader": "local",
     "explanationsEnabled": false,
-    "liveCaptureMeasured": false,
+    "liveCaptureMeasured": true,
     "fixtureReport": "local-recognition-report.json",
-    "pendingAction": "The user was asked to show the fresh public Chess.com analysis tab. It is retained for handoff; no visibility reply received at this checkpoint."
+    "nativeReport": "native-local-tracking-report.json",
+    "pendingAction": "Select a visible board and apply its full position to start the opted-in local preview."
   },
-  "previousSuccessfulRestoration": {
-    "verifiedAt": "2026-10-08T16:52:38.957Z",
-    "productionApplication": "release/mac-arm64/ChessHelper.app",
-    "qualificationAppQuitConfirmedByUser": true,
-    "qualificationAppAbsentInScopedProcessCheck": true,
-    "productionLaunchVerifiedByNativeRendererURL": true,
-    "productionPausedOnLaunch": true,
-    "productionSettingsVerified": {
-      "recognition": {
-        "model": "gpt-6.1-sol",
-        "effort": "low"
-      },
-      "explanations": {
-        "model": "gpt-6.1-sol",
-        "effort": "medium"
-      },
-      "automaticTracking": true,
-      "automaticTrackingControlDisabled": false,
-      "shortcuts": {
-        "showHide": "Command+Shift+B",
-        "startPause": "Command+Shift+P",
-        "rescan": "Command+Shift+R"
-      },
-      "keyStatus": "Saved securely; no key value read or copied"
-    },
-    "packagedFilesMatchBuild": true,
-    "packagedContentProtection": true,
-    "sourceReleaseGate": false,
-    "trackingPreviewOptIn": true,
-    "packagedSha256": {
-      "dist/main/main.cjs": "640b8afaebd0140d4f377b29b46e82fe5dae5bcebdb98e8fdf69458c761a9ea5",
-      "dist/preload/preload.cjs": "9a131142369a90e879b30bf95dd5f13401cae76ed6931499ba5a25bea741f830",
-      "dist/renderer/index.html": "59b4a577b2c1d71ecb560801f9d1d1621155f0d8b4d8fb75a89c04ed535267ef",
-      "dist/renderer/assets/index-BIxnwO8_.css": "6c02ae8b593e4ebde913009e04c289f0005aea0261f3931dfbb7772c0b04d3e3",
-      "dist/renderer/assets/index-C3eIUC-k.js": "67e222b8950a3ef3565e66c20cffba18e6420b93a3b34803bb5e6350dd060340"
-    },
-    "productionSettingsLeftOpen": true,
-    "nativeControlRecovered": true,
-    "productionQuitButtonVerified": true,
-    "trackingPreferenceSurvivesRelaunch": true,
-    "limitations": [
-      "All native Chess.com fixtures and remaining lifecycle acceptance are incomplete.",
-      "Recorded reports bind the earlier implementation; rerun after preview eligibility changes before claiming full qualification.",
-      "Native production screenshots are blank under content protection; native Settings and preference persistence are verified through accessibility state.",
-      "The app is left with Settings focused for reliable native control; no browser board is selected after relaunch."
-    ]
-  },
-  "historicalReport": "native-restoration-report-step60.json"
+  "historicalReport": "native-restoration-report-step65.json"
 }

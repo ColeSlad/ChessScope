@@ -1,0 +1,211 @@
+{
+  "scope": "First native local Chess.com attempts before requesting cursor exclusion. Public analysis board, starting position, white bottom. Both scans conservatively reject an empty g6 square; no confirmed position or recommendations accepted.",
+  "implementationSha256": "4a62dcd578816bc76a1b85d8f129064a467b92aa21d88f94d60dc5e358674935",
+  "timings": [
+    {
+      "at": "2026-10-17T22:20:41.414Z",
+      "endpoint": "Needs correction",
+      "action": "sample",
+      "captureRevision": 0,
+      "observationFrameId": 2,
+      "running": false,
+      "calls": {
+        "local": 1,
+        "cloudRecognition": 0,
+        "cloudExplanation": 0
+      },
+      "elapsedMs": 1367.2312079999974,
+      "boardReader": "local",
+      "recognition": {
+        "model": "gpt-6.1-sol",
+        "effort": "low"
+      },
+      "fen": null,
+      "engineMs": null,
+      "sourceWidth": 3456,
+      "sourceHeight": 2018,
+      "crop": {
+        "x": 0.19075829383886256,
+        "y": 0.24057957229593696,
+        "width": 0.384478672985782,
+        "height": 0.6584530692957693
+      },
+      "errorCode": null
+    },
+    {
+      "at": "2026-10-17T22:21:06.842Z",
+      "endpoint": "Needs correction",
+      "action": "sample",
+      "captureRevision": 2,
+      "observationFrameId": 4,
+      "running": false,
+      "calls": {
+        "local": 2,
+        "cloudRecognition": 0,
+        "cloudExplanation": 0
+      },
+      "elapsedMs": 1240.3478340000001,
+      "boardReader": "local",
+      "recognition": {
+        "model": "gpt-6.1-sol",
+        "effort": "low"
+      },
+      "fen": null,
+      "engineMs": null,
+      "sourceWidth": 3456,
+      "sourceHeight": 2018,
+      "crop": {
+        "x": 0.19075829383886256,
+        "y": 0.24057957229593696,
+        "width": 0.384478672985782,
+        "height": 0.6584530692957693
+      },
+      "errorCode": null
+    }
+  ],
+  "events": [
+    {
+      "at": "2026-10-17T22:19:58.264Z",
+      "sessionId": "d3b69621-f9b6-4041-bdea-9f0e3dc18f6a",
+      "revision": 0,
+      "state": "Paused",
+      "running": false,
+      "fen": null,
+      "boardReader": "local",
+      "explanationsEnabled": false,
+      "observationFrameId": null,
+      "uncertainSquares": [],
+      "candidates": [],
+      "errorCode": null,
+      "calls": {
+        "local": 0,
+        "cloudRecognition": 0,
+        "cloudExplanation": 0
+      }
+    },
+    {
+      "at": "2026-10-17T22:20:02.082Z",
+      "sessionId": "d3b69621-f9b6-4041-bdea-9f0e3dc18f6a",
+      "revision": 1,
+      "state": "Paused",
+      "running": false,
+      "fen": null,
+      "boardReader": "local",
+      "explanationsEnabled": false,
+      "observationFrameId": null,
+      "uncertainSquares": [],
+      "candidates": [],
+      "errorCode": null,
+      "calls": {
+        "local": 0,
+        "cloudRecognition": 0,
+        "cloudExplanation": 0
+      }
+    },
+    {
+      "at": "2026-10-17T22:20:07.793Z",
+      "sessionId": "06c2b381-46ed-4ff8-9741-3d5459ff419d",
+      "revision": 0,
+      "state": "Paused",
+      "running": false,
+      "fen": null,
+      "boardReader": "local",
+      "explanationsEnabled": false,
+      "observationFrameId": null,
+      "uncertainSquares": [],
+      "candidates": [],
+      "errorCode": null,
+      "calls": {
+        "local": 0,
+        "cloudRecognition": 0,
+        "cloudExplanation": 0
+      }
+    },
+    {
+      "at": "2026-10-17T22:20:40.044Z",
+      "sessionId": "2f2a0593-b455-4145-a264-7fba527dce94",
+      "revision": 0,
+      "state": "Reading board",
+      "running": false,
+      "fen": null,
+      "boardReader": "local",
+      "explanationsEnabled": false,
+      "observationFrameId": null,
+      "uncertainSquares": [],
+      "candidates": [],
+      "errorCode": null,
+      "calls": {
+        "local": 0,
+        "cloudRecognition": 0,
+        "cloudExplanation": 0
+      }
+    },
+    {
+      "at": "2026-10-17T22:20:41.414Z",
+      "sessionId": "2f2a0593-b455-4145-a264-7fba527dce94",
+      "revision": 1,
+      "state": "Needs correction",
+      "running": false,
+      "fen": null,
+      "boardReader": "local",
+      "explanationsEnabled": false,
+      "observationFrameId": 2,
+      "uncertainSquares": [
+        "g6"
+      ],
+      "candidates": [],
+      "errorCode": null,
+      "calls": {
+        "local": 1,
+        "cloudRecognition": 0,
+        "cloudExplanation": 0
+      }
+    },
+    {
+      "at": "2026-10-17T22:21:05.599Z",
+      "sessionId": "2f2a0593-b455-4145-a264-7fba527dce94",
+      "revision": 2,
+      "state": "Reading board",
+      "running": false,
+      "fen": null,
+      "boardReader": "local",
+      "explanationsEnabled": false,
+      "observationFrameId": 2,
+      "uncertainSquares": [
+        "g6"
+      ],
+      "candidates": [],
+      "errorCode": null,
+      "calls": {
+        "local": 1,
+        "cloudRecognition": 0,
+        "cloudExplanation": 0
+      }
+    },
+    {
+      "at": "2026-10-17T22:21:06.842Z",
+      "sessionId": "2f2a0593-b455-4145-a264-7fba527dce94",
+      "revision": 3,
+      "state": "Needs correction",
+      "running": false,
+      "fen": null,
+      "boardReader": "local",
+      "explanationsEnabled": false,
+      "observationFrameId": 4,
+      "uncertainSquares": [
+        "g6"
+      ],
+      "candidates": [],
+      "errorCode": null,
+      "calls": {
+        "local": 2,
+        "cloudRecognition": 0,
+        "cloudExplanation": 0
+      }
+    }
+  ],
+  "image": "images/native-local-empty-square-uncertain.jpg",
+  "qualified": false,
+  "cursorCause": "Suspected from visible cursor at g6 in native preview; not yet confirmed by cursor-exclusion rerun.",
+  "followup": "Confirmed by instrumented cursor settings and actual JPEG pixels; see native-local-tracking-report.json. Both original failures remain unchanged."
+}

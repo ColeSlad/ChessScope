@@ -1,0 +1,3102 @@
+{
+  "verifiedAt": "2026-10-17T23:00:08.683Z",
+  "step": 67,
+  "qualified": false,
+  "scope": "Public Chess.com default green board, white bottom, Apple Silicon Retina, packaged app. Basic continuous tracking and lifecycle verification; not the complete native corpus.",
+  "implementationSha256": "97bf4ded5a299377540deb0456179b072b4e504b1ecf02a1af25745db1b63ec3",
+  "fixtureManifestSha256": "80f5351707cb84d9b25dc215e3c745ea8152bf6ba2633ad94177371bc3c4041d",
+  "package": {
+    "verifiedAt": "2026-10-17T22:59:19.614Z",
+    "assets": {
+      "dist/main/main.cjs": "67a6fe98f472ec0aed3e33ee77d1a399c4c91d33f4f7736ba5c92548fc5bb093",
+      "dist/preload/preload.cjs": "5dcf09a9dfb7782c3bf34d1e97c214f354c99921a3e1a6353414c6d9b09a5d28",
+      "dist/renderer/index.html": "493ddd840712c10f0be11f785659fa2a742cd628a541a9fa16e402cc701c9b63",
+      "dist/renderer/assets/index-B7rEtv0l.css": "bb2b7f309e2405af28f490259d0bec9ab34d40c6900a1f44ce73a2165a821193",
+      "dist/renderer/assets/index-CVLXwlqQ.js": "421a8ed441c4aba951f1c4e0099d993efb2ca8cc1e82b6c9cbb3fd22372ef8d1"
+    },
+    "native": {
+      "minimumMacOS": "14.0",
+      "nodeApi": 8,
+      "sourceSha256": "e17fdba2ed1c331e5f92a4bebc2479282bceab0fef3c94c84a9bee98c5f03197",
+      "binarySha256": "cdd1ed2c6746b9dc0686ebb87898c3d5fe3687268ae4eedbd1fb0badfe885a24"
+    },
+    "packagedBytesMatchBuild": true,
+    "productionContentProtection": true
+  },
+  "privacy": {
+    "boardReader": "local",
+    "explanationsEnabled": false,
+    "cloudRecognitionCalls": 0,
+    "cloudExplanationCalls": 0,
+    "keyValueRead": false,
+    "productionWritesFrames": false,
+    "temporaryOnlyBoardCrops": "At most 40 public board-only JPEGs retained for visual QA in the approved temporary build. Production has no frame/event logging."
+  },
+  "expectedFens": {
+    "start": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    "e4": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+    "e5": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+    "Nf3": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2"
+  },
+  "checks": {
+    "initialScan": {
+      "outcome": "32 pieces exact, zero uncertain squares; requires full-state confirmation",
+      "sampleToCorrectionMs": 604.9794170000096
+    },
+    "whiteMove": {
+      "san": "e4",
+      "endpoint": {
+        "at": "2026-10-17T22:53:49.870Z",
+        "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+        "revision": 9,
+        "state": "Ready",
+        "running": true,
+        "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+        "boardReader": "local",
+        "explanationsEnabled": false,
+        "observationFrameId": 31,
+        "uncertainSquares": [],
+        "candidates": [
+          "e7e5",
+          "c7c5",
+          "e7e6"
+        ],
+        "errorCode": null,
+        "calls": {
+          "local": 5,
+          "cloudRecognition": 0,
+          "cloudExplanation": 0
+        }
+      },
+      "firstDetectedChangeToReadyMs": 5028,
+      "transientUncertainObservations": 2
+    },
+    "blackMove": {
+      "san": "e5",
+      "endpoint": {
+        "at": "2026-10-17T22:54:00.365Z",
+        "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+        "revision": 12,
+        "state": "Ready",
+        "running": true,
+        "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+        "boardReader": "local",
+        "explanationsEnabled": false,
+        "observationFrameId": 52,
+        "uncertainSquares": [],
+        "candidates": [
+          "g1f3",
+          "b1c3",
+          "f1c4"
+        ],
+        "errorCode": null,
+        "calls": {
+          "local": 6,
+          "cloudRecognition": 0,
+          "cloudExplanation": 0
+        }
+      },
+      "firstDetectedChangeToReadyMs": 2512
+    },
+    "unchangedSuppression": {
+      "from": "2026-10-17T22:55:01.746Z",
+      "until": "2026-10-17T22:55:38.407Z",
+      "durationMs": 36661,
+      "localCallsBefore": 8,
+      "localCallsAtNextExplicitRescan": 8
+    },
+    "pause": {
+      "endpoint": {
+        "at": "2026-10-17T22:54:45.588Z",
+        "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+        "revision": 14,
+        "state": "Paused",
+        "running": false,
+        "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+        "boardReader": "local",
+        "explanationsEnabled": false,
+        "observationFrameId": 57,
+        "uncertainSquares": [],
+        "candidates": [],
+        "errorCode": null,
+        "calls": {
+          "local": 7,
+          "cloudRecognition": 0,
+          "cloudExplanation": 0
+        }
+      },
+      "websiteMoveWhilePaused": "Nf3",
+      "callsRetained": 7,
+      "fenRetained": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2"
+    },
+    "resume": {
+      "endpoint": {
+        "at": "2026-10-17T22:55:01.746Z",
+        "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+        "revision": 15,
+        "state": "Ready",
+        "running": true,
+        "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+        "boardReader": "local",
+        "explanationsEnabled": false,
+        "observationFrameId": 146,
+        "uncertainSquares": [],
+        "candidates": [
+          "b8c6",
+          "g8f6",
+          "d7d6"
+        ],
+        "errorCode": null,
+        "calls": {
+          "local": 8,
+          "cloudRecognition": 0,
+          "cloudExplanation": 0
+        }
+      },
+      "commandToReadyMs": 1641
+    },
+    "rescan": {
+      "endpoint": {
+        "at": "2026-10-17T22:55:40.318Z",
+        "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+        "revision": 16,
+        "state": "Ready",
+        "running": true,
+        "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+        "boardReader": "local",
+        "explanationsEnabled": false,
+        "observationFrameId": 223,
+        "uncertainSquares": [],
+        "candidates": [
+          "b8c6",
+          "g8f6",
+          "d7d6"
+        ],
+        "errorCode": null,
+        "calls": {
+          "local": 9,
+          "cloudRecognition": 0,
+          "cloudExplanation": 0
+        }
+      },
+      "commandToReadyMs": 1911,
+      "runningRemainsTrue": true
+    },
+    "resize": {
+      "from": {
+        "width": 1728,
+        "height": 1009
+      },
+      "to": {
+        "width": 1250,
+        "height": 850
+      },
+      "nativeSourceAfter": {
+        "width": 2500,
+        "height": 1700
+      },
+      "endpoint": {
+        "at": "2026-10-17T22:55:46.296Z",
+        "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+        "revision": 17,
+        "state": "Needs correction",
+        "running": false,
+        "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+        "boardReader": "local",
+        "explanationsEnabled": false,
+        "observationFrameId": 223,
+        "uncertainSquares": [],
+        "candidates": [],
+        "errorCode": null,
+        "calls": {
+          "local": 9,
+          "cloudRecognition": 0,
+          "cloudExplanation": 0
+        }
+      },
+      "adviceCleared": true,
+      "fenRetained": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+      "recovery": "Reselect source, fresh crop, preview/apply full known FEN",
+      "recoveredEndpoint": {
+        "at": "2026-10-17T22:56:33.451Z",
+        "sessionId": "acf14856-0f5f-4935-88a1-0118e21cf795",
+        "revision": 3,
+        "state": "Ready",
+        "running": true,
+        "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+        "boardReader": "local",
+        "explanationsEnabled": false,
+        "observationFrameId": 241,
+        "uncertainSquares": [],
+        "candidates": [
+          "b8c6",
+          "g8f6",
+          "d7d6"
+        ],
+        "errorCode": null,
+        "calls": {
+          "local": 11,
+          "cloudRecognition": 0,
+          "cloudExplanation": 0
+        }
+      }
+    },
+    "sourceClosure": {
+      "isolatedPublicTabClosed": true,
+      "firstEndpoint": {
+        "at": "2026-10-17T22:56:53.448Z",
+        "sessionId": "acf14856-0f5f-4935-88a1-0118e21cf795",
+        "revision": 4,
+        "state": "Needs correction",
+        "running": false,
+        "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+        "boardReader": "local",
+        "explanationsEnabled": false,
+        "observationFrameId": 241,
+        "uncertainSquares": [],
+        "candidates": [],
+        "errorCode": null,
+        "calls": {
+          "local": 11,
+          "cloudRecognition": 0,
+          "cloudExplanation": 0
+        }
+      },
+      "firstDiagnostic": "Resize/crop recovery was reported during closure; capture and advice stopped safely.",
+      "rescanClosedSourceEndpoint": {
+        "at": "2026-10-17T22:57:43.708Z",
+        "sessionId": "acf14856-0f5f-4935-88a1-0118e21cf795",
+        "revision": 6,
+        "state": "Paused",
+        "running": false,
+        "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+        "boardReader": "local",
+        "explanationsEnabled": false,
+        "observationFrameId": 241,
+        "uncertainSquares": [],
+        "candidates": [],
+        "errorCode": "capture",
+        "calls": {
+          "local": 11,
+          "cloudRecognition": 0,
+          "cloudExplanation": 0
+        }
+      },
+      "verifiedMessage": "The selected window stopped sharing. Reopen the browser window if needed and select it again."
+    }
+  },
+  "timingDefinitions": {
+    "automatic": "First changed-frame Reading-board event after preceding Ready through first Ready with the next exact FEN. Includes interaction overlays and applicable engine search; excludes move time before detection and GUI paint.",
+    "manual": "Capture command through Ready/correction. Includes capture and two-sample stability; Ready includes engine search. Initial chess-state confirmation and GUI paint excluded.",
+    "savedModelMetadata": "recognition model/effort in raw timing entries are saved settings only; boardReader local and call counters establish no API requests."
+  },
+  "limitations": [
+    "Complete native fixture corpus on both sites/orientations is not rerun for this backend.",
+    "Actual OS Screen Recording denial/revocation and remaining workspace/geometry behavior are unverified.",
+    "Injected global shortcut did not establish physical shortcut delivery; native menu commands verified Pause/Start/Rescan.",
+    "Native coaching access intermittently timed out; focused Settings/menu and raising the observed window recovered control.",
+    "Window closure initially reported crop resize; a rescan verified the explicit source-ended recovery.",
+    "Production is restored Paused with no selected board; preview preference remains on."
+  ],
+  "evidence": [
+    "images/native-local-tracking-ready.jpg",
+    "images/native-local-public-board.jpg",
+    "images/native-local-source-closed.jpg",
+    "native-local-tracking-first-run.json"
+  ],
+  "phases": [
+    {
+      "id": "nuMYVn",
+      "scope": "Electron window capture: cursor on empty g6, two conservative corrections.",
+      "events": [
+        {
+          "at": "2026-10-17T22:19:58.264Z",
+          "sessionId": "d3b69621-f9b6-4041-bdea-9f0e3dc18f6a",
+          "revision": 0,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:20:02.082Z",
+          "sessionId": "d3b69621-f9b6-4041-bdea-9f0e3dc18f6a",
+          "revision": 1,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:20:07.793Z",
+          "sessionId": "06c2b381-46ed-4ff8-9741-3d5459ff419d",
+          "revision": 0,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:20:40.044Z",
+          "sessionId": "2f2a0593-b455-4145-a264-7fba527dce94",
+          "revision": 0,
+          "state": "Reading board",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:20:41.414Z",
+          "sessionId": "2f2a0593-b455-4145-a264-7fba527dce94",
+          "revision": 1,
+          "state": "Needs correction",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 2,
+          "uncertainSquares": [
+            "g6"
+          ],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 1,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:21:05.599Z",
+          "sessionId": "2f2a0593-b455-4145-a264-7fba527dce94",
+          "revision": 2,
+          "state": "Reading board",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 2,
+          "uncertainSquares": [
+            "g6"
+          ],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 1,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:21:06.842Z",
+          "sessionId": "2f2a0593-b455-4145-a264-7fba527dce94",
+          "revision": 3,
+          "state": "Needs correction",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 4,
+          "uncertainSquares": [
+            "g6"
+          ],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 2,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:22:22.078Z",
+          "sessionId": "2f2a0593-b455-4145-a264-7fba527dce94",
+          "revision": 4,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 4,
+          "uncertainSquares": [
+            "g6"
+          ],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 2,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        }
+      ],
+      "timings": [
+        {
+          "at": "2026-10-17T22:20:41.414Z",
+          "endpoint": "Needs correction",
+          "action": "sample",
+          "captureRevision": 0,
+          "observationFrameId": 2,
+          "running": false,
+          "calls": {
+            "local": 1,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 1367.2312079999974,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": null,
+          "engineMs": null,
+          "sourceWidth": 3456,
+          "sourceHeight": 2018,
+          "crop": {
+            "x": 0.19075829383886256,
+            "y": 0.24057957229593696,
+            "width": 0.384478672985782,
+            "height": 0.6584530692957693
+          },
+          "errorCode": null
+        },
+        {
+          "at": "2026-10-17T22:21:06.842Z",
+          "endpoint": "Needs correction",
+          "action": "sample",
+          "captureRevision": 2,
+          "observationFrameId": 4,
+          "running": false,
+          "calls": {
+            "local": 2,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 1240.3478340000001,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": null,
+          "engineMs": null,
+          "sourceWidth": 3456,
+          "sourceHeight": 2018,
+          "crop": {
+            "x": 0.19075829383886256,
+            "y": 0.24057957229593696,
+            "width": 0.384478672985782,
+            "height": 0.6584530692957693
+          },
+          "errorCode": null
+        }
+      ]
+    },
+    {
+      "id": "Rqx1Um",
+      "scope": "Requested cursor exclusion; Electron still conservatively rejected an empty square.",
+      "events": [
+        {
+          "at": "2026-10-17T22:22:27.771Z",
+          "sessionId": "90b64d4a-5519-4e47-a9f0-0280a2417eab",
+          "revision": 0,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:22:35.048Z",
+          "sessionId": "90b64d4a-5519-4e47-a9f0-0280a2417eab",
+          "revision": 1,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:22:39.482Z",
+          "sessionId": "f86b1516-93ec-47f4-925d-7d666aba5249",
+          "revision": 0,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:24:11.718Z",
+          "sessionId": "e46a3614-dcad-4936-8bae-f54d1dc1b565",
+          "revision": 0,
+          "state": "Reading board",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:24:13.089Z",
+          "sessionId": "e46a3614-dcad-4936-8bae-f54d1dc1b565",
+          "revision": 1,
+          "state": "Needs correction",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 2,
+          "uncertainSquares": [
+            "g5"
+          ],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 1,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:25:56.385Z",
+          "sessionId": "e46a3614-dcad-4936-8bae-f54d1dc1b565",
+          "revision": 2,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 2,
+          "uncertainSquares": [
+            "g5"
+          ],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 1,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        }
+      ],
+      "timings": [
+        {
+          "at": "2026-10-17T22:24:13.089Z",
+          "endpoint": "Needs correction",
+          "action": "sample",
+          "captureRevision": 0,
+          "observationFrameId": 2,
+          "running": false,
+          "calls": {
+            "local": 1,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 1367.840875000009,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": null,
+          "engineMs": null,
+          "sourceWidth": 3456,
+          "sourceHeight": 2018,
+          "crop": {
+            "x": 0.19075829383886256,
+            "y": 0.24057957229593696,
+            "width": 0.384478672985782,
+            "height": 0.6584530692957693
+          },
+          "errorCode": null
+        }
+      ]
+    },
+    {
+      "id": "Fc3Vpq",
+      "scope": "Instrumented Electron reported cursor always, no cursor capability/support; board-only pixels confirmed the I-beam.",
+      "events": [
+        {
+          "at": "2026-10-17T22:26:02.397Z",
+          "sessionId": "a5b9b4cd-ce2f-4257-8d6b-04dbf9d38845",
+          "revision": 0,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:26:07.914Z",
+          "sessionId": "a5b9b4cd-ce2f-4257-8d6b-04dbf9d38845",
+          "revision": 1,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:26:15.003Z",
+          "sessionId": "7f428dd0-fe8d-4a53-b328-d8492486db5e",
+          "revision": 0,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:26:15.195Z",
+          "captureTrack": {
+            "cursor": "always",
+            "cursorCapabilities": [],
+            "cursorSupported": false,
+            "width": 3456,
+            "height": 2018,
+            "frameRate": 2
+          }
+        },
+        {
+          "at": "2026-10-17T22:26:32.478Z",
+          "sessionId": "d25fd894-aa3a-42f3-a02a-8293a51e7bb5",
+          "revision": 0,
+          "state": "Reading board",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:26:32.808Z",
+          "captureTrack": {
+            "cursor": "always",
+            "cursorCapabilities": [],
+            "cursorSupported": false,
+            "width": 3456,
+            "height": 2234,
+            "frameRate": 2
+          }
+        },
+        {
+          "at": "2026-10-17T22:26:33.837Z",
+          "sessionId": "d25fd894-aa3a-42f3-a02a-8293a51e7bb5",
+          "revision": 1,
+          "state": "Needs correction",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 2,
+          "uncertainSquares": [
+            "g6"
+          ],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 1,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:31:13.927Z",
+          "sessionId": "d25fd894-aa3a-42f3-a02a-8293a51e7bb5",
+          "revision": 2,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 2,
+          "uncertainSquares": [
+            "g6"
+          ],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 1,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        }
+      ],
+      "timings": [
+        {
+          "at": "2026-10-17T22:26:33.837Z",
+          "endpoint": "Needs correction",
+          "action": "sample",
+          "captureRevision": 0,
+          "observationFrameId": 2,
+          "running": false,
+          "calls": {
+            "local": 1,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 1357.0734169999996,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": null,
+          "engineMs": null,
+          "sourceWidth": 3456,
+          "sourceHeight": 2018,
+          "crop": {
+            "x": 0.19075829383886256,
+            "y": 0.24057957229593696,
+            "width": 0.384478672985782,
+            "height": 0.6584530692957693
+          },
+          "errorCode": null
+        }
+      ]
+    },
+    {
+      "id": "UX8wxJ",
+      "scope": "Discarded separate Swift helper did not inherit the app permission; no new permission granted.",
+      "events": [
+        {
+          "at": "2026-10-17T22:31:20.944Z",
+          "sessionId": "8f0d1f0f-8387-47c0-ada6-d502262a95a5",
+          "revision": 0,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:31:25.106Z",
+          "sessionId": "8f0d1f0f-8387-47c0-ada6-d502262a95a5",
+          "revision": 1,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:31:29.779Z",
+          "sessionId": "36a18f9f-8767-47cb-86f1-c3e117ac7be0",
+          "revision": 0,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:31:29.982Z",
+          "captureTrack": {
+            "cursor": "always",
+            "cursorCapabilities": [],
+            "cursorSupported": false,
+            "width": 3456,
+            "height": 2018,
+            "frameRate": 2
+          }
+        },
+        {
+          "at": "2026-10-17T22:31:47.267Z",
+          "sessionId": "c64a58ed-0574-4f65-96de-79093fd01440",
+          "revision": 0,
+          "state": "Reading board",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:31:47.421Z",
+          "sessionId": "c64a58ed-0574-4f65-96de-79093fd01440",
+          "revision": 1,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": "capture",
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:36:01.436Z",
+          "sessionId": "c64a58ed-0574-4f65-96de-79093fd01440",
+          "revision": 2,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        }
+      ],
+      "timings": [
+        {
+          "at": "2026-10-17T22:31:47.421Z",
+          "endpoint": "Paused",
+          "action": "sample",
+          "captureRevision": 0,
+          "observationFrameId": null,
+          "running": false,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 151.8143749999981,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": null,
+          "engineMs": null,
+          "sourceWidth": 3456,
+          "sourceHeight": 2018,
+          "crop": {
+            "x": 0.19075829383886256,
+            "y": 0.24057957229593696,
+            "width": 0.384478672985782,
+            "height": 0.6584530692957693
+          },
+          "errorCode": "capture"
+        }
+      ]
+    },
+    {
+      "id": "j74Wbq",
+      "scope": "In-process native capture succeeded; selection overlays still stopped the pre-retry Session conservatively.",
+      "events": [
+        {
+          "at": "2026-10-17T22:36:03.389Z",
+          "sessionId": "06194e6f-2674-4e2f-9918-031d5fe137a3",
+          "revision": 0,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:36:07.820Z",
+          "sessionId": "06194e6f-2674-4e2f-9918-031d5fe137a3",
+          "revision": 1,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:36:12.721Z",
+          "sessionId": "e75973c1-2db8-4f3f-a60c-e30dd4cf16fe",
+          "revision": 0,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:36:12.920Z",
+          "captureTrack": {
+            "cursor": "always",
+            "cursorCapabilities": [],
+            "cursorSupported": false,
+            "width": 3456,
+            "height": 2018,
+            "frameRate": 2
+          }
+        },
+        {
+          "at": "2026-10-17T22:36:30.287Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 0,
+          "state": "Reading board",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:36:30.867Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 1,
+          "state": "Needs correction",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 2,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 1,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:36:53.700Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 2,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 2,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 1,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:37:06.333Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 3,
+          "state": "Analyzing",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 1,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:37:06.875Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 3,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 1,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:37:06.924Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 3,
+          "state": "Analyzing",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 4,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 2,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:37:07.930Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 3,
+          "state": "Ready",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 4,
+          "uncertainSquares": [],
+          "candidates": [
+            "e2e4",
+            "d2d4",
+            "g1f3"
+          ],
+          "errorCode": null,
+          "calls": {
+            "local": 2,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:37:53.935Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 4,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 4,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 2,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:37:54.434Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 5,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 4,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 2,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:37:54.934Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 6,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 4,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 2,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:37:55.434Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 7,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 4,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 2,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:37:55.972Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 8,
+          "state": "Needs correction",
+          "running": false,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 102,
+          "uncertainSquares": [
+            "e4",
+            "e3",
+            "e2"
+          ],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 3,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:40:06.555Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 9,
+          "state": "Reading board",
+          "running": false,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 102,
+          "uncertainSquares": [
+            "e4",
+            "e3",
+            "e2"
+          ],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 3,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:40:07.176Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 9,
+          "state": "Analyzing",
+          "running": false,
+          "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 104,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 4,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:40:08.181Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 9,
+          "state": "Ready",
+          "running": false,
+          "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 104,
+          "uncertainSquares": [],
+          "candidates": [
+            "e7e5",
+            "c7c5",
+            "e7e6"
+          ],
+          "errorCode": null,
+          "calls": {
+            "local": 4,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:40:56.089Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 10,
+          "state": "Paused",
+          "running": false,
+          "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 104,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 4,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:40:57.355Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 11,
+          "state": "Analyzing",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 4,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:40:57.898Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 11,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 4,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:40:57.940Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 11,
+          "state": "Analyzing",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 106,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 5,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:40:58.948Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 11,
+          "state": "Ready",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 106,
+          "uncertainSquares": [],
+          "candidates": [
+            "e2e4",
+            "d2d4",
+            "g1f3"
+          ],
+          "errorCode": null,
+          "calls": {
+            "local": 5,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:41:12.921Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 12,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 106,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 5,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:41:13.421Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 13,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 106,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 5,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:41:13.912Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 14,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 106,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 5,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:41:14.444Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 15,
+          "state": "Needs correction",
+          "running": false,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 139,
+          "uncertainSquares": [
+            "e4"
+          ],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 6,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:44:54.594Z",
+          "sessionId": "6b23609a-6872-4fa7-aa45-a1c5fd4b4a98",
+          "revision": 16,
+          "state": "Paused",
+          "running": false,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 139,
+          "uncertainSquares": [
+            "e4"
+          ],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 6,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        }
+      ],
+      "timings": [
+        {
+          "at": "2026-10-17T22:36:30.867Z",
+          "endpoint": "Needs correction",
+          "action": "sample",
+          "captureRevision": 0,
+          "observationFrameId": 2,
+          "running": false,
+          "calls": {
+            "local": 1,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 575.552042000003,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": null,
+          "engineMs": null,
+          "sourceWidth": 3456,
+          "sourceHeight": 2018,
+          "crop": {
+            "x": 0.19075829383886256,
+            "y": 0.24057957229593696,
+            "width": 0.384478672985782,
+            "height": 0.6584530692957693
+          },
+          "errorCode": null
+        },
+        {
+          "at": "2026-10-17T22:37:07.930Z",
+          "endpoint": "Ready",
+          "action": "start",
+          "captureRevision": 3,
+          "observationFrameId": 4,
+          "running": true,
+          "calls": {
+            "local": 2,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 1597.2981250000012,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "engineMs": 1001.8874169999981,
+          "sourceWidth": 3456,
+          "sourceHeight": 2018,
+          "crop": {
+            "x": 0.19075829383886256,
+            "y": 0.24057957229593696,
+            "width": 0.384478672985782,
+            "height": 0.6584530692957693
+          },
+          "errorCode": null
+        },
+        {
+          "at": "2026-10-17T22:37:55.973Z",
+          "endpoint": "Needs correction",
+          "action": "start",
+          "captureRevision": 7,
+          "observationFrameId": 102,
+          "running": false,
+          "calls": {
+            "local": 3,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 537.8245829999942,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "engineMs": null,
+          "sourceWidth": 3456,
+          "sourceHeight": 2018,
+          "crop": {
+            "x": 0.19075829383886256,
+            "y": 0.24057957229593696,
+            "width": 0.384478672985782,
+            "height": 0.6584530692957693
+          },
+          "errorCode": null
+        },
+        {
+          "at": "2026-10-17T22:40:08.181Z",
+          "endpoint": "Ready",
+          "action": "sample",
+          "captureRevision": 9,
+          "observationFrameId": 104,
+          "running": false,
+          "calls": {
+            "local": 4,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 1624.0734999999986,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+          "engineMs": 1003.327083000011,
+          "sourceWidth": 3456,
+          "sourceHeight": 2018,
+          "crop": {
+            "x": 0.19075829383886256,
+            "y": 0.24057957229593696,
+            "width": 0.384478672985782,
+            "height": 0.6584530692957693
+          },
+          "errorCode": null
+        },
+        {
+          "at": "2026-10-17T22:40:58.948Z",
+          "endpoint": "Ready",
+          "action": "start",
+          "captureRevision": 11,
+          "observationFrameId": 106,
+          "running": true,
+          "calls": {
+            "local": 5,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 1593.1265419999836,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "engineMs": 1002.3151250000228,
+          "sourceWidth": 3456,
+          "sourceHeight": 2018,
+          "crop": {
+            "x": 0.19075829383886256,
+            "y": 0.24057957229593696,
+            "width": 0.384478672985782,
+            "height": 0.6584530692957693
+          },
+          "errorCode": null
+        },
+        {
+          "at": "2026-10-17T22:41:14.444Z",
+          "endpoint": "Needs correction",
+          "action": "start",
+          "captureRevision": 14,
+          "observationFrameId": 139,
+          "running": false,
+          "calls": {
+            "local": 6,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 530.4252080000006,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "engineMs": null,
+          "sourceWidth": 3456,
+          "sourceHeight": 2018,
+          "crop": {
+            "x": 0.19075829383886256,
+            "y": 0.24057957229593696,
+            "width": 0.384478672985782,
+            "height": 0.6584530692957693
+          },
+          "errorCode": null
+        }
+      ]
+    },
+    {
+      "id": "4ez2B1",
+      "scope": "Final production capture and bounded-retry implementation: live moves and lifecycle checks.",
+      "events": [
+        {
+          "at": "2026-10-17T22:44:56.815Z",
+          "sessionId": "d13ff917-1e6f-4e49-b21e-d2bedaa24c17",
+          "revision": 0,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:45:01.649Z",
+          "sessionId": "d13ff917-1e6f-4e49-b21e-d2bedaa24c17",
+          "revision": 1,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:47:44.156Z",
+          "sessionId": "d13ff917-1e6f-4e49-b21e-d2bedaa24c17",
+          "revision": 2,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:50:51.890Z",
+          "sessionId": "6bcc443e-beac-4ef5-9a32-b8b9e82eb88d",
+          "revision": 0,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:50:55.402Z",
+          "sessionId": "6bcc443e-beac-4ef5-9a32-b8b9e82eb88d",
+          "revision": 1,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:51:43.850Z",
+          "sessionId": "896926f8-7671-4f3f-a24c-251e1f9dd6a1",
+          "revision": 0,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:51:44.075Z",
+          "captureTrack": {
+            "cursor": "always",
+            "cursorCapabilities": [],
+            "cursorSupported": false,
+            "width": 3456,
+            "height": 2018,
+            "frameRate": 2
+          }
+        },
+        {
+          "at": "2026-10-17T22:52:22.865Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 0,
+          "state": "Reading board",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 0,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:52:23.472Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 1,
+          "state": "Needs correction",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 2,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 1,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:53:30.347Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 2,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 2,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 1,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:53:34.746Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 3,
+          "state": "Analyzing",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 1,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:53:35.292Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 3,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 1,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:53:35.338Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 3,
+          "state": "Analyzing",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 4,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 2,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:53:36.347Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 3,
+          "state": "Ready",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 4,
+          "uncertainSquares": [],
+          "candidates": [
+            "e2e4",
+            "d2d4",
+            "g1f3"
+          ],
+          "errorCode": null,
+          "calls": {
+            "local": 2,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:53:44.842Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 4,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 4,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 2,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:53:45.335Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 5,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 4,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 2,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:53:45.842Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 6,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 4,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 2,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:53:46.318Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 7,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 4,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 2,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:53:46.873Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 8,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 27,
+          "uncertainSquares": [
+            "e4"
+          ],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 3,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:53:47.876Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 9,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 29,
+          "uncertainSquares": [
+            "e4"
+          ],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 4,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:53:48.867Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 9,
+          "state": "Analyzing",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 31,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 5,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:53:49.870Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 9,
+          "state": "Ready",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 31,
+          "uncertainSquares": [],
+          "candidates": [
+            "e7e5",
+            "c7c5",
+            "e7e6"
+          ],
+          "errorCode": null,
+          "calls": {
+            "local": 5,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:53:57.853Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 10,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 31,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 5,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:53:58.337Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 11,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 31,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 5,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:53:58.851Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 12,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 31,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 5,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:53:59.361Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 12,
+          "state": "Analyzing",
+          "running": true,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 52,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 6,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:54:00.365Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 12,
+          "state": "Ready",
+          "running": true,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 52,
+          "uncertainSquares": [],
+          "candidates": [
+            "g1f3",
+            "b1c3",
+            "f1c4"
+          ],
+          "errorCode": null,
+          "calls": {
+            "local": 6,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:54:01.359Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 13,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 52,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 6,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:54:01.873Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 13,
+          "state": "Analyzing",
+          "running": true,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 57,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 7,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:54:02.876Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 13,
+          "state": "Ready",
+          "running": true,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 57,
+          "uncertainSquares": [],
+          "candidates": [
+            "g1f3",
+            "f1c4",
+            "b1c3"
+          ],
+          "errorCode": null,
+          "calls": {
+            "local": 7,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:54:45.588Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 14,
+          "state": "Paused",
+          "running": false,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 57,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 7,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:55:00.105Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 15,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 57,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 7,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:55:00.742Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 15,
+          "state": "Analyzing",
+          "running": true,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 146,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 8,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:55:01.746Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 15,
+          "state": "Ready",
+          "running": true,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 146,
+          "uncertainSquares": [],
+          "candidates": [
+            "b8c6",
+            "g8f6",
+            "d7d6"
+          ],
+          "errorCode": null,
+          "calls": {
+            "local": 8,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:55:38.407Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 16,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 146,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 8,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:55:39.313Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 16,
+          "state": "Analyzing",
+          "running": true,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 223,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 9,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:55:40.318Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 16,
+          "state": "Ready",
+          "running": true,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 223,
+          "uncertainSquares": [],
+          "candidates": [
+            "b8c6",
+            "g8f6",
+            "d7d6"
+          ],
+          "errorCode": null,
+          "calls": {
+            "local": 9,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:55:46.296Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 17,
+          "state": "Needs correction",
+          "running": false,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 223,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 9,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:55:53.909Z",
+          "sessionId": "c7e15aac-f1dc-4a1b-8e80-5a3019b53f73",
+          "revision": 18,
+          "state": "Paused",
+          "running": false,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 223,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 9,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:55:59.793Z",
+          "sessionId": "7a07b062-123c-4e72-8ee0-738c60775ab0",
+          "revision": 0,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 9,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:56:00.010Z",
+          "captureTrack": {
+            "cursor": "always",
+            "cursorCapabilities": [],
+            "cursorSupported": false,
+            "width": 3456,
+            "height": 2234,
+            "frameRate": 2
+          }
+        },
+        {
+          "at": "2026-10-17T22:56:19.367Z",
+          "sessionId": "acf14856-0f5f-4935-88a1-0118e21cf795",
+          "revision": 0,
+          "state": "Reading board",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 9,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:56:19.965Z",
+          "sessionId": "acf14856-0f5f-4935-88a1-0118e21cf795",
+          "revision": 1,
+          "state": "Needs correction",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 239,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 10,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:56:24.801Z",
+          "sessionId": "acf14856-0f5f-4935-88a1-0118e21cf795",
+          "revision": 2,
+          "state": "Paused",
+          "running": false,
+          "fen": null,
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 239,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 10,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:56:31.859Z",
+          "sessionId": "acf14856-0f5f-4935-88a1-0118e21cf795",
+          "revision": 3,
+          "state": "Analyzing",
+          "running": true,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 10,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:56:32.397Z",
+          "sessionId": "acf14856-0f5f-4935-88a1-0118e21cf795",
+          "revision": 3,
+          "state": "Reading board",
+          "running": true,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": null,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 10,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:56:32.443Z",
+          "sessionId": "acf14856-0f5f-4935-88a1-0118e21cf795",
+          "revision": 3,
+          "state": "Analyzing",
+          "running": true,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 241,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 11,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:56:33.451Z",
+          "sessionId": "acf14856-0f5f-4935-88a1-0118e21cf795",
+          "revision": 3,
+          "state": "Ready",
+          "running": true,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 241,
+          "uncertainSquares": [],
+          "candidates": [
+            "b8c6",
+            "g8f6",
+            "d7d6"
+          ],
+          "errorCode": null,
+          "calls": {
+            "local": 11,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:56:53.448Z",
+          "sessionId": "acf14856-0f5f-4935-88a1-0118e21cf795",
+          "revision": 4,
+          "state": "Needs correction",
+          "running": false,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 241,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 11,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:57:43.686Z",
+          "sessionId": "acf14856-0f5f-4935-88a1-0118e21cf795",
+          "revision": 5,
+          "state": "Reading board",
+          "running": false,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 241,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 11,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:57:43.708Z",
+          "sessionId": "acf14856-0f5f-4935-88a1-0118e21cf795",
+          "revision": 6,
+          "state": "Paused",
+          "running": false,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 241,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": "capture",
+          "calls": {
+            "local": 11,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        },
+        {
+          "at": "2026-10-17T22:58:01.552Z",
+          "sessionId": "acf14856-0f5f-4935-88a1-0118e21cf795",
+          "revision": 7,
+          "state": "Paused",
+          "running": false,
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "boardReader": "local",
+          "explanationsEnabled": false,
+          "observationFrameId": 241,
+          "uncertainSquares": [],
+          "candidates": [],
+          "errorCode": null,
+          "calls": {
+            "local": 11,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          }
+        }
+      ],
+      "timings": [
+        {
+          "at": "2026-10-17T22:52:23.472Z",
+          "endpoint": "Needs correction",
+          "action": "sample",
+          "captureRevision": 0,
+          "observationFrameId": 2,
+          "running": false,
+          "calls": {
+            "local": 1,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 604.9794170000096,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": null,
+          "engineMs": null,
+          "sourceWidth": 3456,
+          "sourceHeight": 2018,
+          "crop": {
+            "x": 0.19075829383886256,
+            "y": 0.24057957229593696,
+            "width": 0.384478672985782,
+            "height": 0.6584530692957693
+          },
+          "errorCode": null
+        },
+        {
+          "at": "2026-10-17T22:53:36.347Z",
+          "endpoint": "Ready",
+          "action": "start",
+          "captureRevision": 3,
+          "observationFrameId": 4,
+          "running": true,
+          "calls": {
+            "local": 2,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 1600.6536250000063,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "engineMs": 1003.9201250000042,
+          "sourceWidth": 3456,
+          "sourceHeight": 2018,
+          "crop": {
+            "x": 0.19075829383886256,
+            "y": 0.24057957229593696,
+            "width": 0.384478672985782,
+            "height": 0.6584530692957693
+          },
+          "errorCode": null
+        },
+        {
+          "at": "2026-10-17T22:53:49.871Z",
+          "endpoint": "Ready",
+          "action": "start",
+          "captureRevision": 9,
+          "observationFrameId": 31,
+          "running": true,
+          "calls": {
+            "local": 5,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 1993.6394999999902,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+          "engineMs": 1002.4424170000129,
+          "sourceWidth": 3456,
+          "sourceHeight": 2018,
+          "crop": {
+            "x": 0.19075829383886256,
+            "y": 0.24057957229593696,
+            "width": 0.384478672985782,
+            "height": 0.6584530692957693
+          },
+          "errorCode": null
+        },
+        {
+          "at": "2026-10-17T22:54:00.366Z",
+          "endpoint": "Ready",
+          "action": "start",
+          "captureRevision": 12,
+          "observationFrameId": 52,
+          "running": true,
+          "calls": {
+            "local": 6,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 1513.7676249999786,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "engineMs": 1002.7922079999989,
+          "sourceWidth": 3456,
+          "sourceHeight": 2018,
+          "crop": {
+            "x": 0.19075829383886256,
+            "y": 0.24057957229593696,
+            "width": 0.384478672985782,
+            "height": 0.6584530692957693
+          },
+          "errorCode": null
+        },
+        {
+          "at": "2026-10-17T22:54:02.877Z",
+          "endpoint": "Ready",
+          "action": "start",
+          "captureRevision": 13,
+          "observationFrameId": 57,
+          "running": true,
+          "calls": {
+            "local": 7,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 1516.3457920000073,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "engineMs": 1002.5720830000064,
+          "sourceWidth": 3456,
+          "sourceHeight": 2018,
+          "crop": {
+            "x": 0.19075829383886256,
+            "y": 0.24057957229593696,
+            "width": 0.384478672985782,
+            "height": 0.6584530692957693
+          },
+          "errorCode": null
+        },
+        {
+          "at": "2026-10-17T22:55:01.746Z",
+          "endpoint": "Ready",
+          "action": "start",
+          "captureRevision": 15,
+          "observationFrameId": 146,
+          "running": true,
+          "calls": {
+            "local": 8,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 1639.2363750000077,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "engineMs": 1002.7026659999974,
+          "sourceWidth": 3456,
+          "sourceHeight": 2018,
+          "crop": {
+            "x": 0.19075829383886256,
+            "y": 0.24057957229593696,
+            "width": 0.384478672985782,
+            "height": 0.6584530692957693
+          },
+          "errorCode": null
+        },
+        {
+          "at": "2026-10-17T22:55:40.318Z",
+          "endpoint": "Ready",
+          "action": "start",
+          "captureRevision": 16,
+          "observationFrameId": 223,
+          "running": true,
+          "calls": {
+            "local": 9,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 1908.8791670000064,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "engineMs": 1003.2736249999725,
+          "sourceWidth": 3456,
+          "sourceHeight": 2018,
+          "crop": {
+            "x": 0.19075829383886256,
+            "y": 0.24057957229593696,
+            "width": 0.384478672985782,
+            "height": 0.6584530692957693
+          },
+          "errorCode": null
+        },
+        {
+          "at": "2026-10-17T22:56:19.965Z",
+          "endpoint": "Needs correction",
+          "action": "sample",
+          "captureRevision": 0,
+          "observationFrameId": 239,
+          "running": false,
+          "calls": {
+            "local": 10,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 597.0895840000012,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": null,
+          "engineMs": null,
+          "sourceWidth": 2500,
+          "sourceHeight": 1700,
+          "crop": {
+            "x": 0.1368483412322275,
+            "y": 0.2858659696982072,
+            "width": 0.403436018957346,
+            "height": 0.5932882631725677
+          },
+          "errorCode": null
+        },
+        {
+          "at": "2026-10-17T22:56:33.452Z",
+          "endpoint": "Ready",
+          "action": "start",
+          "captureRevision": 3,
+          "observationFrameId": 241,
+          "running": true,
+          "calls": {
+            "local": 11,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 1592.6721249999828,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "engineMs": 1003.9889590000384,
+          "sourceWidth": 2500,
+          "sourceHeight": 1700,
+          "crop": {
+            "x": 0.1368483412322275,
+            "y": 0.2858659696982072,
+            "width": 0.403436018957346,
+            "height": 0.5932882631725677
+          },
+          "errorCode": null
+        },
+        {
+          "at": "2026-10-17T22:57:43.709Z",
+          "endpoint": "Paused",
+          "action": "sample",
+          "captureRevision": 5,
+          "observationFrameId": 241,
+          "running": false,
+          "calls": {
+            "local": 11,
+            "cloudRecognition": 0,
+            "cloudExplanation": 0
+          },
+          "elapsedMs": 20.731916999968234,
+          "boardReader": "local",
+          "recognition": {
+            "model": "gpt-6.1-sol",
+            "effort": "low"
+          },
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "engineMs": null,
+          "sourceWidth": 2500,
+          "sourceHeight": 1700,
+          "crop": {
+            "x": 0.1368483412322275,
+            "y": 0.2858659696982072,
+            "width": 0.403436018957346,
+            "height": 0.5932882631725677
+          },
+          "errorCode": "capture"
+        }
+      ]
+    }
+  ],
+  "implementationCommit": "9f550ff"
+}

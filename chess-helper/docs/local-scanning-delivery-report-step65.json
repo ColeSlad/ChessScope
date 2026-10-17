@@ -1,0 +1,36 @@
+{
+  "verifiedAt": "2026-10-14T17:55:18.929Z",
+  "step": 64,
+  "fixtureReport": "local-recognition-report.json",
+  "implementationSha256": "4a62dcd578816bc76a1b85d8f129064a467b92aa21d88f94d60dc5e358674935",
+  "recordedFixturesPassed": true,
+  "trackingQualified": false,
+  "localPreviewAvailable": true,
+  "productionContentProtection": true,
+  "packagedBytesMatchBuild": true,
+  "assets": {
+    "dist/main/main.cjs": "a6e40b0c38904a894f608beb6f9ca113ca63b78d2fd5c76ee5c9d409e1b5e02c",
+    "dist/preload/preload.cjs": "9a131142369a90e879b30bf95dd5f13401cae76ed6931499ba5a25bea741f830",
+    "dist/renderer/index.html": "0db6c8bf5c8dd8325a4b280c776eb0f9462d1b702a2e4b38ee7e1931d60d3558",
+    "dist/renderer/assets/index-B7rEtv0l.css": "bb2b7f309e2405af28f490259d0bec9ab34d40c6900a1f44ce73a2165a821193",
+    "dist/renderer/assets/index-CdiPc-fu.js": "fbd38a8204e5ab922457836a67d028775e3ddefba61854e0597a4343c2de1535"
+  },
+  "nativeVerification": {
+    "productionSettingsObserved": true,
+    "boardReader": "local",
+    "explanationsEnabled": false,
+    "autoTracking": true,
+    "productionQuitObserved": true,
+    "temporaryQualificationLaunchObserved": true,
+    "picker": "No browser windows available",
+    "relaunchIntoNewProductionObserved": true,
+    "liveCaptureMeasured": false,
+    "temporaryQualificationQuitObserved": true,
+    "temporaryQualificationAbsentInScopedProcessCheck": true,
+    "productionPausedOnLaunch": true,
+    "productionSettingsLeftOpen": true,
+    "automaticCaptureActive": false
+  },
+  "settingsMigration": "Existing encrypted key retained without reading its value; actual native Settings show On This Mac, explanations off and tracking opted in. No preference changes.",
+  "restoredAt": "2026-10-14T18:10:47.909242Z"
+}
