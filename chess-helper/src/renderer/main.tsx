@@ -159,13 +159,15 @@ function Coach({ state }: { state: Snapshot }) {
           disabled={busy}
           onClick={() =>
             void run(() =>
-              sessionIsActive(state)
+              state.status.error?.code === "capture"
+                ? api!.openWindow("selection")
+                : sessionIsActive(state)
                 ? api!.pause(tokenOf(state))
                 : api!.start(tokenOf(state)),
             )
           }
         >
-          {sessionIsActive(state) ? "Pause" : automaticTrackingEnabled(state) ? "Start" : "Analyze"}
+          {state.status.error?.code === "capture" ? "Select Board…" : sessionIsActive(state) ? "Pause" : automaticTrackingEnabled(state) ? "Start" : "Analyze"}
         </button>
         <button
           disabled={busy}

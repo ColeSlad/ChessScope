@@ -1,0 +1,68 @@
+{
+  "lastSuccessfulRestoration": {
+    "verifiedAt": "2026-10-17T23:00:08.683Z",
+    "step": 67,
+    "productionApplication": "release/mac-arm64/ChessHelper.app",
+    "qualificationAppQuitThroughNativeSettingsButton": true,
+    "qualificationAppAbsentInScopedProcessCheck": true,
+    "productionLaunchVerifiedByNativeRendererURL": true,
+    "productionPausedOnLaunch": true,
+    "productionSettingsVerified": {
+      "boardReader": "local",
+      "explanationsEnabled": false,
+      "automaticTracking": true,
+      "automaticTrackingControlDisabled": false,
+      "shortcuts": {
+        "showHide": "Command+Shift+B",
+        "startPause": "Command+Shift+P",
+        "rescan": "Command+Shift+R"
+      },
+      "keyStatus": "Saved securely; no key value read or copied"
+    },
+    "packagedFilesMatchBuild": true,
+    "packagedContentProtection": true,
+    "sourceReleaseGate": false,
+    "trackingPreviewOptIn": true,
+    "packagedSha256": {
+      "dist/main/main.cjs": "67a6fe98f472ec0aed3e33ee77d1a399c4c91d33f4f7736ba5c92548fc5bb093",
+      "dist/preload/preload.cjs": "5dcf09a9dfb7782c3bf34d1e97c214f354c99921a3e1a6353414c6d9b09a5d28",
+      "dist/renderer/index.html": "493ddd840712c10f0be11f785659fa2a742cd628a541a9fa16e402cc701c9b63",
+      "dist/renderer/assets/index-B7rEtv0l.css": "bb2b7f309e2405af28f490259d0bec9ab34d40c6900a1f44ce73a2165a821193",
+      "dist/renderer/assets/index-CVLXwlqQ.js": "421a8ed441c4aba951f1c4e0099d993efb2ca8cc1e82b6c9cbb3fd22372ef8d1"
+    },
+    "native": {
+      "minimumMacOS": "14.0",
+      "nodeApi": 8,
+      "sourceSha256": "e17fdba2ed1c331e5f92a4bebc2479282bceab0fef3c94c84a9bee98c5f03197",
+      "binarySha256": "cdd1ed2c6746b9dc0686ebb87898c3d5fe3687268ae4eedbd1fb0badfe885a24"
+    },
+    "productionSettingsLeftOpen": true,
+    "nativeControlRecovered": true,
+    "trackingPreferenceSurvivesRelaunch": true,
+    "limitations": [
+      "Complete native fixture corpus on both sites/orientations is not rerun for this backend.",
+      "Actual OS Screen Recording denial/revocation and remaining workspace/geometry behavior are unverified.",
+      "Injected global shortcut did not establish physical shortcut delivery; native menu commands verified Pause/Start/Rescan.",
+      "Native coaching access intermittently timed out; focused Settings/menu and raising the observed window recovered control.",
+      "Window closure initially reported crop resize; a rescan verified the explicit source-ended recovery.",
+      "Production is restored Paused with no selected board; preview preference remains on."
+    ]
+  },
+  "currentStatus": {
+    "recordedAt": "2026-10-17T23:00:08.683Z",
+    "state": "production-restored",
+    "temporaryQualificationAppRunning": false,
+    "protectedProductionAppRunning": true,
+    "automaticTrackingReleaseGate": false,
+    "trackingPreviewOptIn": true,
+    "automaticTrackingPreference": true,
+    "automaticCaptureActive": false,
+    "boardReader": "local",
+    "explanationsEnabled": false,
+    "liveCaptureMeasured": true,
+    "fixtureReport": "local-recognition-report.json",
+    "nativeReport": "native-local-tracking-report.json",
+    "pendingAction": "Select a visible board and apply its full position to start the opted-in local preview."
+  },
+  "historicalReport": "native-restoration-report-step65.json"
+}

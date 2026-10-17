@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T22:47:18.737Z",
+  "generatedAt": "2026-10-17T23:07:03.053Z",
   "reader": "local-template-v2-grid",
   "runtime": "Electron nativeImage / Apple Silicon",
   "profiles": [
@@ -24,7 +24,7 @@
   ],
   "templateSha256": "b25795a319b9b7cf9c2fae542f0afb4468f067d5ef15a298faac6116063f3538",
   "manifestSha256": "80f5351707cb84d9b25dc215e3c745ea8152bf6ba2633ad94177371bc3c4041d",
-  "implementationSha256": "97bf4ded5a299377540deb0456179b072b4e504b1ecf02a1af25745db1b63ec3",
+  "implementationSha256": "70478d8236cd8eb3ca946f822258ec3a36c2035e113164944d709124e070ab7f",
   "implementationFiles": [
     "src/core/local-vision.ts",
     "src/core/board-grid.ts",
@@ -78,9 +78,9 @@
             "reason": "Placement matches; initial rights still require human confirmation",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 16.98979200000008,
-            "recognitionMs": 16.939792000000125,
-            "validationMs": 0.04966699999999946,
+            "latencyMs": 16.526792000000114,
+            "recognitionMs": 16.473042000000078,
+            "validationMs": 0.05320900000015172,
             "engineMs": null
           },
           {
@@ -89,9 +89,9 @@
             "reason": "Placement matches; initial rights still require human confirmation",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 18.480499999999893,
-            "recognitionMs": 18.4375,
-            "validationMs": 0.04270799999994779,
+            "latencyMs": 18.935707999999977,
+            "recognitionMs": 18.87829099999999,
+            "validationMs": 0.056874999999990905,
             "engineMs": null
           },
           {
@@ -100,9 +100,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
-            "latencyMs": 19.621708000000126,
-            "recognitionMs": 17.10508300000015,
-            "validationMs": 2.46024999999986,
+            "latencyMs": 19.92387500000018,
+            "recognitionMs": 17.254000000000133,
+            "validationMs": 2.6010409999998956,
             "engineMs": null
           },
           {
@@ -111,9 +111,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
-            "latencyMs": 19.69766699999991,
-            "recognitionMs": 17.23174999999992,
-            "validationMs": 2.4524169999999685,
+            "latencyMs": 20.681041999999934,
+            "recognitionMs": 18.19266700000003,
+            "validationMs": 2.4727090000001226,
             "engineMs": null
           },
           {
@@ -122,9 +122,9 @@
             "reason": "Placement matches; initial rights still require human confirmation",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 17.393916999999874,
-            "recognitionMs": 17.34695799999986,
-            "validationMs": 0.046542000000044936,
+            "latencyMs": 17.12133300000005,
+            "recognitionMs": 17.068791000000147,
+            "validationMs": 0.05179200000020501,
             "engineMs": null
           },
           {
@@ -133,9 +133,9 @@
             "reason": "Placement matches; initial rights still require human confirmation",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 17.626250000000027,
-            "recognitionMs": 17.58104100000014,
-            "validationMs": 0.04475000000002183,
+            "latencyMs": 17.226249999999936,
+            "recognitionMs": 17.165917000000036,
+            "validationMs": 0.05979200000001583,
             "engineMs": null
           },
           {
@@ -144,9 +144,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "4k3/8/8/3P4/8/8/8/4K3 b - - 0 1",
-            "latencyMs": 16.38391700000011,
-            "recognitionMs": 15.746333999999933,
-            "validationMs": 0.6274580000001606,
+            "latencyMs": 16.489417000000003,
+            "recognitionMs": 15.838375000000042,
+            "validationMs": 0.6412499999999,
             "engineMs": null
           },
           {
@@ -155,9 +155,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "4k3/8/8/3P4/8/8/8/4K3 b - - 0 1",
-            "latencyMs": 16.7778330000001,
-            "recognitionMs": 16.23204099999998,
-            "validationMs": 0.5354589999999462,
+            "latencyMs": 16.498333000000002,
+            "recognitionMs": 15.977583000000095,
+            "validationMs": 0.5125420000001668,
             "engineMs": null
           },
           {
@@ -166,9 +166,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "r3k2r/8/8/8/8/8/8/R4RK1 b kq - 1 1",
-            "latencyMs": 20.289250000000038,
-            "recognitionMs": 15.65933300000006,
-            "validationMs": 4.618584000000055,
+            "latencyMs": 19.775416999999834,
+            "recognitionMs": 15.23170899999991,
+            "validationMs": 4.536124999999856,
             "engineMs": null
           },
           {
@@ -177,9 +177,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "r3k2r/8/8/8/8/8/8/R4RK1 b kq - 1 1",
-            "latencyMs": 21.080708999999842,
-            "recognitionMs": 16.218874999999798,
-            "validationMs": 4.849124999999958,
+            "latencyMs": 19.816082999999935,
+            "recognitionMs": 15.406791999999996,
+            "validationMs": 4.401957999999922,
             "engineMs": null
           },
           {
@@ -188,9 +188,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "4k3/8/3P4/8/8/8/8/4K3 b - - 0 2",
-            "latencyMs": 18.09637500000008,
-            "recognitionMs": 17.36612500000001,
-            "validationMs": 0.7144169999999122,
+            "latencyMs": 16.900542000000087,
+            "recognitionMs": 16.259874999999965,
+            "validationMs": 0.6300830000000133,
             "engineMs": null
           },
           {
@@ -199,9 +199,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "4k3/8/3P4/8/8/8/8/4K3 b - - 0 2",
-            "latencyMs": 16.816499999999905,
-            "recognitionMs": 16.302666000000045,
-            "validationMs": 0.5058329999999387,
+            "latencyMs": 16.454582999999957,
+            "recognitionMs": 15.921957999999904,
+            "validationMs": 0.5254580000000715,
             "engineMs": null
           },
           {
@@ -210,9 +210,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "Q3k3/8/8/8/8/8/8/4K3 b - - 0 1",
-            "latencyMs": 16.46595900000011,
-            "recognitionMs": 15.708167000000003,
-            "validationMs": 0.7495420000000195,
+            "latencyMs": 16.24216700000011,
+            "recognitionMs": 15.464584000000059,
+            "validationMs": 0.7712920000001304,
             "engineMs": null
           },
           {
@@ -221,9 +221,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "Q3k3/8/8/8/8/8/8/4K3 b - - 0 1",
-            "latencyMs": 17.21591599999988,
-            "recognitionMs": 16.424207999999908,
-            "validationMs": 0.7777079999998477,
+            "latencyMs": 16.35570800000005,
+            "recognitionMs": 15.642041000000063,
+            "validationMs": 0.7034590000000662,
             "engineMs": null
           },
           {
@@ -232,9 +232,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
-            "latencyMs": 23.107958999999937,
-            "recognitionMs": 17.709125000000085,
-            "validationMs": 5.370499999999993,
+            "latencyMs": 21.585583000000042,
+            "recognitionMs": 16.47504099999992,
+            "validationMs": 5.0897919999999885,
             "engineMs": null
           },
           {
@@ -243,9 +243,9 @@
             "reason": "The board is hidden or the crop moved. Select Board again.",
             "recognitionMatches": false,
             "recognizedFen": null,
-            "latencyMs": 17.66904199999999,
-            "recognitionMs": 17.54666700000007,
-            "validationMs": 0.12200000000007094,
+            "latencyMs": 16.66879199999994,
+            "recognitionMs": 16.564374999999927,
+            "validationMs": 0.10387500000001637,
             "engineMs": null
           },
           {
@@ -254,9 +254,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "7k/5K2/6Q1/8/8/8/8/8 b - - 1 1",
-            "latencyMs": 20.113749999999982,
-            "recognitionMs": 15.372833000000128,
-            "validationMs": 4.733208999999988,
+            "latencyMs": 20.02233299999989,
+            "recognitionMs": 15.204958000000033,
+            "validationMs": 4.809833000000026,
             "engineMs": null
           },
           {
@@ -265,9 +265,9 @@
             "reason": "The board is hidden or the crop moved. Select Board again.",
             "recognitionMatches": false,
             "recognizedFen": null,
-            "latencyMs": 15.625167000000147,
-            "recognitionMs": 15.56166700000017,
-            "validationMs": 0.06312499999989996,
+            "latencyMs": 15.349541000000045,
+            "recognitionMs": 15.30058299999996,
+            "validationMs": 0.04845799999998235,
             "engineMs": null
           },
           {
@@ -276,9 +276,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "r1bqk2r/ppp2ppp/2n5/3p4/2BPn3/2P2N2/P4PPP/R1BQ1RK1 w kq - 0 10",
-            "latencyMs": 23.43512499999997,
-            "recognitionMs": 16.60550000000012,
-            "validationMs": 6.815958000000137,
+            "latencyMs": 23.00262500000008,
+            "recognitionMs": 16.293333000000075,
+            "validationMs": 6.696916999999985,
             "engineMs": null
           },
           {
@@ -287,9 +287,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "r1bqk2r/ppp2ppp/2n5/3p4/2BPn3/2P2N2/P4PPP/R1BQ1RK1 w kq - 0 10",
-            "latencyMs": 23.258499999999913,
-            "recognitionMs": 16.643666999999823,
-            "validationMs": 6.60087499999986,
+            "latencyMs": 23.166375000000016,
+            "recognitionMs": 16.445791999999983,
+            "validationMs": 6.706042000000025,
             "engineMs": null
           },
           {
@@ -298,9 +298,9 @@
             "reason": "The board does not match exactly one legal move. Import FEN/PGN or correct the position.",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 21.76587500000005,
-            "recognitionMs": 19.33354099999997,
-            "validationMs": 2.431999999999789,
+            "latencyMs": 21.171041999999943,
+            "recognitionMs": 18.70116699999994,
+            "validationMs": 2.469333000000006,
             "engineMs": null
           },
           {
@@ -309,9 +309,9 @@
             "reason": "The board does not match exactly one legal move. Import FEN/PGN or correct the position.",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 19.88629200000014,
-            "recognitionMs": 17.38104199999998,
-            "validationMs": 2.504791999999952,
+            "latencyMs": 19.063499999999976,
+            "recognitionMs": 16.553875000000062,
+            "validationMs": 2.5092919999999594,
             "engineMs": null
           },
           {
@@ -320,9 +320,9 @@
             "reason": "The board is hidden or the crop moved. Select Board again.",
             "recognitionMatches": null,
             "recognizedFen": null,
-            "latencyMs": 1.1915420000000267,
-            "recognitionMs": 1.1396250000000236,
-            "validationMs": 0.05170799999996234,
+            "latencyMs": 1.1025409999999738,
+            "recognitionMs": 1.0489999999999782,
+            "validationMs": 0.05341699999985394,
             "engineMs": null
           },
           {
@@ -331,9 +331,9 @@
             "reason": "The board is hidden or the crop moved. Select Board again.",
             "recognitionMatches": null,
             "recognizedFen": null,
-            "latencyMs": 1.2344590000000153,
-            "recognitionMs": 1.1841249999999945,
-            "validationMs": 0.05008399999996982,
+            "latencyMs": 1.0579170000000886,
+            "recognitionMs": 1.0098339999999553,
+            "validationMs": 0.04770799999982955,
             "engineMs": null
           },
           {
@@ -342,9 +342,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
-            "latencyMs": 18.962792000000036,
-            "recognitionMs": 16.529541999999992,
-            "validationMs": 2.4096660000000156,
+            "latencyMs": 18.97933399999988,
+            "recognitionMs": 16.479499999999916,
+            "validationMs": 2.472291999999925,
             "engineMs": null
           },
           {
@@ -353,9 +353,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
-            "latencyMs": 19.12066600000003,
-            "recognitionMs": 16.583916000000045,
-            "validationMs": 2.5237499999998363,
+            "latencyMs": 19.076583000000028,
+            "recognitionMs": 16.61720800000012,
+            "validationMs": 2.4464590000000044,
             "engineMs": null
           },
           {
@@ -364,9 +364,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "4k3/8/8/3P4/8/8/8/4K3 b - - 0 1",
-            "latencyMs": 15.511375000000044,
-            "recognitionMs": 14.915042000000085,
-            "validationMs": 0.5896669999999631,
+            "latencyMs": 15.644250000000056,
+            "recognitionMs": 15.049000000000206,
+            "validationMs": 0.5884170000001632,
             "engineMs": null
           },
           {
@@ -375,9 +375,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "4k3/8/8/3P4/8/8/8/4K3 b - - 0 1",
-            "latencyMs": 15.676249999999982,
-            "recognitionMs": 15.179707999999891,
-            "validationMs": 0.4911250000000109,
+            "latencyMs": 15.803208999999924,
+            "recognitionMs": 15.242708999999877,
+            "validationMs": 0.5515000000000327,
             "engineMs": null
           },
           {
@@ -386,9 +386,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "r3k2r/8/8/8/8/8/8/R4RK1 b kq - 1 1",
-            "latencyMs": 19.656375000000025,
-            "recognitionMs": 15.057833000000073,
-            "validationMs": 4.59050000000002,
+            "latencyMs": 20.589958999999908,
+            "recognitionMs": 16.018749999999955,
+            "validationMs": 4.560707999999977,
             "engineMs": null
           },
           {
@@ -397,9 +397,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "r3k2r/8/8/8/8/8/8/R4RK1 b kq - 1 1",
-            "latencyMs": 19.81620799999996,
-            "recognitionMs": 15.33183299999996,
-            "validationMs": 4.477542000000085,
+            "latencyMs": 19.748166999999967,
+            "recognitionMs": 15.179333000000042,
+            "validationMs": 4.562250000000176,
             "engineMs": null
           },
           {
@@ -408,9 +408,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "4k3/8/3P4/8/8/8/8/4K3 b - - 0 2",
-            "latencyMs": 15.499499999999898,
-            "recognitionMs": 14.892249999999876,
-            "validationMs": 0.6007500000000618,
+            "latencyMs": 15.568416999999954,
+            "recognitionMs": 14.932374999999865,
+            "validationMs": 0.6291669999998248,
             "engineMs": null
           },
           {
@@ -419,9 +419,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "4k3/8/3P4/8/8/8/8/4K3 b - - 0 2",
-            "latencyMs": 17.29837499999985,
-            "recognitionMs": 16.778707999999824,
-            "validationMs": 0.5110410000002048,
+            "latencyMs": 16.986290999999937,
+            "recognitionMs": 16.454165999999987,
+            "validationMs": 0.5226670000001832,
             "engineMs": null
           },
           {
@@ -430,9 +430,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "Q3k3/8/8/8/8/8/8/4K3 b - - 0 1",
-            "latencyMs": 17.792583999999806,
-            "recognitionMs": 17.08466700000008,
-            "validationMs": 0.7023749999998472,
+            "latencyMs": 16.42454100000009,
+            "recognitionMs": 15.682125000000042,
+            "validationMs": 0.7362080000000333,
             "engineMs": null
           },
           {
@@ -441,9 +441,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "Q3k3/8/8/8/8/8/8/4K3 b - - 0 1",
-            "latencyMs": 17.116167000000132,
-            "recognitionMs": 16.452208000000155,
-            "validationMs": 0.6589579999999842,
+            "latencyMs": 16.471292000000176,
+            "recognitionMs": 15.741209000000026,
+            "validationMs": 0.7246660000000702,
             "engineMs": null
           },
           {
@@ -452,9 +452,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
-            "latencyMs": 22.01558299999988,
-            "recognitionMs": 17.01729099999966,
-            "validationMs": 4.985957999999755,
+            "latencyMs": 22.224959000000126,
+            "recognitionMs": 17.15858399999979,
+            "validationMs": 5.052666000000045,
             "engineMs": null
           },
           {
@@ -463,9 +463,9 @@
             "reason": "The board is hidden or the crop moved. Select Board again.",
             "recognitionMatches": false,
             "recognizedFen": null,
-            "latencyMs": 17.038125000000036,
-            "recognitionMs": 16.96304199999986,
-            "validationMs": 0.0747919999998885,
+            "latencyMs": 17.13079199999993,
+            "recognitionMs": 17.0459579999997,
+            "validationMs": 0.08449999999993452,
             "engineMs": null
           },
           {
@@ -474,9 +474,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "7k/5K2/6Q1/8/8/8/8/8 b - - 1 1",
-            "latencyMs": 20.173459000000094,
-            "recognitionMs": 15.564209000000119,
-            "validationMs": 4.603374999999687,
+            "latencyMs": 20.162667000000056,
+            "recognitionMs": 15.520292000000154,
+            "validationMs": 4.636749999999665,
             "engineMs": null
           },
           {
@@ -485,9 +485,9 @@
             "reason": "The board is hidden or the crop moved. Select Board again.",
             "recognitionMatches": false,
             "recognizedFen": null,
-            "latencyMs": 16.39133300000003,
-            "recognitionMs": 16.357708000000002,
-            "validationMs": 0.03333399999974063,
+            "latencyMs": 15.812458000000333,
+            "recognitionMs": 15.77108300000009,
+            "validationMs": 0.040917000000263215,
             "engineMs": null
           },
           {
@@ -496,9 +496,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "r1bqk2r/ppp2ppp/2n5/3p4/2BPn3/2P2N2/P4PPP/R1BQ1RK1 w kq - 0 10",
-            "latencyMs": 23.297000000000025,
-            "recognitionMs": 16.555209000000104,
-            "validationMs": 6.728083999999853,
+            "latencyMs": 23.141000000000076,
+            "recognitionMs": 16.34537500000033,
+            "validationMs": 6.783457999999882,
             "engineMs": null
           },
           {
@@ -507,9 +507,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "r1bqk2r/ppp2ppp/2n5/3p4/2BPn3/2P2N2/P4PPP/R1BQ1RK1 w kq - 0 10",
-            "latencyMs": 22.936916999999994,
-            "recognitionMs": 16.34683300000006,
-            "validationMs": 6.578875000000153,
+            "latencyMs": 23.146958000000268,
+            "recognitionMs": 16.350416000000223,
+            "validationMs": 6.775333000000046,
             "engineMs": null
           },
           {
@@ -518,9 +518,9 @@
             "reason": "The board does not match exactly one legal move. Import FEN/PGN or correct the position.",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 19.02712500000007,
-            "recognitionMs": 16.670916999999918,
-            "validationMs": 2.3559159999999792,
+            "latencyMs": 18.969708000000082,
+            "recognitionMs": 16.588083000000097,
+            "validationMs": 2.3812910000001466,
             "engineMs": null
           },
           {
@@ -529,9 +529,9 @@
             "reason": "The board does not match exactly one legal move. Import FEN/PGN or correct the position.",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 18.82070799999974,
-            "recognitionMs": 16.45245799999975,
-            "validationMs": 2.367917000000034,
+            "latencyMs": 18.869833999999628,
+            "recognitionMs": 16.50204199999962,
+            "validationMs": 2.3675419999999576,
             "engineMs": null
           },
           {
@@ -540,9 +540,9 @@
             "reason": "Placement matches; initial rights still require human confirmation",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 16.611291999999594,
-            "recognitionMs": 16.580457999999908,
-            "validationMs": 0.030459000000064407,
+            "latencyMs": 16.602833999999802,
+            "recognitionMs": 16.56883400000015,
+            "validationMs": 0.033625000000029104,
             "engineMs": null
           },
           {
@@ -551,9 +551,9 @@
             "reason": "The board is hidden or the crop moved. Select Board again.",
             "recognitionMatches": null,
             "recognizedFen": null,
-            "latencyMs": 17.61850000000004,
-            "recognitionMs": 17.55133399999977,
-            "validationMs": 0.0670839999997952,
+            "latencyMs": 18.62241700000004,
+            "recognitionMs": 18.54879200000005,
+            "validationMs": 0.07325000000037107,
             "engineMs": null
           },
           {
@@ -562,9 +562,9 @@
             "reason": "The board is hidden or the crop moved. Select Board again.",
             "recognitionMatches": null,
             "recognizedFen": null,
-            "latencyMs": 16.763624999999593,
-            "recognitionMs": 16.677291999999852,
-            "validationMs": 0.08566600000040125,
+            "latencyMs": 16.755333999999948,
+            "recognitionMs": 16.688959000000068,
+            "validationMs": 0.06587499999977808,
             "engineMs": null
           },
           {
@@ -573,9 +573,9 @@
             "reason": "Placement matches; initial rights still require human confirmation",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 16.323292000000038,
-            "recognitionMs": 16.279833000000053,
-            "validationMs": 0.04312500000014552,
+            "latencyMs": 16.616084000000228,
+            "recognitionMs": 16.58237500000041,
+            "validationMs": 0.03308400000014444,
             "engineMs": null
           },
           {
@@ -584,9 +584,9 @@
             "reason": "Placement matches; initial rights still require human confirmation",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 16.163040999999794,
-            "recognitionMs": 16.128416000000016,
-            "validationMs": 0.03429099999993923,
+            "latencyMs": 16.60116599999992,
+            "recognitionMs": 16.57325000000037,
+            "validationMs": 0.02775000000019645,
             "engineMs": null
           },
           {
@@ -595,9 +595,9 @@
             "reason": "Board visibility, orientation, or squares require correction",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 16.372166000000107,
-            "recognitionMs": 16.322375000000193,
-            "validationMs": 0.049540999999862834,
+            "latencyMs": 16.821750000000065,
+            "recognitionMs": 16.78433300000006,
+            "validationMs": 0.0369580000001406,
             "engineMs": null
           },
           {
@@ -606,9 +606,9 @@
             "reason": "Placement matches; initial rights still require human confirmation",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 16.033500000000004,
-            "recognitionMs": 15.993833999999879,
-            "validationMs": 0.03945899999962421,
+            "latencyMs": 16.46383399999968,
+            "recognitionMs": 16.423084000000017,
+            "validationMs": 0.040124999999989086,
             "engineMs": null
           },
           {
@@ -617,9 +617,9 @@
             "reason": "Board visibility, orientation, or squares require correction",
             "recognitionMatches": false,
             "recognizedFen": null,
-            "latencyMs": 15.968875000000025,
-            "recognitionMs": 15.922749999999724,
-            "validationMs": 0.045666999999866675,
+            "latencyMs": 16.573292000000038,
+            "recognitionMs": 16.535667000000103,
+            "validationMs": 0.03708399999959511,
             "engineMs": null
           },
           {
@@ -628,9 +628,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
-            "latencyMs": 18.512291000000005,
-            "recognitionMs": 15.950249999999869,
-            "validationMs": 2.5380409999997937,
+            "latencyMs": 18.854707999999846,
+            "recognitionMs": 16.37387499999977,
+            "validationMs": 2.4593330000002425,
             "engineMs": null
           }
         ]
@@ -644,9 +644,9 @@
             "reason": "Placement matches; initial rights still require human confirmation",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 21.46849999999995,
-            "recognitionMs": 21.402666999999838,
-            "validationMs": 0.06520799999998417,
+            "latencyMs": 20.48529099999996,
+            "recognitionMs": 20.445165999999972,
+            "validationMs": 0.03974999999991269,
             "engineMs": null
           },
           {
@@ -655,9 +655,9 @@
             "reason": "Placement matches; initial rights still require human confirmation",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 19.063750000000255,
-            "recognitionMs": 18.98812500000031,
-            "validationMs": 0.07479100000000471,
+            "latencyMs": 18.625750000000153,
+            "recognitionMs": 18.58120800000006,
+            "validationMs": 0.0439579999997477,
             "engineMs": null
           },
           {
@@ -666,9 +666,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
-            "latencyMs": 21.770542000000205,
-            "recognitionMs": 19.204999999999927,
-            "validationMs": 2.538292000000183,
+            "latencyMs": 21.123000000000047,
+            "recognitionMs": 18.631791999999678,
+            "validationMs": 2.469959000000017,
             "engineMs": null
           },
           {
@@ -677,9 +677,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
-            "latencyMs": 22.360666000000037,
-            "recognitionMs": 19.79850000000033,
-            "validationMs": 2.5436249999997926,
+            "latencyMs": 21.173291999999947,
+            "recognitionMs": 18.639000000000124,
+            "validationMs": 2.5214169999999285,
             "engineMs": null
           },
           {
@@ -688,9 +688,9 @@
             "reason": "Placement matches; initial rights still require human confirmation",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 19.25495899999987,
-            "recognitionMs": 19.195208999999977,
-            "validationMs": 0.059082999999645835,
+            "latencyMs": 18.52108300000009,
+            "recognitionMs": 18.47875000000022,
+            "validationMs": 0.041917000000012195,
             "engineMs": null
           },
           {
@@ -699,9 +699,9 @@
             "reason": "Placement matches; initial rights still require human confirmation",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 21.426375000000007,
-            "recognitionMs": 21.34041699999989,
-            "validationMs": 0.08520799999996598,
+            "latencyMs": 20.442583000000013,
+            "recognitionMs": 20.395250000000033,
+            "validationMs": 0.046875,
             "engineMs": null
           },
           {
@@ -710,9 +710,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "4k3/8/8/3P4/8/8/8/4K3 b - - 0 1",
-            "latencyMs": 19.37441600000011,
-            "recognitionMs": 18.7956250000002,
-            "validationMs": 0.5638750000002801,
+            "latencyMs": 16.918791000000056,
+            "recognitionMs": 16.402958000000126,
+            "validationMs": 0.5037080000001879,
             "engineMs": null
           },
           {
@@ -721,9 +721,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "4k3/8/8/3P4/8/8/8/4K3 b - - 0 1",
-            "latencyMs": 19.76970799999981,
-            "recognitionMs": 19.23675000000003,
-            "validationMs": 0.5250419999997575,
+            "latencyMs": 17.310625000000073,
+            "recognitionMs": 16.809334000000035,
+            "validationMs": 0.49529100000017934,
             "engineMs": null
           },
           {
@@ -732,9 +732,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "r3k2r/8/8/8/8/8/8/R4RK1 b kq - 1 1",
-            "latencyMs": 23.34349999999995,
-            "recognitionMs": 18.624499999999898,
-            "validationMs": 4.706834000000072,
+            "latencyMs": 21.17812499999991,
+            "recognitionMs": 16.63037499999973,
+            "validationMs": 4.540124999999989,
             "engineMs": null
           },
           {
@@ -743,9 +743,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "r3k2r/8/8/8/8/8/8/R4RK1 b kq - 1 1",
-            "latencyMs": 23.440667000000303,
-            "recognitionMs": 18.55554200000006,
-            "validationMs": 4.874374999999873,
+            "latencyMs": 21.490625000000364,
+            "recognitionMs": 17.039750000000367,
+            "validationMs": 4.441458999999668,
             "engineMs": null
           },
           {
@@ -754,9 +754,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "4k3/8/3P4/8/8/8/8/4K3 b - - 0 2",
-            "latencyMs": 20.272292000000107,
-            "recognitionMs": 19.68645800000013,
-            "validationMs": 0.5729999999998654,
+            "latencyMs": 18.28241700000035,
+            "recognitionMs": 17.723583000000417,
+            "validationMs": 0.5496250000001055,
             "engineMs": null
           },
           {
@@ -765,9 +765,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "4k3/8/3P4/8/8/8/8/4K3 b - - 0 2",
-            "latencyMs": 19.51333399999976,
-            "recognitionMs": 18.946916999999758,
-            "validationMs": 0.558292000000165,
+            "latencyMs": 18.841333999999733,
+            "recognitionMs": 18.309499999999844,
+            "validationMs": 0.5246250000000146,
             "engineMs": null
           },
           {
@@ -776,9 +776,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "Q3k3/8/8/8/8/8/8/4K3 b - - 0 1",
-            "latencyMs": 18.510083000000122,
-            "recognitionMs": 17.723457999999937,
-            "validationMs": 0.778541000000132,
+            "latencyMs": 18.26404199999979,
+            "recognitionMs": 17.540458999999828,
+            "validationMs": 0.7178750000002765,
             "engineMs": null
           },
           {
@@ -787,9 +787,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "Q3k3/8/8/8/8/8/8/4K3 b - - 0 1",
-            "latencyMs": 18.276374999999916,
-            "recognitionMs": 17.529625000000124,
-            "validationMs": 0.7387079999998605,
+            "latencyMs": 18.79495799999995,
+            "recognitionMs": 18.036957999999686,
+            "validationMs": 0.7519999999999527,
             "engineMs": null
           },
           {
@@ -798,9 +798,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
-            "latencyMs": 24.275249999999687,
-            "recognitionMs": 19.235916999999972,
-            "validationMs": 5.021832999999788,
+            "latencyMs": 24.009541000000354,
+            "recognitionMs": 19.10112500000014,
+            "validationMs": 4.895833000000039,
             "engineMs": null
           },
           {
@@ -809,9 +809,9 @@
             "reason": "The board is hidden or the crop moved. Select Board again.",
             "recognitionMatches": false,
             "recognizedFen": null,
-            "latencyMs": 19.576458999999886,
-            "recognitionMs": 19.449499999999716,
-            "validationMs": 0.1262499999997999,
+            "latencyMs": 19.091042000000016,
+            "recognitionMs": 18.98804199999995,
+            "validationMs": 0.10241700000005949,
             "engineMs": null
           },
           {
@@ -820,9 +820,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "7k/5K2/6Q1/8/8/8/8/8 b - - 1 1",
-            "latencyMs": 25.246999999999844,
-            "recognitionMs": 20.519999999999982,
-            "validationMs": 4.713832999999795,
+            "latencyMs": 22.92712500000016,
+            "recognitionMs": 18.412000000000262,
+            "validationMs": 4.506124999999884,
             "engineMs": null
           },
           {
@@ -831,9 +831,9 @@
             "reason": "The board is hidden or the crop moved. Select Board again.",
             "recognitionMatches": false,
             "recognizedFen": null,
-            "latencyMs": 19.21416599999975,
-            "recognitionMs": 19.149875000000065,
-            "validationMs": 0.06391600000006292,
+            "latencyMs": 16.67629199999965,
+            "recognitionMs": 16.637166999999863,
+            "validationMs": 0.03895799999963856,
             "engineMs": null
           },
           {
@@ -842,9 +842,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "r1bqk2r/ppp2ppp/2n5/3p4/2BPn3/2P2N2/P4PPP/R1BQ1RK1 w kq - 0 10",
-            "latencyMs": 27.295000000000073,
-            "recognitionMs": 20.443874999999935,
-            "validationMs": 6.834292000000005,
+            "latencyMs": 24.152624999999716,
+            "recognitionMs": 17.754583999999795,
+            "validationMs": 6.386500000000069,
             "engineMs": null
           },
           {
@@ -853,9 +853,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "r1bqk2r/ppp2ppp/2n5/3p4/2BPn3/2P2N2/P4PPP/R1BQ1RK1 w kq - 0 10",
-            "latencyMs": 26.49258299999974,
-            "recognitionMs": 19.608957999999802,
-            "validationMs": 6.865041999999903,
+            "latencyMs": 24.863624999999956,
+            "recognitionMs": 18.295458999999937,
+            "validationMs": 6.557333999999628,
             "engineMs": null
           },
           {
@@ -864,9 +864,9 @@
             "reason": "The board does not match exactly one legal move. Import FEN/PGN or correct the position.",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 24.460249999999633,
-            "recognitionMs": 21.694666999999754,
-            "validationMs": 2.764791999999943,
+            "latencyMs": 20.451915999999983,
+            "recognitionMs": 18.06316599999991,
+            "validationMs": 2.3882080000003043,
             "engineMs": null
           },
           {
@@ -875,9 +875,9 @@
             "reason": "The board does not match exactly one legal move. Import FEN/PGN or correct the position.",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 24.10804199999984,
-            "recognitionMs": 21.607916999999816,
-            "validationMs": 2.4990829999997004,
+            "latencyMs": 20.996040999999877,
+            "recognitionMs": 18.653915999999754,
+            "validationMs": 2.3417920000001686,
             "engineMs": null
           },
           {
@@ -886,9 +886,9 @@
             "reason": "The board is hidden or the crop moved. Select Board again.",
             "recognitionMatches": null,
             "recognizedFen": null,
-            "latencyMs": 5.47616700000026,
-            "recognitionMs": 5.382916999999907,
-            "validationMs": 0.09266699999989214,
+            "latencyMs": 4.426332999999886,
+            "recognitionMs": 4.369249999999738,
+            "validationMs": 0.05691700000033961,
             "engineMs": null
           },
           {
@@ -897,9 +897,9 @@
             "reason": "The board is hidden or the crop moved. Select Board again.",
             "recognitionMatches": null,
             "recognizedFen": null,
-            "latencyMs": 3.7753750000001673,
-            "recognitionMs": 3.692833000000064,
-            "validationMs": 0.08212499999990541,
+            "latencyMs": 3.4936250000000655,
+            "recognitionMs": 3.4451669999998558,
+            "validationMs": 0.04837499999985084,
             "engineMs": null
           },
           {
@@ -908,9 +908,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
-            "latencyMs": 22.66150000000016,
-            "recognitionMs": 20.005875000000287,
-            "validationMs": 2.6342500000000655,
+            "latencyMs": 24.242165999999997,
+            "recognitionMs": 21.6494160000002,
+            "validationMs": 2.5723330000000715,
             "engineMs": null
           },
           {
@@ -919,9 +919,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
-            "latencyMs": 23.10320899999988,
-            "recognitionMs": 20.51379199999974,
-            "validationMs": 2.571542000000136,
+            "latencyMs": 21.229791999999634,
+            "recognitionMs": 18.85079199999973,
+            "validationMs": 2.367583999999624,
             "engineMs": null
           },
           {
@@ -930,9 +930,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "4k3/8/8/3P4/8/8/8/4K3 b - - 0 1",
-            "latencyMs": 17.859750000000076,
-            "recognitionMs": 17.344375000000127,
-            "validationMs": 0.5082910000000993,
+            "latencyMs": 16.38824999999997,
+            "recognitionMs": 15.904708000000028,
+            "validationMs": 0.47854199999983393,
             "engineMs": null
           },
           {
@@ -941,9 +941,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "4k3/8/8/3P4/8/8/8/4K3 b - - 0 1",
-            "latencyMs": 17.207750000000033,
-            "recognitionMs": 16.717791000000034,
-            "validationMs": 0.4839999999999236,
+            "latencyMs": 16.80987499999992,
+            "recognitionMs": 16.311791000000085,
+            "validationMs": 0.4928749999999127,
             "engineMs": null
           },
           {
@@ -952,9 +952,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "r3k2r/8/8/8/8/8/8/R4RK1 b kq - 1 1",
-            "latencyMs": 22.58279100000027,
-            "recognitionMs": 17.95233300000018,
-            "validationMs": 4.616207999999915,
+            "latencyMs": 20.483208000000104,
+            "recognitionMs": 16.041458000000148,
+            "validationMs": 4.435500000000047,
             "engineMs": null
           },
           {
@@ -963,9 +963,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "r3k2r/8/8/8/8/8/8/R4RK1 b kq - 1 1",
-            "latencyMs": 22.7981249999998,
-            "recognitionMs": 18.134750000000167,
-            "validationMs": 4.65099999999984,
+            "latencyMs": 21.327666000000136,
+            "recognitionMs": 16.95470800000021,
+            "validationMs": 4.364749999999731,
             "engineMs": null
           },
           {
@@ -974,9 +974,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "4k3/8/3P4/8/8/8/8/4K3 b - - 0 2",
-            "latencyMs": 17.94491700000026,
-            "recognitionMs": 17.369624999999814,
-            "validationMs": 0.5674169999997503,
+            "latencyMs": 17.74712499999987,
+            "recognitionMs": 17.191457999999784,
+            "validationMs": 0.5455419999998412,
             "engineMs": null
           },
           {
@@ -985,9 +985,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "4k3/8/3P4/8/8/8/8/4K3 b - - 0 2",
-            "latencyMs": 19.40258300000005,
-            "recognitionMs": 18.812083000000257,
-            "validationMs": 0.5811250000001564,
+            "latencyMs": 18.344708000000082,
+            "recognitionMs": 17.828625000000102,
+            "validationMs": 0.5105419999999867,
             "engineMs": null
           },
           {
@@ -996,9 +996,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "Q3k3/8/8/8/8/8/8/4K3 b - - 0 1",
-            "latencyMs": 17.33966700000019,
-            "recognitionMs": 16.558708000000024,
-            "validationMs": 0.7729589999999007,
+            "latencyMs": 18.128917,
+            "recognitionMs": 17.387374999999793,
+            "validationMs": 0.7360419999999976,
             "engineMs": null
           },
           {
@@ -1007,9 +1007,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "Q3k3/8/8/8/8/8/8/4K3 b - - 0 1",
-            "latencyMs": 18.18249999999989,
-            "recognitionMs": 17.470166000000063,
-            "validationMs": 0.7066669999999249,
+            "latencyMs": 18.50283300000001,
+            "recognitionMs": 17.80333299999984,
+            "validationMs": 0.6937090000001263,
             "engineMs": null
           },
           {
@@ -1018,9 +1018,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
-            "latencyMs": 23.769166999999925,
-            "recognitionMs": 18.684999999999945,
-            "validationMs": 5.071584000000257,
+            "latencyMs": 24.07883300000003,
+            "recognitionMs": 18.893625000000156,
+            "validationMs": 5.170916000000034,
             "engineMs": null
           },
           {
@@ -1029,9 +1029,9 @@
             "reason": "The board is hidden or the crop moved. Select Board again.",
             "recognitionMatches": false,
             "recognizedFen": null,
-            "latencyMs": 19.671249999999873,
-            "recognitionMs": 19.546708999999737,
-            "validationMs": 0.12387500000022555,
+            "latencyMs": 20.057083000000148,
+            "recognitionMs": 19.947499999999764,
+            "validationMs": 0.10916699999961565,
             "engineMs": null
           },
           {
@@ -1040,9 +1040,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "7k/5K2/6Q1/8/8/8/8/8 b - - 1 1",
-            "latencyMs": 21.915583999999853,
-            "recognitionMs": 17.213459000000057,
-            "validationMs": 4.695499999999811,
+            "latencyMs": 21.87020900000016,
+            "recognitionMs": 17.105167000000165,
+            "validationMs": 4.757625000000189,
             "engineMs": null
           },
           {
@@ -1051,9 +1051,9 @@
             "reason": "The board is hidden or the crop moved. Select Board again.",
             "recognitionMatches": false,
             "recognizedFen": null,
-            "latencyMs": 17.233332999999675,
-            "recognitionMs": 17.17891699999973,
-            "validationMs": 0.0540419999997539,
+            "latencyMs": 17.734333000000333,
+            "recognitionMs": 17.691583000000264,
+            "validationMs": 0.04216699999960838,
             "engineMs": null
           },
           {
@@ -1062,9 +1062,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "r1bqk2r/ppp2ppp/2n5/3p4/2BPn3/2P2N2/P4PPP/R1BQ1RK1 w kq - 0 10",
-            "latencyMs": 25.856458000000202,
-            "recognitionMs": 19.06708299999991,
-            "validationMs": 6.777292000000216,
+            "latencyMs": 26.410292000000027,
+            "recognitionMs": 19.843624999999975,
+            "validationMs": 6.550540999999612,
             "engineMs": null
           },
           {
@@ -1073,9 +1073,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "r1bqk2r/ppp2ppp/2n5/3p4/2BPn3/2P2N2/P4PPP/R1BQ1RK1 w kq - 0 10",
-            "latencyMs": 25.766583000000082,
-            "recognitionMs": 18.92925000000014,
-            "validationMs": 6.825041999999939,
+            "latencyMs": 27.36875000000009,
+            "recognitionMs": 20.45679199999995,
+            "validationMs": 6.899832999999944,
             "engineMs": null
           },
           {
@@ -1084,9 +1084,9 @@
             "reason": "The board does not match exactly one legal move. Import FEN/PGN or correct the position.",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 24.12808300000006,
-            "recognitionMs": 21.635416000000077,
-            "validationMs": 2.4922920000003614,
+            "latencyMs": 22.6970409999999,
+            "recognitionMs": 20.248790999999983,
+            "validationMs": 2.447584000000006,
             "engineMs": null
           },
           {
@@ -1095,9 +1095,9 @@
             "reason": "The board does not match exactly one legal move. Import FEN/PGN or correct the position.",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 22.653999999999996,
-            "recognitionMs": 20.17037500000015,
-            "validationMs": 2.4830839999999625,
+            "latencyMs": 22.949540999999954,
+            "recognitionMs": 20.498625000000175,
+            "validationMs": 2.450416000000132,
             "engineMs": null
           },
           {
@@ -1106,9 +1106,9 @@
             "reason": "Placement matches; initial rights still require human confirmation",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 20.104749999999967,
-            "recognitionMs": 20.05645900000036,
-            "validationMs": 0.04791699999987031,
+            "latencyMs": 19.239290999999866,
+            "recognitionMs": 19.198832999999922,
+            "validationMs": 0.04016700000011042,
             "engineMs": null
           },
           {
@@ -1117,9 +1117,9 @@
             "reason": "The board is hidden or the crop moved. Select Board again.",
             "recognitionMatches": null,
             "recognizedFen": null,
-            "latencyMs": 19.559167000000343,
-            "recognitionMs": 19.48620800000026,
-            "validationMs": 0.07258299999966766,
+            "latencyMs": 19.24499999999989,
+            "recognitionMs": 19.179791000000023,
+            "validationMs": 0.06483299999990777,
             "engineMs": null
           },
           {
@@ -1128,9 +1128,9 @@
             "reason": "The board is hidden or the crop moved. Select Board again.",
             "recognitionMatches": null,
             "recognizedFen": null,
-            "latencyMs": 18.66050000000041,
-            "recognitionMs": 18.573875000000044,
-            "validationMs": 0.08604200000036144,
+            "latencyMs": 19.645708000000013,
+            "recognitionMs": 19.482332999999926,
+            "validationMs": 0.16283400000020265,
             "engineMs": null
           },
           {
@@ -1139,9 +1139,9 @@
             "reason": "Placement matches; initial rights still require human confirmation",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 20.733500000000276,
-            "recognitionMs": 20.653957999999875,
-            "validationMs": 0.07879200000024866,
+            "latencyMs": 19.755207999999584,
+            "recognitionMs": 19.68770799999993,
+            "validationMs": 0.06370900000001711,
             "engineMs": null
           },
           {
@@ -1150,9 +1150,9 @@
             "reason": "Placement matches; initial rights still require human confirmation",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 20.003584000000046,
-            "recognitionMs": 19.948833999999806,
-            "validationMs": 0.054416000000401255,
+            "latencyMs": 20.58349999999973,
+            "recognitionMs": 20.53125,
+            "validationMs": 0.05158399999982066,
             "engineMs": null
           },
           {
@@ -1161,9 +1161,9 @@
             "reason": "Board visibility, orientation, or squares require correction",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 19.13070800000014,
-            "recognitionMs": 19.076500000000124,
-            "validationMs": 0.05383299999994051,
+            "latencyMs": 21.29254200000014,
+            "recognitionMs": 21.23025000000007,
+            "validationMs": 0.06187499999987267,
             "engineMs": null
           },
           {
@@ -1172,9 +1172,9 @@
             "reason": "Placement matches; initial rights still require human confirmation",
             "recognitionMatches": true,
             "recognizedFen": null,
-            "latencyMs": 18.650916999999936,
-            "recognitionMs": 18.605125000000044,
-            "validationMs": 0.04550000000017462,
+            "latencyMs": 19.063874999999825,
+            "recognitionMs": 19.01120899999978,
+            "validationMs": 0.0522080000000642,
             "engineMs": null
           },
           {
@@ -1183,9 +1183,9 @@
             "reason": "Board visibility, orientation, or squares require correction",
             "recognitionMatches": false,
             "recognizedFen": null,
-            "latencyMs": 21.830875000000106,
-            "recognitionMs": 21.774667000000136,
-            "validationMs": 0.05583299999989322,
+            "latencyMs": 19.484291000000212,
+            "recognitionMs": 19.441416000000117,
+            "validationMs": 0.04270799999994779,
             "engineMs": null
           },
           {
@@ -1194,9 +1194,9 @@
             "reason": "Complete chess state matches ground truth",
             "recognitionMatches": true,
             "recognizedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
-            "latencyMs": 22.090833000000202,
-            "recognitionMs": 19.64166699999987,
-            "validationMs": 2.4302499999998872,
+            "latencyMs": 20.670958000000155,
+            "recognitionMs": 18.27216700000008,
+            "validationMs": 2.380833999999595,
             "engineMs": null
           }
         ]
@@ -1221,14 +1221,14 @@
           {
             "id": "lichess-normal-move",
             "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
-            "elapsedMs": 1049.1206670000001,
-            "engineMs": 1006.7781249999998
+            "elapsedMs": 1029.6273330000004,
+            "engineMs": 1005.7359999999999
           },
           {
             "id": "lichess-missed-moves-white",
             "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
-            "elapsedMs": 1047.0897089999999,
-            "engineMs": 1004.6672090000002
+            "elapsedMs": 1034.9615000000003,
+            "engineMs": 1004.7562499999995
           }
         ]
       },
@@ -1247,23 +1247,23 @@
           {
             "id": "chesscom-normal-move",
             "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
-            "elapsedMs": 1035.0365829999992,
-            "engineMs": 1004.8428330000006
+            "elapsedMs": 1029.2942919999987,
+            "engineMs": 1004.5412080000006
           },
           {
             "id": "chesscom-missed-moves-white",
             "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
-            "elapsedMs": 1028.1888330000002,
-            "engineMs": 1004.6002500000013
+            "elapsedMs": 1035.2196669999994,
+            "engineMs": 1003.6640829999997
           }
         ]
       }
     ]
   },
   "latency": {
-    "medianMs": 17.526542000000063,
-    "p95Ms": 25.80158300000005,
-    "maxMs": 34.48595799999998,
+    "medianMs": 17.636708999999883,
+    "p95Ms": 22.113334000000123,
+    "maxMs": 31.261083999999983,
     "includes": "JPEG decoding, normalized piece matching, and validated observation construction. Excludes capture/stability wait, Stockfish, optional explanations and UI rendering."
   },
   "results": [
@@ -1273,9 +1273,9 @@
       "reason": "Placement matches; initial rights still require human confirmation",
       "recognitionMatches": true,
       "recognizedFen": null,
-      "latencyMs": 34.57225,
-      "recognitionMs": 34.48595799999998,
-      "validationMs": 0.08091600000000199,
+      "latencyMs": 31.338041999999973,
+      "recognitionMs": 31.261083999999983,
+      "validationMs": 0.07175000000000864,
       "engineMs": null,
       "training": true
     },
@@ -1285,9 +1285,9 @@
       "reason": "Placement matches; initial rights still require human confirmation",
       "recognitionMatches": true,
       "recognizedFen": null,
-      "latencyMs": 27.537709000000007,
-      "recognitionMs": 27.466208999999992,
-      "validationMs": 0.06929100000002109,
+      "latencyMs": 25.783292000000017,
+      "recognitionMs": 25.722667,
+      "validationMs": 0.0589170000000081,
       "engineMs": null,
       "training": true
     },
@@ -1297,9 +1297,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
-      "latencyMs": 28.787083000000052,
-      "recognitionMs": 25.80158300000005,
-      "validationMs": 2.9520409999998947,
+      "latencyMs": 23.647875,
+      "recognitionMs": 20.786459000000036,
+      "validationMs": 2.8291659999999865,
       "engineMs": null,
       "training": false
     },
@@ -1309,9 +1309,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
-      "latencyMs": 23.29424999999992,
-      "recognitionMs": 20.71962499999995,
-      "validationMs": 2.5579999999999927,
+      "latencyMs": 22.892667000000017,
+      "recognitionMs": 20.318084,
+      "validationMs": 2.5570409999999697,
       "engineMs": null,
       "training": false
     },
@@ -1321,9 +1321,9 @@
       "reason": "Placement matches; initial rights still require human confirmation",
       "recognitionMatches": true,
       "recognizedFen": null,
-      "latencyMs": 19.85029099999997,
-      "recognitionMs": 19.77966600000002,
-      "validationMs": 0.0696659999999838,
+      "latencyMs": 19.712833000000046,
+      "recognitionMs": 19.667583000000036,
+      "validationMs": 0.04416699999995899,
       "engineMs": null,
       "training": false
     },
@@ -1333,9 +1333,9 @@
       "reason": "Placement matches; initial rights still require human confirmation",
       "recognitionMatches": true,
       "recognizedFen": null,
-      "latencyMs": 18.25750000000005,
-      "recognitionMs": 18.201625000000035,
-      "validationMs": 0.054917000000045846,
+      "latencyMs": 18.44554199999999,
+      "recognitionMs": 18.394082999999966,
+      "validationMs": 0.05037500000003092,
       "engineMs": null,
       "training": false
     },
@@ -1345,9 +1345,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "4k3/8/8/3P4/8/8/8/4K3 b - - 0 1",
-      "latencyMs": 16.7048749999999,
-      "recognitionMs": 16.130582999999888,
-      "validationMs": 0.5643340000000308,
+      "latencyMs": 16.787541000000033,
+      "recognitionMs": 16.210541000000035,
+      "validationMs": 0.5661250000000564,
       "engineMs": null,
       "training": false
     },
@@ -1357,9 +1357,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "4k3/8/8/3P4/8/8/8/4K3 b - - 0 1",
-      "latencyMs": 16.656999999999925,
-      "recognitionMs": 16.108208999999988,
-      "validationMs": 0.5396250000000009,
+      "latencyMs": 16.926375000000007,
+      "recognitionMs": 16.381583999999975,
+      "validationMs": 0.5346250000000055,
       "engineMs": null,
       "training": false
     },
@@ -1369,9 +1369,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "r3k2r/8/8/8/8/8/8/R4RK1 b kq - 1 1",
-      "latencyMs": 22.81220799999994,
-      "recognitionMs": 18.162165999999957,
-      "validationMs": 4.637291000000005,
+      "latencyMs": 23.125792000000047,
+      "recognitionMs": 18.26745900000003,
+      "validationMs": 4.834292000000005,
       "engineMs": null,
       "training": false
     },
@@ -1381,9 +1381,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "r3k2r/8/8/8/8/8/8/R4RK1 b kq - 1 1",
-      "latencyMs": 21.567957999999976,
-      "recognitionMs": 16.950500000000034,
-      "validationMs": 4.604624999999942,
+      "latencyMs": 23.4100830000001,
+      "recognitionMs": 18.611000000000104,
+      "validationMs": 4.7840419999999995,
       "engineMs": null,
       "training": false
     },
@@ -1393,9 +1393,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "4k3/8/3P4/8/8/8/8/4K3 b - - 0 2",
-      "latencyMs": 16.849042000000054,
-      "recognitionMs": 16.167291999999975,
-      "validationMs": 0.6731660000000375,
+      "latencyMs": 17.490249999999946,
+      "recognitionMs": 16.775582999999983,
+      "validationMs": 0.7043330000000196,
       "engineMs": null,
       "training": false
     },
@@ -1405,9 +1405,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "4k3/8/3P4/8/8/8/8/4K3 b - - 0 2",
-      "latencyMs": 16.908000000000015,
-      "recognitionMs": 16.314166999999998,
-      "validationMs": 0.5868749999999636,
+      "latencyMs": 16.913832999999954,
+      "recognitionMs": 16.331999999999994,
+      "validationMs": 0.5724999999999909,
       "engineMs": null,
       "training": false
     },
@@ -1417,9 +1417,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "Q3k3/8/8/8/8/8/8/4K3 b - - 0 1",
-      "latencyMs": 16.598707999999988,
-      "recognitionMs": 15.852167000000009,
-      "validationMs": 0.7399159999999938,
+      "latencyMs": 16.82858299999998,
+      "recognitionMs": 16.04945799999996,
+      "validationMs": 0.7718329999999014,
       "engineMs": null,
       "training": false
     },
@@ -1429,9 +1429,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "Q3k3/8/8/8/8/8/8/4K3 b - - 0 1",
-      "latencyMs": 16.62291700000003,
-      "recognitionMs": 15.917167000000063,
-      "validationMs": 0.6981670000000122,
+      "latencyMs": 16.552291999999966,
+      "recognitionMs": 15.766834000000017,
+      "validationMs": 0.7752910000000384,
       "engineMs": null,
       "training": false
     },
@@ -1441,9 +1441,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
-      "latencyMs": 22.749916999999982,
-      "recognitionMs": 17.64133400000003,
-      "validationMs": 5.0903749999999945,
+      "latencyMs": 24.540000000000077,
+      "recognitionMs": 19.314709000000107,
+      "validationMs": 5.206332999999972,
       "engineMs": null,
       "training": false
     },
@@ -1453,9 +1453,9 @@
       "reason": "The board is hidden or the crop moved. Select Board again.",
       "recognitionMatches": false,
       "recognizedFen": null,
-      "latencyMs": 18.450166999999965,
-      "recognitionMs": 18.33979199999999,
-      "validationMs": 0.10987499999998818,
+      "latencyMs": 17.73412499999995,
+      "recognitionMs": 17.613207999999986,
+      "validationMs": 0.12029199999994944,
       "engineMs": null,
       "training": false
     },
@@ -1465,9 +1465,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "7k/5K2/6Q1/8/8/8/8/8 b - - 1 1",
-      "latencyMs": 22.769292000000064,
-      "recognitionMs": 17.98791700000004,
-      "validationMs": 4.770916000000057,
+      "latencyMs": 22.571459000000004,
+      "recognitionMs": 17.673083999999903,
+      "validationMs": 4.882583000000068,
       "engineMs": null,
       "training": false
     },
@@ -1477,9 +1477,9 @@
       "reason": "The board is hidden or the crop moved. Select Board again.",
       "recognitionMatches": false,
       "recognizedFen": null,
-      "latencyMs": 17.005209000000036,
-      "recognitionMs": 16.915209000000004,
-      "validationMs": 0.08958299999994779,
+      "latencyMs": 16.93108399999994,
+      "recognitionMs": 16.859666999999945,
+      "validationMs": 0.0707079999999678,
       "engineMs": null,
       "training": false
     },
@@ -1489,9 +1489,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "r1bqk2r/ppp2ppp/2n5/3p4/2BPn3/2P2N2/P4PPP/R1BQ1RK1 w kq - 0 10",
-      "latencyMs": 25.019499999999994,
-      "recognitionMs": 18.036292000000003,
-      "validationMs": 6.9692079999999805,
+      "latencyMs": 25.160082999999986,
+      "recognitionMs": 18.292042000000038,
+      "validationMs": 6.853417000000036,
       "engineMs": null,
       "training": false
     },
@@ -1501,9 +1501,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "r1bqk2r/ppp2ppp/2n5/3p4/2BPn3/2P2N2/P4PPP/R1BQ1RK1 w kq - 0 10",
-      "latencyMs": 24.59954199999993,
-      "recognitionMs": 17.64916699999992,
-      "validationMs": 6.925749999999994,
+      "latencyMs": 25.239000000000033,
+      "recognitionMs": 18.17283299999997,
+      "validationMs": 7.047707999999943,
       "engineMs": null,
       "training": false
     },
@@ -1513,9 +1513,9 @@
       "reason": "The board does not match exactly one legal move. Import FEN/PGN or correct the position.",
       "recognitionMatches": true,
       "recognizedFen": null,
-      "latencyMs": 20.63620800000001,
-      "recognitionMs": 18.157332999999994,
-      "validationMs": 2.4780000000000655,
+      "latencyMs": 20.954625000000078,
+      "recognitionMs": 18.496166000000017,
+      "validationMs": 2.45799999999997,
       "engineMs": null,
       "training": false
     },
@@ -1525,9 +1525,9 @@
       "reason": "The board does not match exactly one legal move. Import FEN/PGN or correct the position.",
       "recognitionMatches": true,
       "recognizedFen": null,
-      "latencyMs": 20.901292000000012,
-      "recognitionMs": 18.385459000000083,
-      "validationMs": 2.5152080000000296,
+      "latencyMs": 20.692791000000057,
+      "recognitionMs": 18.190291000000002,
+      "validationMs": 2.5017910000000256,
       "engineMs": null,
       "training": false
     },
@@ -1537,9 +1537,9 @@
       "reason": "The board is hidden or the crop moved. Select Board again.",
       "recognitionMatches": null,
       "recognizedFen": null,
-      "latencyMs": 0.9610420000000204,
-      "recognitionMs": 0.9097090000000208,
-      "validationMs": 0.05104200000005221,
+      "latencyMs": 0.9409580000000233,
+      "recognitionMs": 0.8870410000000675,
+      "validationMs": 0.053625000000010914,
       "engineMs": null,
       "training": false
     },
@@ -1549,9 +1549,9 @@
       "reason": "The board is hidden or the crop moved. Select Board again.",
       "recognitionMatches": null,
       "recognizedFen": null,
-      "latencyMs": 0.9663750000000846,
-      "recognitionMs": 0.90300000000002,
-      "validationMs": 0.062958999999978,
+      "latencyMs": 0.9392080000000078,
+      "recognitionMs": 0.8878750000000082,
+      "validationMs": 0.05095800000003692,
       "engineMs": null,
       "training": false
     },
@@ -1561,9 +1561,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
-      "latencyMs": 20.295999999999935,
-      "recognitionMs": 17.697124999999915,
-      "validationMs": 2.58299999999997,
+      "latencyMs": 20.312374999999975,
+      "recognitionMs": 17.679040999999984,
+      "validationMs": 2.618249999999989,
       "engineMs": null,
       "training": false
     },
@@ -1573,9 +1573,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
-      "latencyMs": 20.066874999999982,
-      "recognitionMs": 17.468833000000018,
-      "validationMs": 2.583082999999988,
+      "latencyMs": 20.145665999999892,
+      "recognitionMs": 17.58979099999999,
+      "validationMs": 2.542915999999991,
       "engineMs": null,
       "training": false
     },
@@ -1585,9 +1585,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "4k3/8/8/3P4/8/8/8/4K3 b - - 0 1",
-      "latencyMs": 16.621083000000112,
-      "recognitionMs": 16.053583000000003,
-      "validationMs": 0.5583749999999554,
+      "latencyMs": 16.144957999999974,
+      "recognitionMs": 15.640999999999963,
+      "validationMs": 0.4984590000000253,
       "engineMs": null,
       "training": false
     },
@@ -1597,9 +1597,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "4k3/8/8/3P4/8/8/8/4K3 b - - 0 1",
-      "latencyMs": 18.276959000000033,
-      "recognitionMs": 17.794667000000004,
-      "validationMs": 0.47279200000002675,
+      "latencyMs": 18.50204199999996,
+      "recognitionMs": 17.886291999999912,
+      "validationMs": 0.6050840000000335,
       "engineMs": null,
       "training": false
     },
@@ -1609,9 +1609,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "r3k2r/8/8/8/8/8/8/R4RK1 b kq - 1 1",
-      "latencyMs": 21.185374999999908,
-      "recognitionMs": 16.586207999999942,
-      "validationMs": 4.591625000000022,
+      "latencyMs": 21.44654199999991,
+      "recognitionMs": 16.916541999999936,
+      "validationMs": 4.521749999999997,
       "engineMs": null,
       "training": false
     },
@@ -1621,9 +1621,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "r3k2r/8/8/8/8/8/8/R4RK1 b kq - 1 1",
-      "latencyMs": 20.590832999999975,
-      "recognitionMs": 15.841416999999865,
-      "validationMs": 4.741125000000011,
+      "latencyMs": 20.783916999999974,
+      "recognitionMs": 16.044209000000023,
+      "validationMs": 4.7309999999999945,
       "engineMs": null,
       "training": false
     },
@@ -1633,9 +1633,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "4k3/8/3P4/8/8/8/8/4K3 b - - 0 2",
-      "latencyMs": 16.141583000000082,
-      "recognitionMs": 15.501582999999982,
-      "validationMs": 0.6328749999997854,
+      "latencyMs": 16.336667000000034,
+      "recognitionMs": 15.682375000000093,
+      "validationMs": 0.6465829999999642,
       "engineMs": null,
       "training": false
     },
@@ -1645,9 +1645,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "4k3/8/3P4/8/8/8/8/4K3 b - - 0 2",
-      "latencyMs": 16.188249999999925,
-      "recognitionMs": 15.702749999999924,
-      "validationMs": 0.47983300000009876,
+      "latencyMs": 16.263834000000088,
+      "recognitionMs": 15.740334000000075,
+      "validationMs": 0.5177500000000919,
       "engineMs": null,
       "training": false
     },
@@ -1657,9 +1657,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "Q3k3/8/8/8/8/8/8/4K3 b - - 0 1",
-      "latencyMs": 16.213083000000097,
-      "recognitionMs": 15.50958300000002,
-      "validationMs": 0.698207999999795,
+      "latencyMs": 16.48991699999999,
+      "recognitionMs": 15.743417000000022,
+      "validationMs": 0.7399169999999913,
       "engineMs": null,
       "training": false
     },
@@ -1669,9 +1669,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "Q3k3/8/8/8/8/8/8/4K3 b - - 0 1",
-      "latencyMs": 16.259625000000142,
-      "recognitionMs": 15.547750000000178,
-      "validationMs": 0.7057090000000699,
+      "latencyMs": 16.554916999999932,
+      "recognitionMs": 15.822499999999991,
+      "validationMs": 0.7264580000000933,
       "engineMs": null,
       "training": false
     },
@@ -1681,9 +1681,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
-      "latencyMs": 22.655291000000034,
-      "recognitionMs": 17.55291599999987,
-      "validationMs": 5.076082999999926,
+      "latencyMs": 22.491916999999944,
+      "recognitionMs": 17.35537499999998,
+      "validationMs": 5.114332999999988,
       "engineMs": null,
       "training": false
     },
@@ -1693,9 +1693,9 @@
       "reason": "The board is hidden or the crop moved. Select Board again.",
       "recognitionMatches": false,
       "recognizedFen": null,
-      "latencyMs": 17.495042000000012,
-      "recognitionMs": 17.398292000000083,
-      "validationMs": 0.09633300000018608,
+      "latencyMs": 17.85550000000012,
+      "recognitionMs": 17.75566600000002,
+      "validationMs": 0.09920800000008967,
       "engineMs": null,
       "training": false
     },
@@ -1705,9 +1705,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "7k/5K2/6Q1/8/8/8/8/8 b - - 1 1",
-      "latencyMs": 20.0374589999999,
-      "recognitionMs": 15.3946669999998,
-      "validationMs": 4.635833000000048,
+      "latencyMs": 20.28887500000019,
+      "recognitionMs": 15.553459000000203,
+      "validationMs": 4.728084000000081,
       "engineMs": null,
       "training": false
     },
@@ -1717,9 +1717,9 @@
       "reason": "The board is hidden or the crop moved. Select Board again.",
       "recognitionMatches": false,
       "recognizedFen": null,
-      "latencyMs": 16.860750000000053,
-      "recognitionMs": 16.82229099999995,
-      "validationMs": 0.03812500000003638,
+      "latencyMs": 17.702749999999924,
+      "recognitionMs": 17.636708999999883,
+      "validationMs": 0.06554199999982302,
       "engineMs": null,
       "training": false
     },
@@ -1729,9 +1729,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "r1bqk2r/ppp2ppp/2n5/3p4/2BPn3/2P2N2/P4PPP/R1BQ1RK1 w kq - 0 10",
-      "latencyMs": 25.180624999999964,
-      "recognitionMs": 18.363374999999905,
-      "validationMs": 6.795165999999881,
+      "latencyMs": 24.99350000000004,
+      "recognitionMs": 18.003291999999874,
+      "validationMs": 6.962791000000152,
       "engineMs": null,
       "training": false
     },
@@ -1741,9 +1741,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "r1bqk2r/ppp2ppp/2n5/3p4/2BPn3/2P2N2/P4PPP/R1BQ1RK1 w kq - 0 10",
-      "latencyMs": 24.47195899999997,
-      "recognitionMs": 17.65062499999999,
-      "validationMs": 6.809166000000005,
+      "latencyMs": 24.496165999999903,
+      "recognitionMs": 17.69441599999982,
+      "validationMs": 6.788500000000113,
       "engineMs": null,
       "training": false
     },
@@ -1753,9 +1753,9 @@
       "reason": "The board does not match exactly one legal move. Import FEN/PGN or correct the position.",
       "recognitionMatches": true,
       "recognizedFen": null,
-      "latencyMs": 20.32462499999997,
-      "recognitionMs": 17.93724999999995,
-      "validationMs": 2.3871670000000904,
+      "latencyMs": 20.601875000000064,
+      "recognitionMs": 18.169374999999945,
+      "validationMs": 2.431916999999885,
       "engineMs": null,
       "training": false
     },
@@ -1765,9 +1765,9 @@
       "reason": "The board does not match exactly one legal move. Import FEN/PGN or correct the position.",
       "recognitionMatches": true,
       "recognizedFen": null,
-      "latencyMs": 20.385167000000138,
-      "recognitionMs": 17.94595800000002,
-      "validationMs": 2.4388750000000528,
+      "latencyMs": 20.438292000000047,
+      "recognitionMs": 18.03379199999995,
+      "validationMs": 2.40424999999982,
       "engineMs": null,
       "training": false
     },
@@ -1777,9 +1777,9 @@
       "reason": "Placement matches; initial rights still require human confirmation",
       "recognitionMatches": true,
       "recognizedFen": null,
-      "latencyMs": 17.31100000000015,
-      "recognitionMs": 17.261834000000135,
-      "validationMs": 0.04874999999992724,
+      "latencyMs": 17.479042000000163,
+      "recognitionMs": 17.441667000000052,
+      "validationMs": 0.0367909999999938,
       "engineMs": null,
       "training": false
     },
@@ -1789,9 +1789,9 @@
       "reason": "The board is hidden or the crop moved. Select Board again.",
       "recognitionMatches": null,
       "recognizedFen": null,
-      "latencyMs": 16.961332999999968,
-      "recognitionMs": 16.899167000000034,
-      "validationMs": 0.06179199999996854,
+      "latencyMs": 17.082625000000007,
+      "recognitionMs": 17.016208000000006,
+      "validationMs": 0.06608400000004622,
       "engineMs": null,
       "training": false
     },
@@ -1801,9 +1801,9 @@
       "reason": "The board is hidden or the crop moved. Select Board again.",
       "recognitionMatches": null,
       "recognizedFen": null,
-      "latencyMs": 17.39737500000001,
-      "recognitionMs": 17.316375000000107,
-      "validationMs": 0.08066600000006474,
+      "latencyMs": 17.612958000000162,
+      "recognitionMs": 17.536292000000003,
+      "validationMs": 0.07616699999994125,
       "engineMs": null,
       "training": false
     },
@@ -1813,9 +1813,9 @@
       "reason": "Placement matches; initial rights still require human confirmation",
       "recognitionMatches": true,
       "recognizedFen": null,
-      "latencyMs": 16.715625000000045,
-      "recognitionMs": 16.678791000000047,
-      "validationMs": 0.0362920000000031,
+      "latencyMs": 16.98354100000006,
+      "recognitionMs": 16.932874999999967,
+      "validationMs": 0.05020799999988412,
       "engineMs": null,
       "training": false
     },
@@ -1825,9 +1825,9 @@
       "reason": "Placement matches; initial rights still require human confirmation",
       "recognitionMatches": true,
       "recognizedFen": null,
-      "latencyMs": 17.564125000000104,
-      "recognitionMs": 17.526542000000063,
-      "validationMs": 0.03724999999985812,
+      "latencyMs": 17.667249999999967,
+      "recognitionMs": 17.626624999999876,
+      "validationMs": 0.040166999999883046,
       "engineMs": null,
       "training": false
     },
@@ -1837,9 +1837,9 @@
       "reason": "Board visibility, orientation, or squares require correction",
       "recognitionMatches": true,
       "recognizedFen": null,
-      "latencyMs": 21.548665999999912,
-      "recognitionMs": 21.49433299999987,
-      "validationMs": 0.04937500000005457,
+      "latencyMs": 21.895874999999933,
+      "recognitionMs": 21.845542000000023,
+      "validationMs": 0.049790999999913765,
       "engineMs": null,
       "training": false
     },
@@ -1849,9 +1849,9 @@
       "reason": "Placement matches; initial rights still require human confirmation",
       "recognitionMatches": true,
       "recognizedFen": null,
-      "latencyMs": 20.044333999999935,
-      "recognitionMs": 19.990708999999924,
-      "validationMs": 0.052957999999989624,
+      "latencyMs": 22.15995900000007,
+      "recognitionMs": 22.113334000000123,
+      "validationMs": 0.04629099999988284,
       "engineMs": null,
       "training": false
     },
@@ -1861,9 +1861,9 @@
       "reason": "Board visibility, orientation, or squares require correction",
       "recognitionMatches": false,
       "recognizedFen": null,
-      "latencyMs": 19.329625000000078,
-      "recognitionMs": 19.27208399999995,
-      "validationMs": 0.0570829999999205,
+      "latencyMs": 19.212124999999787,
+      "recognitionMs": 19.17279099999996,
+      "validationMs": 0.038875000000189175,
       "engineMs": null,
       "training": false
     },
@@ -1873,9 +1873,9 @@
       "reason": "Complete chess state matches ground truth",
       "recognitionMatches": true,
       "recognizedFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
-      "latencyMs": 22.794708000000128,
-      "recognitionMs": 20.237166000000116,
-      "validationMs": 2.5357500000000073,
+      "latencyMs": 21.501083000000108,
+      "recognitionMs": 18.963833000000022,
+      "validationMs": 2.5159159999998337,
       "engineMs": null,
       "training": false
     }

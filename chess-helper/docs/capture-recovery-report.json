@@ -1,0 +1,223 @@
+{
+  "verifiedAt": "2026-10-17T23:09:53.965Z",
+  "step": 69,
+  "qualified": false,
+  "implementationSha256": "70478d8236cd8eb3ca946f822258ec3a36c2035e113164944d709124e070ab7f",
+  "changes": {
+    "nativeResume": "A resumed request waits for canceled native work, discards its frame and preserves single-flight capture and the five-second deadline.",
+    "captureRecovery": "Capture errors replace the primary Start/Analyze control with Select Board…; resize recovery carries the same typed capture action. No extra rail control is added.",
+    "resizeDiagnostic": "The browser window changed size or stopped sharing. Select Board again to confirm the crop."
+  },
+  "validation": {
+    "tests": 230,
+    "testFiles": 14,
+    "installedStockfishIntegration": true,
+    "nativeCaptureTests": 12,
+    "strictTypecheckAndBuild": true,
+    "fixtures": {
+      "total": 51,
+      "correct": 37,
+      "correction": 14,
+      "incorrect": 0,
+      "error": 0
+    },
+    "heldOut": {
+      "total": 49,
+      "correct": 35,
+      "correction": 14,
+      "incorrect": 0,
+      "error": 0
+    },
+    "derivedJpegSizes": [
+      512,
+      1024
+    ],
+    "recordedSessionReplays": {
+      "lichess": true,
+      "chesscom": true,
+      "cloudRecognitionCalls": 0,
+      "cloudExplanationCalls": 0
+    },
+    "nativePreflight": {
+      "recordings": 51,
+      "missingCoverage": []
+    },
+    "ui": {
+      "scope": "Actual production renderer assets, synthetic public starting-position state and mock IPC; no native capture or engine qualification claimed.",
+      "checks": [
+        {
+          "case": "resize",
+          "controls": [
+            {
+              "height": 52.796875,
+              "label": "Select Board…",
+              "width": 84,
+              "x": 233,
+              "y": 83.046875
+            },
+            {
+              "height": 44,
+              "label": "Rescan",
+              "width": 84,
+              "x": 233,
+              "y": 143.84375
+            },
+            {
+              "height": 52.796875,
+              "label": "Correct Position",
+              "width": 84,
+              "x": 233,
+              "y": 195.84375
+            },
+            {
+              "height": 44,
+              "label": "Settings",
+              "width": 84,
+              "x": 233,
+              "y": 256.640625
+            },
+            {
+              "height": 44,
+              "label": "Quit",
+              "width": 84,
+              "x": 233,
+              "y": 409
+            }
+          ],
+          "height": 480,
+          "overflow": false,
+          "width": 340
+        },
+        {
+          "case": "closed",
+          "controls": [
+            {
+              "height": 52.796875,
+              "label": "Select Board…",
+              "width": 93,
+              "x": 299,
+              "y": 88.046875
+            },
+            {
+              "height": 44,
+              "label": "Rescan",
+              "width": 93,
+              "x": 299,
+              "y": 148.84375
+            },
+            {
+              "height": 52.796875,
+              "label": "Correct Position",
+              "width": 93,
+              "x": 299,
+              "y": 200.84375
+            },
+            {
+              "height": 44,
+              "label": "Settings",
+              "width": 93,
+              "x": 299,
+              "y": 261.640625
+            },
+            {
+              "height": 44,
+              "label": "Quit",
+              "width": 93,
+              "x": 299,
+              "y": 674
+            }
+          ],
+          "height": 750,
+          "overflow": false,
+          "width": 420
+        },
+        {
+          "case": "normal",
+          "height": 750,
+          "overflow": false,
+          "primary": "Start",
+          "selectRecoveryVisible": false,
+          "width": 420
+        }
+      ],
+      "resizeKeyboardEnter": "Opened selection window (mock IPC).",
+      "closedSourceClick": "Opened selection window (mock IPC).",
+      "evidence": "images/capture-recovery-controls.jpg",
+      "viewportReset": true,
+      "previewTabClosed": true,
+      "loopbackServerStopped": true
+    }
+  },
+  "designRationale": {
+    "scope": "Desktop recovery action only; existing tokens, typography, spacing, controls and menu access retained.",
+    "references": [
+      {
+        "file": "apple-design/references/hig/feedback.md",
+        "heading": "Best practices",
+        "guidance": "Consider integrating status feedback into your interface."
+      },
+      {
+        "file": "apple-design/references/hig/writing.md",
+        "heading": "Best practices",
+        "guidance": "Write clear error messages."
+      },
+      {
+        "file": "apple-design/references/hig/buttons.md",
+        "heading": "Desktop (macOS) / Push buttons",
+        "guidance": "An ellipsis signals additional input in another view."
+      }
+    ],
+    "decision": "Reuse the primary action for recovery; retain the existing five-button control rail at compact and regular sizes."
+  },
+  "package": {
+    "verifiedAt": "2026-10-17T23:09:13.321Z",
+    "assets": {
+      "dist/main/main.cjs": "f6c1da81fa43fd10b09c86acafaa5e107669c66b48b4f29ed665cf3599b12a06",
+      "dist/preload/preload.cjs": "5dcf09a9dfb7782c3bf34d1e97c214f354c99921a3e1a6353414c6d9b09a5d28",
+      "dist/renderer/index.html": "78da679594615b798aafa1853bc981156404f33318fb14616bb2dc33117866fc",
+      "dist/renderer/assets/index-B7rEtv0l.css": "bb2b7f309e2405af28f490259d0bec9ab34d40c6900a1f44ce73a2165a821193",
+      "dist/renderer/assets/index-CvwIE46_.js": "e79a624bc01ebfca624edab942e4caaeee995feaa6cad1f297f06215af1b0e2f"
+    },
+    "native": {
+      "minimumMacOS": "14.0",
+      "nodeApi": 8,
+      "sourceSha256": "e17fdba2ed1c331e5f92a4bebc2479282bceab0fef3c94c84a9bee98c5f03197",
+      "binarySha256": "cdd1ed2c6746b9dc0686ebb87898c3d5fe3687268ae4eedbd1fb0badfe885a24"
+    },
+    "artifacts": {
+      "release/Chess-Helper-0.1.0-arm64.dmg": "65cc88e219e10bc317001883d8a87016988525c58d7e7aece00fc6a95df847ae",
+      "release/Chess-Helper-0.1.0-arm64.zip": "1873691fffbe006a88ef66d1295d84143fdaacdf868ffb0a018ffb6dbe53c1c7"
+    },
+    "packagedBytesMatchBuild": true,
+    "productionContentProtection": true
+  },
+  "nativeLiveEvidence": {
+    "report": "native-local-tracking-report.json",
+    "implementationSha256": "97bf4ded5a299377540deb0456179b072b4e504b1ecf02a1af25745db1b63ec3",
+    "matchesCurrentImplementation": false,
+    "note": "Step 67 native measurements remain historical for the earlier build. These recovery changes have regression and renderer-preview coverage; they have not been rerun through live capture."
+  },
+  "restoration": {
+    "productionLaunchVerifiedByNativeRendererURL": true,
+    "productionPausedOnLaunch": true,
+    "productionSettingsVerified": {
+      "boardReader": "local",
+      "explanationsEnabled": false,
+      "automaticTracking": true,
+      "shortcuts": {
+        "showHide": "Command+Shift+B",
+        "startPause": "Command+Shift+P",
+        "rescan": "Command+Shift+R"
+      },
+      "keyStatus": "Saved securely; no credential value read"
+    },
+    "onlyProtectedProductionInScopedProcessCheck": true,
+    "productionSettingsLeftOpen": true,
+    "automaticCaptureActive": false,
+    "settingsChanged": false
+  },
+  "limitations": [
+    "Complete native fixture corpus and OS Screen Recording denial/revocation remain unqualified.",
+    "New quick-resume and recovery-button paths have regression/preview coverage, not fresh live-capture acceptance."
+  ]
+}

@@ -229,8 +229,8 @@ export class Session {
     this.stable.reset();
     this.uncertainReads = 0;
   }
-  private setStatus(state: Snapshot["status"]["state"], message: string) {
-    this.current.status = { ...this.token(), state, message };
+  private setStatus(state: Snapshot["status"]["state"], message: string, error?: Snapshot["status"]["error"]) {
+    this.current.status = { ...this.token(), state, message, ...(error ? { error } : {}) };
     this.publish();
   }
   private sendCapture(action: CaptureCommand["action"]) {
@@ -438,7 +438,8 @@ export class Session {
     ) {
       this.captureUsable = false;
       this.needsCorrection(
-        "The browser window resized. Select Board again to confirm the crop.",
+        "The browser window changed size or stopped sharing. Select Board again to confirm the crop.",
+        { code: "capture", action: "Select Board" },
       );
       return;
     }
@@ -459,12 +460,12 @@ export class Session {
       this.recognition.submit(currentFrame);
     }
   }
-  needsCorrection(message: string) {
+  needsCorrection(message: string, error?: Snapshot["status"]["error"]) {
     this.invalidate();
     this.current.running = false;
     this.manualSampling = false;
     this.sendCapture("stop");
-    this.setStatus("Needs correction", message);
+    this.setStatus("Needs correction", message, error);
   }
   fail(
     code: "capture" | "recognition" | "engine",

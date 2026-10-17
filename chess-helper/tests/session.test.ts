@@ -192,6 +192,28 @@ describe("revision-safe sessions", () => {
       expect(session.snapshot().position?.fen).toBe(DEFAULT_POSITION);
     }
   });
+  it.each(["sourceWidth", "sourceHeight"] as const)("keeps capture recovery actionable after a %s change and late recognition", async dimension => {
+    const { session, deps } = make({ settings: { ...structuredClone(DEFAULT_SETTINGS), automaticTracking: true, explanationsEnabled: false } });
+    let finishRecognition!: (observation: BoardObservation) => void;
+    deps.local.recognize = vi.fn(() => new Promise<BoardObservation>(resolve => { finishRecognition = resolve; }));
+    select(session); setup(session); await flush();
+    const confirmed = session.snapshot().position!.fen;
+    session.frame(frame(session, 1));
+    const pending = frame(session, 2);
+    session.frame(pending); await flush();
+    session.frame({ ...frame(session, 3), [dimension]: 1200 });
+    const failed = session.snapshot();
+    expect(failed.status).toMatchObject({ state: "Needs correction", error: { code: "capture", action: "Select Board" } });
+    expect(failed.running).toBe(false);
+    expect(failed.analysis).toBeNull();
+    expect(failed.position?.fen).toBe(confirmed);
+    expect(deps.capture).toHaveBeenLastCalledWith(expect.objectContaining({ action: "stop" }));
+    finishRecognition({ ...pending, placements: placementsOf(DEFAULT_POSITION), orientation: "white-bottom", uncertainSquares: [], boardVisible: true, cropAligned: true });
+    await flush();
+    expect(session.snapshot()).toEqual(failed);
+    expect(deps.engine.analyze).toHaveBeenCalledOnce();
+    expect(deps.cloud.recognize).not.toHaveBeenCalled();
+  });
   it("publishes an actionable status and current revision when rescanning without a position", () => {
     const { session, deps } = make();
     const previous = session.token();
