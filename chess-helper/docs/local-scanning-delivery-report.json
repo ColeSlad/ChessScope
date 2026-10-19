@@ -1,51 +1,50 @@
 {
-  "verifiedAt": "2026-10-17T23:09:13.321Z",
-  "step": 69,
+  "verifiedAt": "2026-10-19T19:11:42.662Z",
+  "step": 71,
   "fixtureReport": "local-recognition-report.json",
-  "recoveryReport": "capture-recovery-report.json",
-  "historicalNativeReport": "native-local-tracking-report.json",
-  "historicalNativeReportMatchesCurrentImplementation": false,
-  "implementationSha256": "70478d8236cd8eb3ca946f822258ec3a36c2035e113164944d709124e070ab7f",
+  "rescanRepairReport": "rescan-repair-report.json",
+  "implementationSha256": "068391a90aae7395b4797378415c3178af07392aee42d075713323d448fd7c5c",
   "recordedFixturesPassed": true,
   "trackingQualified": false,
   "localPreviewAvailable": true,
-  "assets": {
-    "dist/main/main.cjs": "f6c1da81fa43fd10b09c86acafaa5e107669c66b48b4f29ed665cf3599b12a06",
-    "dist/preload/preload.cjs": "5dcf09a9dfb7782c3bf34d1e97c214f354c99921a3e1a6353414c6d9b09a5d28",
-    "dist/renderer/index.html": "78da679594615b798aafa1853bc981156404f33318fb14616bb2dc33117866fc",
-    "dist/renderer/assets/index-B7rEtv0l.css": "bb2b7f309e2405af28f490259d0bec9ab34d40c6900a1f44ce73a2165a821193",
-    "dist/renderer/assets/index-CvwIE46_.js": "e79a624bc01ebfca624edab942e4caaeee995feaa6cad1f297f06215af1b0e2f"
-  },
-  "native": {
-    "minimumMacOS": "14.0",
-    "nodeApi": 8,
-    "sourceSha256": "e17fdba2ed1c331e5f92a4bebc2479282bceab0fef3c94c84a9bee98c5f03197",
-    "binarySha256": "cdd1ed2c6746b9dc0686ebb87898c3d5fe3687268ae4eedbd1fb0badfe885a24"
-  },
-  "artifacts": {
-    "release/Chess-Helper-0.1.0-arm64.dmg": "65cc88e219e10bc317001883d8a87016988525c58d7e7aece00fc6a95df847ae",
-    "release/Chess-Helper-0.1.0-arm64.zip": "1873691fffbe006a88ef66d1295d84143fdaacdf868ffb0a018ffb6dbe53c1c7"
-  },
-  "packagedBytesMatchBuild": true,
-  "productionContentProtection": true,
-  "nativeVerification": {
-    "productionLaunchVerifiedByNativeRendererURL": true,
-    "productionPausedOnLaunch": true,
-    "productionSettingsVerified": {
-      "boardReader": "local",
-      "explanationsEnabled": false,
-      "automaticTracking": true,
-      "shortcuts": {
-        "showHide": "Command+Shift+B",
-        "startPause": "Command+Shift+P",
-        "rescan": "Command+Shift+R"
-      },
-      "keyStatus": "Saved securely; no credential value read"
+  "stagedPackage": {
+    "verifiedAt": "2026-10-19T19:10:48.801Z",
+    "application": "release/rescan-update/mac-arm64/ChessHelper.app",
+    "assets": {
+      "dist/main/main.cjs": "951e25e0d04473c371ad01d6e2292b346c0d7aedbb862bc8a104e89082f0922f",
+      "dist/preload/preload.cjs": "5dcf09a9dfb7782c3bf34d1e97c214f354c99921a3e1a6353414c6d9b09a5d28",
+      "dist/renderer/index.html": "3ab9b255b22de6c97527260fe8ad61c7ed1f16784be30a7a6bc0f1fd71c717ea",
+      "dist/renderer/assets/index-B7rEtv0l.css": "bb2b7f309e2405af28f490259d0bec9ab34d40c6900a1f44ce73a2165a821193",
+      "dist/renderer/assets/index-ChiXWwSb.js": "3b217db414995381a2bc95d833bfdc69697056588575f90d225983c6c432cc8b"
     },
-    "onlyProtectedProductionInScopedProcessCheck": true,
-    "productionSettingsLeftOpen": true,
-    "automaticCaptureActive": false,
-    "settingsChanged": false
+    "native": {
+      "minimumMacOS": "14.0",
+      "nodeApi": 8,
+      "sourceSha256": "e17fdba2ed1c331e5f92a4bebc2479282bceab0fef3c94c84a9bee98c5f03197",
+      "binarySha256": "cdd1ed2c6746b9dc0686ebb87898c3d5fe3687268ae4eedbd1fb0badfe885a24"
+    },
+    "artifacts": {
+      "release/rescan-update/Chess-Helper-0.1.0-arm64.zip": "fad981524ff6cb131225427b8f9777e97063a41a07f84f46f73ed0df35720e83",
+      "release/rescan-update/Chess-Helper-0.1.0-arm64.dmg": "d5c4e51e44d4e034e036a32d6b38efa1c401334a142a37690f902a7682f2568a"
+    },
+    "packagedBytesMatchBuild": true,
+    "productionContentProtection": true
   },
-  "settingsMigration": "Saved encrypted credential and preferences retained; no value read or settings changed."
+  "installation": {
+    "state": "awaiting-user-quit",
+    "productionReplaced": false,
+    "previousProductionPackageBytesIntact": true,
+    "productionExecutableObserved": true,
+    "qualificationAppRunning": false,
+    "previousProduction": "release/mac-arm64/ChessHelper.app",
+    "stagedApplication": "release/rescan-update/mac-arm64/ChessHelper.app",
+    "nativeAttempts": [
+      "Production app path lookup timed out.",
+      "Executable-name lookup timed out."
+    ],
+    "pendingQuestion": "Quit Chess Helper from its menu and reply closed so the verified staged repair can replace it and be relaunched.",
+    "preferencesChanged": false,
+    "credentialValueRead": false
+  },
+  "historicalCurrentProductionDeliveryReport": "local-scanning-delivery-report-step69.json"
 }

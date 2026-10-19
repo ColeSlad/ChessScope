@@ -38,21 +38,17 @@
     "sourceReleaseGate": false
   },
   "currentStatus": {
-    "recordedAt": "2026-10-17T23:09:53.965Z",
-    "state": "production-restored",
-    "temporaryQualificationAppRunning": false,
+    "recordedAt": "2026-10-19T19:11:42.662Z",
+    "state": "previous-production-running-update-staged",
     "protectedProductionAppRunning": true,
+    "temporaryQualificationAppRunning": false,
+    "runningPackageContainsRescanRepair": false,
+    "productionPackageUnchanged": true,
+    "stagedApplication": "release/rescan-update/mac-arm64/ChessHelper.app",
     "automaticTrackingReleaseGate": false,
-    "trackingPreviewOptIn": true,
-    "automaticTrackingPreference": true,
-    "automaticCaptureActive": false,
-    "boardReader": "local",
-    "explanationsEnabled": false,
     "currentBuildLiveCaptureMeasured": false,
-    "historicalNativeReport": "native-local-tracking-report.json",
-    "recoveryReport": "capture-recovery-report.json",
-    "fixtureReport": "local-recognition-report.json",
-    "pendingAction": "Select a visible board and apply its full position to start the opted-in preview. Complete current-build native acceptance before claiming qualification."
+    "rescanRepairReport": "rescan-repair-report.json",
+    "pendingAction": "Quit Chess Helper from its menu and reply closed so the verified staged repair can replace it and be relaunched."
   },
-  "historicalReport": "native-restoration-report-step67.json"
+  "historicalReport": "native-restoration-report-step69.json"
 }
