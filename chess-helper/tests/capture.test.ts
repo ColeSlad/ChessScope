@@ -3,7 +3,7 @@ import { BoardCapture } from "../src/renderer/capture";
 import { captureFailureMessage } from "../src/core/capture-errors";
 import { captureFailureSchema, frameSchema, type CaptureCommand, type ChessHelperAPI, type NativeCaptureResult } from "../src/shared/contracts";
 
-afterEach(() => vi.unstubAllGlobals());
+afterEach(() => { vi.useRealTimers(); vi.unstubAllGlobals(); });
 const command: CaptureCommand = {
   sessionId: "00000000-0000-4000-8000-000000000001",
   revision: 4,
@@ -91,4 +91,29 @@ it("discards a native capture response arriving after pause", async () => {
   await Promise.resolve();
   expect(frame).not.toHaveBeenCalled();
   expect(captureError).not.toHaveBeenCalled();
+});
+
+it.each(["error", "reject", "frame"] as const)("discards an old native %s after a newer scan revision", async outcome => {
+  vi.useFakeTimers();
+  const context = { drawImage: vi.fn(), getImageData: () => ({ data: new Uint8ClampedArray(64 * 64 * 4) }) };
+  vi.stubGlobal("document", { createElement: () => ({ getContext: () => context, srcObject: null }) });
+  vi.stubGlobal("Image", class { naturalWidth = 64; src = ""; async decode() {} });
+  let finish!: (value: NativeCaptureResult) => void;
+  let fail!: (error: Error) => void;
+  const board = { image: "data:image/jpeg;base64,AA==", sourceWidth: 800, sourceHeight: 800 };
+  const nativeFrame = vi.fn().mockImplementationOnce(() => new Promise<NativeCaptureResult>((resolve, reject) => { finish = resolve; fail = reject; }))
+    .mockResolvedValue({ frame: board });
+  const frame = vi.fn().mockResolvedValue(undefined);
+  const captureError = vi.fn().mockResolvedValue(undefined);
+  const capture = new BoardCapture({ nativeFrame, frame, captureError } as unknown as ChessHelperAPI);
+  await capture.receive(command);
+  const rescan = { ...command, revision: command.revision + 1 };
+  await capture.receive(rescan);
+  if (outcome === "error") finish({ error: "unavailable" });
+  else if (outcome === "frame") finish({ frame: { ...board, image: "data:image/jpeg;base64,b2xk" } });
+  else fail(new Error("Request belongs to the old position"));
+  await vi.advanceTimersByTimeAsync(500);
+  expect(captureError).not.toHaveBeenCalled();
+  expect(frame).toHaveBeenCalledExactlyOnceWith(expect.objectContaining({ revision: rescan.revision, image: board.image }));
+  capture.stop();
 });

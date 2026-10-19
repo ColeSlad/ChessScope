@@ -218,10 +218,22 @@ describe("revision-safe sessions", () => {
     const { session, deps } = make();
     const previous = session.token();
     session.rescan();
-    expect(session.snapshot().status.state).toBe("Needs correction");
+    expect(session.snapshot().status).toMatchObject({ state: "Paused", error: { code: "capture", action: "Select Board" } });
     expect(session.token().revision).toBe(previous.revision + 1);
     expect(deps.emit).toHaveBeenLastCalledWith(session.snapshot());
     expect(deps.engine.analyze).not.toHaveBeenCalled();
+  });
+  it("never presents old manual analysis as a fresh scan when capture is disconnected", async () => {
+    const { session, deps } = make();
+    setup(session); await flush();
+    const confirmed = session.snapshot().position!.fen;
+    vi.mocked(deps.engine.analyze).mockClear();
+    session.rescan(); await flush();
+    expect(session.snapshot().position?.fen).toBe(confirmed);
+    expect(session.snapshot().analysis).toBeNull();
+    expect(session.snapshot().status).toMatchObject({ state: "Paused", error: { code: "capture", action: "Select Board" } });
+    expect(deps.engine.analyze).not.toHaveBeenCalled();
+    expect(deps.cloud.recognize).not.toHaveBeenCalled();
   });
   it("discards engine completion after pause even if engine ignores abort", async () => {
     let resolve!: (a: EngineAnalysis) => void;

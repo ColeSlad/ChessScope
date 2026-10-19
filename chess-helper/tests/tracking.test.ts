@@ -183,6 +183,28 @@ describe("continuous tracking after fixture qualification", () => {
 });
 
 describe("local automatic tracking without cloud recognition", () => {
+  it.each([false, true])("restarts capture on Rescan and accepts only fresh stable samples (running %s)", async running => {
+    const h = harness(false, true, true, "local", false); await flush();
+    h.sample(); h.sample(); await flush();
+    if (!running) h.session.pause();
+    const before = h.session.token();
+    h.capture.mockClear();
+    h.session.rescan();
+    expect(h.capture.mock.calls.map(([command]) => command.action)).toEqual(["stop", running ? "start" : "sample"]);
+    expect(h.session.snapshot().analysis).toBeNull();
+    expect(h.session.snapshot().observation).toBeNull();
+    const reads = h.localRecognize.mock.calls.length;
+    h.session.frame({ ...before, frameId: 99, image: "data:image/jpeg;base64,AAAA", signature: Array(4096).fill(0), sourceWidth: 1000, sourceHeight: 1000 });
+    expect(h.localRecognize).toHaveBeenCalledTimes(reads);
+    const chess = new Chess(); chess.move("e4"); h.observe(chess.fen({ forceEnpassantSquare: true }));
+    h.sample(30); await flush();
+    expect(h.session.snapshot().status.state).toBe("Reading board");
+    h.sample(30); await flush();
+    expect(h.session.snapshot().position?.fen).toBe(chess.fen({ forceEnpassantSquare: true }));
+    expect(h.session.snapshot().status.state).toBe("Ready");
+    expect(h.session.snapshot().running).toBe(running);
+    expect(h.deps.cloud.recognize).not.toHaveBeenCalled();
+  });
   it.each([false, true])("tracks both players, Rescan and Pause without cloud calls (saved key %s)", async hasKey => {
     const h = harness(false, true, true, "local", false);
     h.deps.hasApiKey = () => hasKey;

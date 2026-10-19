@@ -85,9 +85,11 @@ export class BoardCapture {
       if (epoch === this.epoch) this.fail(epoch, captureFailureCode(error));
     }
   }
-  private fail(epoch: number, code: CaptureFailureCode) {
-    const command = this.command;
-    if (epoch !== this.epoch || !command) return;
+  private isCurrent(epoch: number, command: CaptureCommand) {
+    return epoch === this.epoch && this.command?.sessionId === command.sessionId && this.command.revision === command.revision;
+  }
+  private fail(epoch: number, code: CaptureFailureCode, command = this.command) {
+    if (!command || !this.isCurrent(epoch, command)) return;
     this.stop();
     void this.api.captureError({
       sessionId: command.sessionId,
@@ -99,24 +101,24 @@ export class BoardCapture {
     if (epoch !== this.epoch || !this.command?.selection || (!this.stream && !this.nativeActive))
       return;
     const started = performance.now();
+    const command = this.command;
     const send = async () => {
-      const command = this.command!;
       const selection = command.selection!;
       if (this.api.nativeFrame) {
         const result = await this.api.nativeFrame({ sessionId: command.sessionId, revision: command.revision });
-        if (epoch !== this.epoch) return;
+        if (!this.isCurrent(epoch, command)) return;
         if ("error" in result) { this.fail(epoch, result.error); return; }
         const image = new Image();
         image.src = result.frame.image;
         await image.decode();
-        if (epoch !== this.epoch) return;
+        if (!this.isCurrent(epoch, command)) return;
         const canvas = document.createElement("canvas");
         canvas.width = canvas.height = image.naturalWidth;
         canvas.getContext("2d")!.drawImage(image, 0, 0);
         await this.api.frame({ sessionId: command.sessionId, revision: command.revision,
           frameId: ++this.frame, ...result.frame,
           signature: boardSignature(canvas) });
-        if (epoch === this.epoch && ++this.samples > 120 && command.action === "sample") this.fail(epoch, "timeout");
+        if (this.isCurrent(epoch, command) && ++this.samples > 120 && command.action === "sample") this.fail(epoch, "timeout", command);
         return;
       }
       const width = this.video.videoWidth,
@@ -158,14 +160,14 @@ export class BoardCapture {
         sourceHeight: height,
       });
       if (
-        epoch === this.epoch &&
+        this.isCurrent(epoch, command) &&
         ++this.samples > 120 &&
         command.action === "sample"
       )
         this.fail(epoch, "timeout");
     };
     void send()
-      .catch(() => this.fail(epoch, "frame-failed"))
+      .catch(() => this.fail(epoch, "frame-failed", command))
       .finally(() => {
         if (epoch === this.epoch)
           this.timer = setTimeout(

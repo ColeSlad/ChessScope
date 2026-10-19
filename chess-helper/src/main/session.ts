@@ -402,19 +402,16 @@ export class Session {
   }
   rescan() {
     if (!this.current.selection) {
-      if (!this.current.position) {
-        this.needsCorrection(
-          "Select a board or enter a position before rescanning.",
-        );
-        return;
-      }
-      this.invalidate();
-      this.analyze();
+      this.fail("capture", "No browser board is connected. Select Board to scan the current board; Analyze uses the last confirmed position.", "Select Board");
       return;
     }
+    // A rescan needs new pixels, even when the selected window/crop is unchanged.
+    // Cancel the old native request or video stream before accepting samples.
+    this.sendCapture("stop");
     this.invalidate();
     this.resetSamples();
     this.lastFrame = -1;
+    this.current.observation = null;
     this.manualSampling = !this.current.running;
     this.setStatus(
       "Reading board",
