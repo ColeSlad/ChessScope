@@ -1,33 +1,24 @@
 {
   "lastSuccessfulRestoration": {
-    "verifiedAt": "2026-10-17T23:09:53.965Z",
-    "step": 69,
+    "verifiedAt": "2026-10-20T21:01:27.924Z",
+    "step": 72,
     "productionApplication": "release/mac-arm64/ChessHelper.app",
-    "productionLaunchVerifiedByNativeRendererURL": true,
-    "productionPausedOnLaunch": true,
-    "productionSettingsVerified": {
-      "boardReader": "local",
-      "explanationsEnabled": false,
-      "automaticTracking": true,
-      "shortcuts": {
-        "showHide": "Command+Shift+B",
-        "startPause": "Command+Shift+P",
-        "rescan": "Command+Shift+R"
-      },
-      "keyStatus": "Saved securely; no credential value read"
-    },
-    "onlyProtectedProductionInScopedProcessCheck": true,
-    "productionSettingsLeftOpen": true,
-    "automaticCaptureActive": false,
-    "settingsChanged": false,
+    "previousAppStopped": true,
+    "previousAppBackupRetained": true,
+    "qualificationAppAbsentInScopedProcessCheck": true,
+    "productionLaunchVerifiedByProcessAndPackage": true,
+    "productionLaunchVerifiedByNativeRendererURL": false,
+    "nativeSettingsObserved": false,
+    "preferencesUntouched": true,
     "packagedFilesMatchBuild": true,
     "packagedContentProtection": true,
+    "sourceReleaseGate": false,
     "packagedSha256": {
-      "dist/main/main.cjs": "f6c1da81fa43fd10b09c86acafaa5e107669c66b48b4f29ed665cf3599b12a06",
+      "dist/main/main.cjs": "951e25e0d04473c371ad01d6e2292b346c0d7aedbb862bc8a104e89082f0922f",
       "dist/preload/preload.cjs": "5dcf09a9dfb7782c3bf34d1e97c214f354c99921a3e1a6353414c6d9b09a5d28",
-      "dist/renderer/index.html": "78da679594615b798aafa1853bc981156404f33318fb14616bb2dc33117866fc",
+      "dist/renderer/index.html": "3ab9b255b22de6c97527260fe8ad61c7ed1f16784be30a7a6bc0f1fd71c717ea",
       "dist/renderer/assets/index-B7rEtv0l.css": "bb2b7f309e2405af28f490259d0bec9ab34d40c6900a1f44ce73a2165a821193",
-      "dist/renderer/assets/index-CvwIE46_.js": "e79a624bc01ebfca624edab942e4caaeee995feaa6cad1f297f06215af1b0e2f"
+      "dist/renderer/assets/index-ChiXWwSb.js": "3b217db414995381a2bc95d833bfdc69697056588575f90d225983c6c432cc8b"
     },
     "native": {
       "minimumMacOS": "14.0",
@@ -35,20 +26,28 @@
       "sourceSha256": "e17fdba2ed1c331e5f92a4bebc2479282bceab0fef3c94c84a9bee98c5f03197",
       "binarySha256": "cdd1ed2c6746b9dc0686ebb87898c3d5fe3687268ae4eedbd1fb0badfe885a24"
     },
-    "sourceReleaseGate": false
+    "bundleComparison": {
+      "files": 363,
+      "symlinks": 14,
+      "executableModes": true
+    },
+    "limitations": [
+      "Native window accessibility still times out, so visible panel state, saved Settings values and fresh live-board behavior were not verified in this installation.",
+      "Complete native fixture corpus and OS capture denial/revocation qualification remain incomplete."
+    ]
   },
   "currentStatus": {
-    "recordedAt": "2026-10-19T19:11:42.662Z",
-    "state": "previous-production-running-update-staged",
+    "recordedAt": "2026-10-20T21:01:27.924Z",
+    "state": "rescan-repair-installed-and-running",
     "protectedProductionAppRunning": true,
     "temporaryQualificationAppRunning": false,
-    "runningPackageContainsRescanRepair": false,
-    "productionPackageUnchanged": true,
-    "stagedApplication": "release/rescan-update/mac-arm64/ChessHelper.app",
+    "runningPackageContainsRescanRepair": true,
     "automaticTrackingReleaseGate": false,
     "currentBuildLiveCaptureMeasured": false,
+    "nativeUiInspectionVerified": false,
+    "installationReport": "rescan-installation-report.json",
     "rescanRepairReport": "rescan-repair-report.json",
-    "pendingAction": "Quit Chess Helper from its menu and reply closed so the verified staged repair can replace it and be relaunched."
+    "pendingAction": "Use the updated app to select and confirm a board. Fresh native rescan and full qualification acceptance remain pending."
   },
-  "historicalReport": "native-restoration-report-step69.json"
+  "historicalReport": "native-restoration-report-step71.json"
 }

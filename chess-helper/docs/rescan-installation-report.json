@@ -1,0 +1,79 @@
+{
+  "verifiedAt": "2026-10-20T21:01:27.924Z",
+  "step": 72,
+  "implementationCommit": "c4e8f71",
+  "implementationSha256": "068391a90aae7395b4797378415c3178af07392aee42d075713323d448fd7c5c",
+  "qualified": false,
+  "application": "release/mac-arm64/ChessHelper.app",
+  "installed": true,
+  "relaunched": true,
+  "runningPackageContainsRescanRepair": true,
+  "userAuthorizedTerminalStop": true,
+  "previousProcessStoppedWithSIGTERM": true,
+  "forcedTerminationUsed": false,
+  "previousApplicationBackup": "release/mac-arm64/.rescan-install-xQ3B87/ChessHelper.previous",
+  "previousDistributionBackupsRetained": true,
+  "packageVerificationPassed": true,
+  "packagedAssets": {
+    "dist/main/main.cjs": "951e25e0d04473c371ad01d6e2292b346c0d7aedbb862bc8a104e89082f0922f",
+    "dist/preload/preload.cjs": "5dcf09a9dfb7782c3bf34d1e97c214f354c99921a3e1a6353414c6d9b09a5d28",
+    "dist/renderer/index.html": "3ab9b255b22de6c97527260fe8ad61c7ed1f16784be30a7a6bc0f1fd71c717ea",
+    "dist/renderer/assets/index-B7rEtv0l.css": "bb2b7f309e2405af28f490259d0bec9ab34d40c6900a1f44ce73a2165a821193",
+    "dist/renderer/assets/index-ChiXWwSb.js": "3b217db414995381a2bc95d833bfdc69697056588575f90d225983c6c432cc8b"
+  },
+  "native": {
+    "minimumMacOS": "14.0",
+    "nodeApi": 8,
+    "sourceSha256": "e17fdba2ed1c331e5f92a4bebc2479282bceab0fef3c94c84a9bee98c5f03197",
+    "binarySha256": "cdd1ed2c6746b9dc0686ebb87898c3d5fe3687268ae4eedbd1fb0badfe885a24"
+  },
+  "distributionSha256": {
+    "release/Chess-Helper-0.1.0-arm64.zip": "fad981524ff6cb131225427b8f9777e97063a41a07f84f46f73ed0df35720e83",
+    "release/Chess-Helper-0.1.0-arm64.dmg": "d5c4e51e44d4e034e036a32d6b38efa1c401334a142a37690f902a7682f2568a"
+  },
+  "bundleComparison": {
+    "files": 363,
+    "symlinks": 14,
+    "executableModes": true
+  },
+  "frameworkSymlinksPreserved": true,
+  "productionContentProtection": true,
+  "sourceReleaseGate": false,
+  "settingsOrCredentialFilesChanged": false,
+  "credentialValueRead": false,
+  "nativeVerification": {
+    "runningExecutableAtInstalledPath": true,
+    "runningFilesMatchVerifiedStage": true,
+    "processRemainedRunningAfterPackageVerification": true,
+    "windowAccessibilityInspection": false,
+    "liveBoardCapture": false
+  },
+  "attempts": [
+    {
+      "method": "Native Chess Helper window and Activity Monitor controls",
+      "outcome": "Native inspection timed out or lost active control; no process was stopped through those attempts."
+    },
+    {
+      "method": "User-approved terminal stop",
+      "outcome": "Verified only the old Chess Helper executable identity, sent SIGTERM, and confirmed it exited."
+    },
+    {
+      "method": "Initial prepared bundle copy",
+      "outcome": "The initial native-open process did not remain running. Comparison found framework symlinks had been resolved to absolute paths."
+    },
+    {
+      "method": "Corrected copy and normal macOS open",
+      "outcome": "Copied with verbatimSymlinks, verified all 14 original symlink targets, and launched from the normal installed location. All 363 regular files and executable modes match the stage."
+    }
+  ],
+  "retainedValidation": {
+    "tests": 236,
+    "fixtureCount": 51,
+    "recordedFixturesPassed": true,
+    "note": "Unchanged source/build; installation verifies artifacts and running executable, without rerunning or replacing the existing regression and recorded-fixture results."
+  },
+  "limitations": [
+    "Native window accessibility still times out, so visible panel state, saved Settings values and fresh live-board behavior were not verified in this installation.",
+    "Complete native fixture corpus and OS capture denial/revocation qualification remain incomplete."
+  ]
+}

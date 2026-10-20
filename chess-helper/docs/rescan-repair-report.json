@@ -4,7 +4,7 @@
   "implementationCommit": "c4e8f71",
   "implementationSha256": "068391a90aae7395b4797378415c3178af07392aee42d075713323d448fd7c5c",
   "qualified": false,
-  "scope": "Stale Rescan repair: reproducible Session/renderer regressions, offline recorded gate, and protected staged distribution. Native GUI and installation are blocked on closing the running app.",
+  "scope": "Stale Rescan repair: reproducible Session/renderer regressions, offline recorded gate, installed protected distribution and running-build verification. Native UI/live capture remain unverified.",
   "reproducedBeforeFix": [
     {
       "case": "Disconnected capture with a confirmed manual position",
@@ -82,24 +82,23 @@
     "productionContentProtection": true
   },
   "installation": {
-    "state": "awaiting-user-quit",
-    "productionReplaced": false,
-    "previousProductionPackageBytesIntact": true,
+    "state": "installed-and-running",
+    "productionReplaced": true,
+    "installedApplication": "release/mac-arm64/ChessHelper.app",
+    "previousProductionBackup": "release/mac-arm64/.rescan-install-xQ3B87/ChessHelper.previous",
+    "packageBytesMatchVerifiedStage": true,
+    "frameworkSymlinksPreserved": true,
     "productionExecutableObserved": true,
     "qualificationAppRunning": false,
-    "previousProduction": "release/mac-arm64/ChessHelper.app",
-    "stagedApplication": "release/rescan-update/mac-arm64/ChessHelper.app",
-    "nativeAttempts": [
-      "Production app path lookup timed out.",
-      "Executable-name lookup timed out."
-    ],
-    "pendingQuestion": "Quit Chess Helper from its menu and reply closed so the verified staged repair can replace it and be relaunched.",
+    "nativeUiInspectionVerified": false,
     "preferencesChanged": false,
-    "credentialValueRead": false
+    "credentialValueRead": false,
+    "installationReport": "rescan-installation-report.json"
   },
   "limitations": [
-    "No fresh native capture acceptance for this implementation; Computer Use cannot inspect the running window.",
-    "The repaired staged app is not the currently running app.",
-    "Complete native corpus and OS denial/revocation qualification remain incomplete."
-  ]
+    "Native window accessibility still times out, so visible panel state, saved Settings values and fresh live-board behavior were not verified in this installation.",
+    "Complete native fixture corpus and OS capture denial/revocation qualification remain incomplete."
+  ],
+  "lastStagedCheckpoint": "rescan-repair-report-step71.json",
+  "installedAt": "2026-10-20T21:01:27.924Z"
 }
